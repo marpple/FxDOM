@@ -1,3 +1,4 @@
+// FxJS-DOM 0.0.2
 import {
   isUndefined, isArray, isString,
   curry, go, pipe, tap,
