@@ -1,9 +1,9 @@
 // FxJS-DOM 0.0.2
 import {
   isUndefined, isArray, isString,
+  identity, head, tail,
   curry, go, pipe, tap,
-  identity, head,
-  each, map,
+  each, map, filter,
   defaults,
   L
 } from "./fx.js";
@@ -13,9 +13,45 @@ const $ = sel => document.querySelector(sel);
 $.all = sel => document.querySelectorAll(sel);
 export default $;
 
-$.find = curry((sel, el) => el.querySelector(sel));
+const childrenRecur = (parents, sels) => {
+  const [h1, ...t1] = sels;
+  if (h1 != '>') return [parents, t1];
+  const [h2, ...t2] = t1;
+  return go(
+    parents,
+    map(pipe(
+      $.children,
+      filter($.is(h2))
+    )),
+    arr => [].concat(...arr),
+    children => childrenRecur(children, tail(t2)));
+};
 
-$.findAll = curry((sel, el) => el.querySelectorAll(sel));
+const idCreator = _ => {
+  var i = 0;
+  return _ => 'fxdom-id-' + i++;
+};
+
+const createId = idCreator();
+
+const baseFind = qs => curry((sel, el) => {
+  const id = el.id;
+  el.id = id || createId();
+  const res = el[qs]('#' + el.id + sel);
+  if (!id) el.removeAttribute('id');
+  return res;
+});
+
+$.find = baseFind('querySelector');
+
+$.findAll = baseFind('querySelectorAll');
+
+$.children = el => el.children;
+
+const docEl = document.documentElement;
+const matches = docEl.matches || docEl.webkitMatchesSelector || docEl.mozMatchesSelector || docEl.msMatchesSelector;
+
+$.is = curry((sel, el) => matches.call(el, sel));
 
 $.closest = curry((sel, el) => el.closest(sel));
 
@@ -48,17 +84,18 @@ $.setAttr = $.set_attr = curry((kv, el) =>
     el.setAttribute(...kv) :
     each(kv => el.setAttribute(...kv), L.entries(kv)));
 
-$.on = (el, event, sel, f, ...opts) =>
-  isString(el) ? // curry
+$.on = function(el, event, sel, f, ...opts) {
+  return isString(el) ? // curry
     el => $.on(el, ...arguments) :
   !isString(sel) ? (
     el.addEventListener(event, sel, f, ...opts), el) :
   go(el, tap(
     $.findAll(sel),
-    each(el => el.addEventListener(event, sel, f, ...opts))));
+    each(el => el.addEventListener(event, f, ...opts))))
+};
 
-$.delegate = (el, event, sel, f, capture) =>
-  isString(el) ? // curry
+$.delegate = function(el, event, sel, f, capture) {
+  return isString(el) ? // curry
     el => $.delegate(el, ...arguments) : (
     el.addEventListener(event, e => go(
       el,
@@ -66,7 +103,8 @@ $.delegate = (el, event, sel, f, capture) =>
       (typeof capture == 'object' ? capture.capture : capture) ? identity : L.reverse,
       L.filter(el => el.contains(e.target)),
       each(currentTarget => f(defaults({ originalEvent: e, currentTarget, delegateTarget: el }, e)))
-    )), el);
+    )), el)
+};
 
 const
   resJSON = res => res.ok ? res.json() : Promise.reject(res),
