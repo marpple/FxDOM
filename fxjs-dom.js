@@ -147,9 +147,8 @@ $.setData = (data, el) => {
 };
 
 $.data = el => {
-  if (!dataMap.get(el)) {
-    $.setData(JSON.parse($.attr('fxd-data', el)), el);
-    $.setAttr(['fxd-data', 'IN_WEAK_MAP'], el);
-  }
+  if (dataMap.has(el)) return dataMap.get(el);
+  $.setData(JSON.parse($.attr('fxd-data', el)), el);
+  $.setAttr(['fxd-data', 'IN_WEAK_MAP'], el);
   return dataMap.get(el);
 };
