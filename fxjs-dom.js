@@ -1,4 +1,4 @@
-// FxJS-DOM 0.0.2
+// FxJS-DOM 0.0.4
 import {
   isUndefined, isArray, isString,
   identity, head, tail,
@@ -37,7 +37,7 @@ const createId = idCreator();
 const baseFind = qs => curry((sel, el) => {
   const id = el.id;
   el.id = id || createId();
-  const res = el[qs]('#' + el.id + sel);
+  const res = el[qs]('#' + el.id + ' ' + sel);
   if (!id) el.removeAttribute('id');
   return res;
 });
@@ -79,10 +79,12 @@ $.setVal = $.set_val = curry((value, el) => (el.value = value, el));
 
 $.attr = curry((k, el) => el.getAttribute(k));
 
-$.setAttr = $.set_attr = curry((kv, el) =>
+$.setAttr = $.set_attr = curry((kv, el) => (
   isArray(kv) ?
     el.setAttribute(...kv) :
-    each(kv => el.setAttribute(...kv), L.entries(kv)));
+    each(kv => el.setAttribute(...kv), L.entries(kv)), el));
+
+$.removeAttr = $.remove_attr = curry((k, el) => el.removeAttribute(k));
 
 $.on = function(el, event, sel, f, ...opts) {
   return isString(el) ? // curry
@@ -136,3 +138,18 @@ $.param = pipe(
   L.map(map(encodeURIComponent)),
   map(([k, v]) => `${k}=${v}`),
   strs => strs.join('&').replace(/%20/g, '+'));
+
+const dataMap = new WeakMap();
+
+$.setData = (data, el) => {
+  dataMap.set(el, data);
+  return el;
+};
+
+$.data = el => {
+  if (!dataMap.get(el)) {
+    $.setData(JSON.parse($.attr('fxd-data', el)), el);
+    $.setAttr(['fxd-data', 'IN_WEAK_MAP'], el);
+  }
+  return dataMap.get(el);
+};
