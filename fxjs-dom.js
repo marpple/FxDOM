@@ -1,4 +1,4 @@
-// FxJS-DOM 0.0.4
+// FxJS-DOM 0.0.5
 import {
   isUndefined, isArray, isString,
   identity, head, tail,
@@ -13,20 +13,6 @@ const $ = sel => document.querySelector(sel);
 $.all = sel => document.querySelectorAll(sel);
 export default $;
 
-const childrenRecur = (parents, sels) => {
-  const [h1, ...t1] = sels;
-  if (h1 != '>') return [parents, t1];
-  const [h2, ...t2] = t1;
-  return go(
-    parents,
-    map(pipe(
-      $.children,
-      filter($.is(h2))
-    )),
-    arr => [].concat(...arr),
-    children => childrenRecur(children, tail(t2)));
-};
-
 const idCreator = _ => {
   var i = 0;
   return _ => 'fxdom-id-' + i++;
@@ -37,7 +23,7 @@ const createId = idCreator();
 const baseFind = qs => curry((sel, el) => {
   const id = el.id;
   el.id = id || createId();
-  const res = el[qs]('#' + el.id + ' ' + sel);
+  const res = el[qs]('#' + el.id + (sel[0] == '&' ? sel.substr(1) : ' ' + sel));
   if (!id) el.removeAttribute('id');
   return res;
 });
@@ -46,14 +32,12 @@ $.find = baseFind('querySelector');
 
 $.findAll = baseFind('querySelectorAll');
 
-$.children = el => el.children;
+$.closest = curry((sel, el) => el.closest(sel));
 
 const docEl = document.documentElement;
 const matches = docEl.matches || docEl.webkitMatchesSelector || docEl.mozMatchesSelector || docEl.msMatchesSelector;
 
 $.is = curry((sel, el) => matches.call(el, sel));
-
-$.closest = curry((sel, el) => el.closest(sel));
 
 $.els = htmlStr => {
   const container = document.createElement('div');
@@ -73,6 +57,14 @@ $.text = el => el.textContent;
 
 $.setText = $.set_text = curry((text, el) => (el.textContent = text, el));
 
+$.html = el => el.innerHTML;
+
+$.setHtml = $.set_html = curry((html, el) => (el.innerHTML = html, el));
+
+$.outerHTML = el => el.outerHTML;
+
+$.setOuterHTML = $.set_outer_html = curry((html, el) => el.outerHTML = html);
+
 $.val = el => el.value;
 
 $.setVal = $.set_val = curry((value, el) => (el.value = value, el));
@@ -84,7 +76,7 @@ $.setAttr = $.set_attr = curry((kv, el) => (
     el.setAttribute(...kv) :
     each(kv => el.setAttribute(...kv), L.entries(kv)), el));
 
-$.removeAttr = $.remove_attr = curry((k, el) => el.removeAttribute(k));
+$.removeAttr = $.remove_attr = curry((k, el) => (el.removeAttribute(k), el));
 
 $.on = function(el, event, sel, f, ...opts) {
   return isString(el) ? // curry
