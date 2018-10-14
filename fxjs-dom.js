@@ -1,9 +1,9 @@
-// FxJS-DOM 0.0.5
+// FxJS-DOM 0.0.6
 import {
   isUndefined, isArray, isString,
-  identity, head, tail,
+  head,
   curry, go, pipe, tap,
-  each, map, filter,
+  each, map,
   defaults,
   L
 } from "./fx.js";
@@ -78,26 +78,43 @@ $.setAttr = $.set_attr = curry((kv, el) => (
 
 $.removeAttr = $.remove_attr = curry((k, el) => (el.removeAttribute(k), el));
 
-$.on = function(el, event, sel, f, ...opts) {
-  return isString(el) ? // curry
-    el => $.on(el, ...arguments) :
-  !isString(sel) ? (
-    el.addEventListener(event, sel, f, ...opts), el) :
-  go(el, tap(
+const baseOnOff = method => (event, sel, f, ...opts) => tap(el =>
+  !isString(sel) ?
+    el[method](event, sel, ...[f, ...opts]) :
+  go(el,
     $.findAll(sel),
-    each(el => el.addEventListener(event, f, ...opts))))
+    each(el => el[method](event, f, ...opts)))
+);
+
+$.on = baseOnOff('addEventListener');
+$.off = baseOnOff('removeEventListener');
+
+$.delegate = (event, sel, f) => tap(el =>
+  el.addEventListener(event, e => go(
+    el,
+    $.findAll(sel),
+    L.filter(el => el.contains(e.target)),
+    each(currentTarget => f(defaults({ originalEvent: e, currentTarget, delegateTarget: el }, e)))
+  ))
+);
+
+const me = 'MouseEvents';
+const mouseEvents = {
+  click: me,
+  mousedown: me,
+  mouseup: me,
+  mousemove: me,
 };
 
-$.delegate = function(el, event, sel, f, capture) {
-  return isString(el) ? // curry
-    el => $.delegate(el, ...arguments) : (
-    el.addEventListener(event, e => go(
-      el,
-      $.findAll(sel),
-      (typeof capture == 'object' ? capture.capture : capture) ? identity : L.reverse,
-      L.filter(el => el.contains(e.target)),
-      each(currentTarget => f(defaults({ originalEvent: e, currentTarget, delegateTarget: el }, e)))
-    )), el)
+$.trigger = function(event, props, el) {
+  if (!el) { el = props; props = {}; }
+  if (event == 'submit') return el.submit(), el;
+  let e = document.createEvent(mouseEvents[event] || 'Events');
+  var bubbles = true;
+  for (var name in props) (name == 'bubbles') ? (bubbles = !!props[name]) : (event[name] = props[name]);
+  e.initEvent(event, bubbles, true);
+  el.dispatchEvent(e);
+  return el;
 };
 
 const
@@ -116,7 +133,7 @@ const
     resJSON));
 
 $.get = curry((url, data) => go(
-  fetch(url + '?' + $.param(data), fetchBaseOpt),
+  fetch(url + (data === undefined ? '' : '?' + $.param(data)), fetchBaseOpt),
   resJSON
 ));
 
@@ -126,7 +143,7 @@ $.delete = fetchWithBody('DELETE');
 
 $.param = pipe(
   L.entries,
-  L.reject((_, a) => isUndefined(a)),
+  L.reject(([_, a]) => isUndefined(a)),
   L.map(map(encodeURIComponent)),
   map(([k, v]) => `${k}=${v}`),
   strs => strs.join('&').replace(/%20/g, '+'));

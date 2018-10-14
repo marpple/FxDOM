@@ -250,16 +250,213 @@ console.log(1, $.removeAttr('status', $.el('<div status="hi">')));
 ## Event
 
 ### $.on
+
+`$.on`은 `el.addEventListener`를 대신합니다. `$.on`은 이벤트를 등록할 함수를 리턴하며, 커링 방식으로만 사용할 수 있습니다.
+
+ - 인자로 받은 함수를 조작하지 않고 `el.addEventListener`에 그대로 적용하여, 같은 엘리먼트에 같은 이벤트와 같은 함수를 등록이 되지 않는 `el.addEventListener`의 특징을 그대로 유지했습니다.
+ - `el.addEventListener`의 `capture`, `passive` 등의 옵션을 사용할 수 있습니다.
+ - `e.preventDefault`, `e.stopPropagation`을 사용할 수 있습니다.
+ - `el.removeEventListener`와 `$.off`를 사용할 수 있습니다.
+
+```html
+<button type="button" id="btn1">
+  <span>btn1</span>
+</button>
+```
+
+```javascript
+const addClickEvent = $.on('click', function(e) {
+  console.log(e.currentTarget); // #btn1
+  console.log(e.target); // span
+});
+
+addClickEvent($('#btn1'));
+addClickEvent($('#btn1')); // 두 번 등록해도 추가로 등록되지 않음.
+$.trigger('click', $('#btn1 span'));
+// #btn1
+// span
+```
+
+`$.on`의 두 번째 인자에 셀렉터를 전달하면 매칭되는 자식요소에 이벤트를 등록합니다. 이 방식은 위임 방식이 아니며, 역시 `el.addEventListener`의 주요 특징과 기능을 모두 사용할 수 있습니다.
+
+```html
+<div class="articles">
+  <div class="article">
+    <button type="button" class="remove"><span>삭제</span></button>
+  </div>
+  <div class="article">
+    <button type="button" class="remove"><span>삭제</span></button>
+  </div>
+</div>
+```
+
+```javascript
+const Articles = {
+  addEvents: pipe(
+    $.on('click', '.article:nth-child(1)', function(e) {
+      console.log(e.currentTarget);
+    }),
+    $.on('click', '.article', function(e) {
+      console.log(e.currentTarget);
+    }, { capture: true }),
+    $.on('click', '.remove', function(e) {
+      console.log(e.currentTarget);
+    }))
+};
+
+Articles.addEvents($('.articles'));
+
+$.trigger('click', $('.articles .article:nth-child(1) .remove')); // 한 번만 실행
+// button.remove
+// div.article
+
+$.trigger('click', $('.articles .article:nth-child(2) .remove'));
+// div.article
+// button.remove
+
+$.append($('.articles'), $.el(`
+  <div class="article new">
+    <button type="button" class="remove"><span>삭제</span></button>
+  </div>
+`));
+
+Articles.addEvents($('.articles'));
+
+$.trigger('click', $('.articles .article:nth-child(1) .remove')); // 한 번만 실행
+// button.remove
+// div.article
+
+$.trigger('click', $('.articles .article:nth-child(3) .remove'));
+// button.remove
+// div.article.new
+```
+
+### $.off
+
+`$.on`에 전달한 모든 인자를 동일하게 전달하여 이벤트를 지울 수 있습니다.
+
+```html
+<button type="button" id="btn2"></button>
+```
+
+```javascript
+const eventArgs = ['click', function() { console.log('hi~') }];
+$.on(...eventArgs)($('#btn2'));
+$.off(...eventArgs)($('#btn2'));
+$.trigger('click', $('#btn2'));
+// nothing
+```
+
 ### $.delegate
+
+이벤트 위임 방식으로 이벤트를 등록합니다. 이벤트를 등록하고자 하는 엘리먼트가 동적으로 간편하게 이벤트를 등록해둘 수 있습니다.
+
+```html
+<div class="users">
+</div>
+```
+
+```javascript
+go(
+  $('.users'),
+  $.delegate('click', '.remove', function() {
+    console.log('remove user');
+  }));
+
+$.append($('.users'), $.el(`
+  <div class="user new">
+    <button type="button" class="remove"><span>삭제</span></button>
+  </div>
+`));
+
+$.trigger('click', $('.users .remove'));
+// remove user
+```
+
+이벤트 위임 방식은 아래와 같은 옵션들을 사용할 필요가 없는 상황에 한하여 사용하는 것을 권장합니다.
+
+ - `el.addEventListener`의 `capture`, `passive` 등의 옵션을 사용할 수 없습니다.
+ - `e.preventDefault`, `e.stopPropagation`을 사용할 수 없습니다.
+ - `el.removeEventListener`와 `$.off`를 사용할 수 없습니다.
+ - `mouseleave`, `mouseenter`는 정상 동작하지 않습니다.
+
+[don.js](https://github.com/marpple/don.js)에서는 이벤트 위임 방식에서 위 기능들을 모두 구현하여 제공했지만, 사실상 브라우저의 이벤트에 대한 모든 동작을 라이브러리 위에 다시 구현하는 장황한 코드들이 필요하며, 경험상 그 실용성이 떨어진다고 생각하여 FxJS-DOM은 해당 기능을 구현하지 않는 컨셉으로 가고자 합니다.
+
+### $.delegate + & 응용
+
+```html
+<div class="signup" agree="false">
+  <input type="checkbox">
+  <button type="button">가입</button>
+</div>
+```
+
+```javascript
+go($('.signup'),
+  $.delegate('change', 'input', function(e) {
+    $.setAttr({ agree: e.currentTarget.checked }, e.delegateTarget);
+  }),
+  $.delegate('click', '&[agree="false"] button', function() {
+    console.log('동의해주세요!');
+  }),
+  $.delegate('click', '&[agree="true"] button', function() {
+    console.log('감사합니다!');
+  }));
+
+$.trigger('click', $('.signup button'));
+// 동의해주세요!
+$.trigger('click', $('.signup input'));
+$.trigger('click', $('.signup button'));
+// 감사합니다!
+```
 
 ## Data
 
-### $.data
-### $.setData
+### $.data, $.setData
+
+```html
+<div class="item" fxd-data='{"id": 1, "active": true}'></div>
+```
+
+```javascript
+const { id, active } = $.data($('.item'));
+console.log(id, active);
+// 1 true
+
+const data = $.data($.setData({ id: 1, active: false }, $('.item')));
+console.log(data.active);
+// false
+data.active = true;
+console.log($.data($('.item')).active);
+// true
+```
 
 ## Fetch
 
+`$.get, $.post, $.put, $.delete`의 `Content-Type`은 `application/json`으로 설정되어있으며 응답이 오면 JSON 객체를 반환합니다. 4개 함수 모두 필요 인자는 2개 이상이며, 인자를 1개만 전달하면 함수를 리턴합니다.
+
 ### $.get
+
+```javascript
+$.get('/api/posts', { offset: 0, limit: 10 }); // GET '/api/posts?offset=0&limit10'
+// Promise [{id: 1, ...}, {id: 2, ...}, ...]
+```
+
 ### $.post
+```javascript
+$.post('/api/posts', { content: 'ho~'}); // POST /api/posts, BODY { content: 'ho~' }
+// Promise {id:1, content: 'ho', created_at: ... }
+```
+
 ### $.put
+
+```javascript
+$.put(`/api/posts/${post.id}`, post); // PUT /api/posts/1, BODY { id: 1, ... }
+// Promise {id:1, content: 'ho', updated_at: ... }
+```
+
 ### $.delete
+
+```javascript
+$.delete(`/api/posts/${post.id}`, undefined); // DELETE /api/posts/1
+```
