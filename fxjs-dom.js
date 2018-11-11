@@ -163,10 +163,10 @@ $.setScrollLeft = $.set_scroll_left = (val, el) => baseScroll(el, val, "pageXOff
 
 $.offset = el => {
   const rect = el.getBoundingClientRect();
-  return rect.width || rect.height ? {
+  return {
     top: rect.top + window.pageYOffset - docEl.clientTop,
     left: rect.left + window.pageXOffset - docEl.clientLeft
-  } : { top: 0, left: 0 };
+  };
 };
 
 const baseOnOff = method => (event, sel, f, ...opts) => tap(el =>
@@ -250,7 +250,7 @@ $.param = pipe(
 
 const dataMap = new WeakMap();
 
-$.setData = (data, el) => {
+$.setData = $.set_data = (data, el) => {
   dataMap.set(el, data);
   return el;
 };
@@ -290,7 +290,7 @@ const isNumeric = n => !isNaN(parseFloat(n)) && isFinite(n);
 
 const addPx = (k, v) => numberTypes[k] ? v : isNumeric(v) ? v + 'px' : v;
 
-$.setCss = curry((kv, el) => {
+$.setCss = $.set_css = curry((kv, el) => {
   if (isArray(kv)) {
     const k = toCamel(kv[0]);
     el.style[k] = addPx(k, kv[1]);
@@ -329,12 +329,12 @@ function elWidth(el, prefix = '', isHeight) {
 }
 
 $.width = el => el == window ? el.innerWidth : el == document ? docWidth() : elWidth(el);
-$.innerWidth = el => elWidth(el, 'inner');
-$.outerWidth = el => elWidth(el, 'outer');
+$.innerWidth = $.inner_width = el => elWidth(el, 'inner');
+$.outerWidth = $.outer_width = el => elWidth(el, 'outer');
 
 $.height = el => el == window ? el.innerHeight : el == document ? docWidth(true) : elWidth(el, '', true);
-$.innerHeight = el => elWidth(el, 'inner', true);
-$.outerHeight = el => elWidth(el, 'outer', true);
+$.innerHeight = $.inner_height = el => elWidth(el, 'inner', true);
+$.outerHeight = $.outer_height = el => elWidth(el, 'outer', true);
 
 const defaultDisplays = {};
 function getDefaultDisplays(el) {

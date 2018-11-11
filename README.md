@@ -1,5 +1,13 @@
 # FxJS-DOM
 
+* [Selector](#selector)
+* [Create](#create)
+* [Manipulation](#manipulation)
+* [CSS](#css)
+* [Event](#event)
+* [Data](#data)
+* [Fetch](#fetch)
+
 ## Selector
 
 ```html
@@ -114,6 +122,12 @@ console.log($.closest('div.container', $('.item4')));
 // div.container.div1
 ```
 
+### $.children
+### $.prevAll
+### $.nextAll
+### $.prev
+### $.next
+
 ### $.is
 
 첫 번째 인자에 전달된 셀렉터와 매칭이 되는지 확인합니다.
@@ -125,6 +139,8 @@ console.log($.is('.item1', $('li:nth-child(1)')));
 console.log($.is('.item1', $('li:nth-child(2)')));
 // true
 ```
+
+### $.contains
 
 ## Create
 
@@ -161,6 +177,9 @@ $.append($('.comments'), $.el('<div class="comment">새 댓글</div>'));
 ```javascript
 $.prepend($('.posts'), $.el('<div class="post">새 글</div>'));
 ```
+
+### $.before
+### $.after
 
 ### $.remove
 ```javascript
@@ -199,9 +218,7 @@ console.log($.outerHTML($.el('<div><span>hi</span></div>')));
 
 ### $.setOuterHTML
 
-```html
 <div id="div1"></div>
-```
 
 ```javascript
 let el = $('#div1');
@@ -230,22 +247,116 @@ console.log($.attr('type', $.el('<input type="text" value="hoho">')));
 
 ### $.setAttr
 ```javascript
-console.log(1, $.setAttr({ status: 'ho' }, $.el('<div status="hi">')));
+console.log($.setAttr({ status: 'ho' }, $.el('<div status="hi">')));
 // HTMLDivElement <div status="ho"></div>
-console.log(1, $.setAttr({ status: 'ho', class: 'ye' }, $.el('<div status="hi">')));
+console.log($.setAttr({ status: 'ho', class: 'ye' }, $.el('<div status="hi">')));
 // HTMLDivElement <div status="ho" class="ye"></div>
-console.log(1, $.setAttr(['status', 'ho'], $.el('<div status="hi">')));
+console.log($.setAttr(['status', 'ho'], $.el('<div status="hi">')));
 // HTMLDivElement <div status="ho"></div>
-console.log(1, $.setAttr({ status: '' }, $.el('<div status="hi">')));
+console.log($.setAttr({ status: '' }, $.el('<div status="hi">')));
 // HTMLDivElement <div status></div>
 ```
 
 ### $.removeAttr
 
 ```javascript
-console.log(1, $.removeAttr('status', $.el('<div status="hi">')));
+console.log($.removeAttr('status', $.el('<div status="hi">')));
 // HTMLDivElement <div></div>
 ```
+
+## CSS
+
+### $.addClass
+
+```javascript
+console.log($.addClass('selected', $.el('div')));
+// HTMLDivElement <div class="selected"></div>
+console.log($.addClass('hi ho', $.el('div')));
+// HTMLDivElement <div class="hi ho"></div>
+console.log($.addClass('hi', $.el('<div class="ye">')));
+// HTMLDivElement <div class="ye hi"></div>
+```
+
+### $.removeClass
+
+```javascript
+console.log($.removeClass('selected', $.el('<div class="selected"></div>')));
+// HTMLDivElement <div class></div>
+console.log($.removeClass('hi ho', $.el('<div class="hi ho"></div>')));
+// HTMLDivElement <div class></div>
+console.log($.removeClass('hi', $.el('<div class="ye hi">')));
+// HTMLDivElement <div class="ye"></div>
+```
+
+### $.removeClass
+
+```javascript
+console.log($.removeClass('selected', $.el('<div class="selected"></div>')));
+// HTMLDivElement <div class></div>
+console.log($.removeClass('hi ho', $.el('<div class="hi ho"></div>')));
+// HTMLDivElement <div class></div>
+console.log($.removeClass('hi', $.el('<div class="ye hi">')));
+// HTMLDivElement <div class="ye"></div>
+```
+
+### $.toggleClass
+
+```javascript
+console.log($.toggleClass('selected', $.el('<div class="selected"></div>')));
+// HTMLDivElement <div class></div>
+
+console.log($.toggleClass('selected', $.el('<div></div>')));
+// HTMLDivElement <div class="selected"></div>
+```
+
+### $.css
+
+### $.setCss
+
+### $.show
+
+### $.hide
+
+### $.toggle
+
+### $.offset
+
+```javascript
+console.log(
+  $.offset(
+    $.append(
+      $('body'),
+      $.setCss(
+        { position: 'absolute', top: '20px', left: '30px', 'margin-top': '50px' },
+        $.el('div')))));
+// { top: 70, left: 30 }
+```
+
+### $.width
+width
+
+### $.height
+height
+
+### $.innerWidth
+width + paddingLeft + paddingRight + borderLeft + borderRight
+
+### $.innerHeight
+height + paddingTop + paddingBottom + borderTop + borderBottom
+
+### $.outerWidth
+innerWidth + marginLeft + marginRight
+
+### $.outerHeight
+innerHeight + marginTop + marginBottom
+
+### $.scrollTop
+
+### $.scrollLeft
+
+### $.setScrollTop
+
+### $.setScrollLeft
 
 ## Event
 
