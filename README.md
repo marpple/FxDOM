@@ -1,5 +1,7 @@
 # FxJS-DOM
 
+HTML DOM Bindings for the [FxJS](https://github.com/marpple/FxJS)
+
 * [Selector](#selector)
 * [Create](#create)
 * [Manipulation](#manipulation)
