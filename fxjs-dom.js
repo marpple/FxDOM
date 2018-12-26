@@ -1,4 +1,4 @@
-// FxJS-DOM 0.0.8
+// FxJS-DOM 0.0.9
 import {
   isUndefined, isArray, isString,
   head,
@@ -226,9 +226,9 @@ const
     resJSON));
 
 $.get = curry((url, data, headers) => go(
-  fetch(url + (data === undefined ? '' : '?' + $.param(data)), defaults({
+  fetch(url + (data === undefined ? '' : '?' + $.param(data)), headers ? defaults({
     headers: defaults(headers, fetchBaseOpt.headers)
-  }, fetchBaseOpt)),
+  }, fetchBaseOpt) : fetchBaseOpt),
   resJSON
 ));
 
