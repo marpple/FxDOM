@@ -1,4 +1,4 @@
-// FxJS-DOM 0.0.9
+// FxJS-DOM 0.0.10
 import {
   isUndefined, isArray, isString,
   head,
@@ -218,17 +218,19 @@ const
     credentials: 'same-origin'
   },
 
-  fetchWithBody = method => curry((url, data) => go(
+  fetchBaseOptF = headers => headers ? defaults({
+    headers: defaults(headers, fetchBaseOpt.headers)
+  }, fetchBaseOpt) : fetchBaseOpt,
+
+  fetchWithBody = method => curry((url, data, headers) => go(
     fetch(url, Object.assign({
       method: method,
       body: JSON.stringify(data)
-    }, fetchBaseOpt)),
+    }, fetchBaseOptF(headers))),
     resJSON));
 
 $.get = curry((url, data, headers) => go(
-  fetch(url + (data === undefined ? '' : '?' + $.param(data)), headers ? defaults({
-    headers: defaults(headers, fetchBaseOpt.headers)
-  }, fetchBaseOpt) : fetchBaseOpt),
+  fetch(url + (data === undefined ? '' : '?' + $.param(data)), fetchBaseOptF(headers)),
   resJSON
 ));
 
