@@ -1,10 +1,9 @@
-// FxJS-DOM 0.0.7
+// FxJS-DOM 0.0.8
 import {
   isUndefined, isArray, isString,
   head,
   curry, go, pipe, tap,
   each, map,
-  eMap,
   defaults,
   L
 } from "./fx.js";
@@ -226,8 +225,10 @@ const
     }, fetchBaseOpt)),
     resJSON));
 
-$.get = curry((url, data) => go(
-  fetch(url + (data === undefined ? '' : '?' + $.param(data)), fetchBaseOpt),
+$.get = curry((url, data, headers) => go(
+  fetch(url + (data === undefined ? '' : '?' + $.param(data)), defaults({
+    headers: defaults(headers, fetchBaseOpt.headers)
+  }, fetchBaseOpt)),
   resJSON
 ));
 
