@@ -1,4 +1,4 @@
-// FxJS-DOM 0.0.10
+// FxJS-DOM 0.0.11
 import {
   isUndefined, isArray, isString,
   head,
@@ -253,10 +253,10 @@ $.param = pipe(
 
 const dataMap = new WeakMap();
 
-$.setData = $.set_data = (data, el) => {
+$.setData = $.set_data = curry((data, el) => {
   dataMap.set(el, data);
   return el;
-};
+});
 
 $.data = el => {
   if (dataMap.has(el)) return dataMap.get(el);
