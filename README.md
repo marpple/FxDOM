@@ -413,6 +413,7 @@ const Articles = {
       console.log(e.currentTarget);
     }, { capture: true }),
     $.on('click', '.remove', function(e) {
+      console.log('other_data:', e.other_data);
       console.log(e.currentTarget);
     }))
 };
@@ -420,11 +421,13 @@ const Articles = {
 Articles.addEvents($('.articles'));
 
 $.trigger('click', $('.articles .article:nth-child(1) .remove')); // 한 번만 실행
+// other_data: undefined
 // button.remove
 // div.article
 
 $.trigger('click', $('.articles .article:nth-child(2) .remove'));
 // div.article
+// other_data: undefined
 // button.remove
 
 $.append($('.articles'), $.el(`
@@ -436,12 +439,19 @@ $.append($('.articles'), $.el(`
 Articles.addEvents($('.articles'));
 
 $.trigger('click', $('.articles .article:nth-child(1) .remove')); // 한 번만 실행
+// other_data: undefined
 // button.remove
 // div.article
 
 $.trigger('click', $('.articles .article:nth-child(3) .remove'));
-// button.remove
 // div.article.new
+// other_data: undefined
+// button.remove
+
+$.trigger('click', { other_data: 'hi' }, $('.articles .article:nth-child(3) .remove'));
+// div.article.new
+// other_data: hi
+// button.remove
 ```
 
 ### $.off
