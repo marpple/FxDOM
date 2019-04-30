@@ -22,6 +22,6 @@
   },
   "homepage": "https://github.com/marpple/FxJS-DOM#readme",
   "dependencies": {
-    "fxjs2": "^0.2.6"
+    "fxjs2": "^0.2.7"
   }
 }
