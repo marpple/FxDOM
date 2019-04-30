@@ -1,4 +1,4 @@
-// FxJS-DOM 0.0.13
+// FxJS-DOM 0.0.14
 import {
   isUndefined, isArray, isString,
   head,
@@ -236,17 +236,22 @@ const
     }, fetchBaseOptF(headers))),
     resJSON));
 
-
-const request = {};
-
-request.get = curry((url, data, headers) => go(
+const get = curry((url, data, headers) => go(
   fetch(url + (data === undefined ? '' : '?' + param(data)), fetchBaseOptF(headers)),
   resJSON
-)); 
+));
 
-request.post = fetchWithBody('POST');
-request.put = fetchWithBody('PUT');
-request.delete = fetchWithBody('DELETE');
+const post = fetchWithBody('POST');
+const put = fetchWithBody('PUT');
+const del = fetchWithBody('DELETE');
+
+const request = {
+  get,
+  post,
+  put,
+  delete: del,
+  del,
+};
 
 const ajax = curry((method, ...args) => request[(method || "").toLowerCase()](...args));
 
@@ -425,6 +430,10 @@ export {
   focus,
   blur,
   param,
+  get,
+  post,
+  put,
+  del,
   ajax,
   post_form,
   setData, set_data,
