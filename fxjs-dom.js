@@ -1,4 +1,4 @@
-// FxJS-DOM 0.0.12
+// FxJS-DOM 0.0.13
 import {
   isUndefined, isArray, isString,
   head,
@@ -6,12 +6,11 @@ import {
   each, map,
   defaults,
   L
-} from "./fx.js";
+} from "fxjs2";
 
-const $ = sel => document.querySelector(sel);
+const qs = sel => document.querySelector(sel);
 
-$.all = sel => document.querySelectorAll(sel);
-export default $;
+const qsa = sel => document.querySelectorAll(sel);
 
 const idCreator = _ => {
   var i = 0;
@@ -28,16 +27,18 @@ const baseFind = qs => curry((sel, el) => {
   return res;
 });
 
-$.find = baseFind('querySelector');
+const find = baseFind('querySelector');
 
-$.findAll = baseFind('querySelectorAll');
+const findAll = baseFind('querySelectorAll');
 
-$.children = el => el.children;
+const children = el => el.children;
 
-$.closest = curry((sel, el) => el.closest(sel));
+const closest = curry((sel, el) => el.closest(sel));
 
 const isEl = node =>
   node && typeof node == 'object' && (node.nodeType == 1 || node.nodeType == 9);
+
+const is = curry((sel, el) => el && matches.call(el, sel));
 
 const nextOrPrevAll = (k, add) => function f(sel, el) {
   if (arguments.length == 1) {
@@ -46,12 +47,12 @@ const nextOrPrevAll = (k, add) => function f(sel, el) {
     sel = '*';
   }
   let res = [], cur = el;
-  while ((cur = cur[k])) if (isEl(cur) && $.is(sel, cur)) res[add](cur);
+  while ((cur = cur[k])) if (isEl(cur) && is(sel, cur)) res[add](cur);
   return res;
 };
 
-$.prevAll = nextOrPrevAll('previousSibling', 'unshift');
-$.nextAll = nextOrPrevAll('nextSibling', 'push');
+const prevAll = nextOrPrevAll('previousSibling', 'unshift');
+const nextAll = nextOrPrevAll('nextSibling', 'push');
 
 const nextOrPrev = k => function f(sel, el) {
   if (arguments.length == 1) {
@@ -60,19 +61,17 @@ const nextOrPrev = k => function f(sel, el) {
     sel = '*';
   }
   let cur = el;
-  while ((cur = cur[k]) && (!isEl(cur) || !$.is(sel, cur))) {}
+  while ((cur = cur[k]) && (!isEl(cur) || !is(sel, cur))) {}
   return cur;
 };
 
-$.prev = nextOrPrev('previousSibling');
-$.next = nextOrPrev('nextSibling');
+const prev = nextOrPrev('previousSibling');
+const next = nextOrPrev('nextSibling');
 
 const docEl = document.documentElement;
 const matches = docEl.matches || docEl.webkitMatchesSelector || docEl.mozMatchesSelector || docEl.msMatchesSelector;
 
-$.is = curry((sel, el) => el && matches.call(el, sel));
-
-$.contains = curry((parent, child) => parent.contains(child));
+const contains = curry((parent, child) => parent.contains(child));
 
 const
   fragmentRE = /^\s*<(\w+|!)[^>]*>/,
@@ -85,62 +84,63 @@ const
     'td': tableRow, 'th': tableRow
   };
 
-$.els = html => {
+const remove = el => el.parentNode.removeChild(el);
+
+const els = html => {
   html = html.trim();
   const name = fragmentRE.test(html) && RegExp.$1;
   const container = containers[name] || div;
   container.innerHTML = html;
-  return each($.remove, [...container.childNodes]);
+  return each(remove, [...container.childNodes]);
 };
 
-$.el = html => {
+const el = html => {
   html = html.trim();
-  return html[0] == '<' ? head($.els(html)) : document.createElement(html);
+  return html[0] == '<' ? head(els(html)) : document.createElement(html);
 };
 
-$.append = curry((parent, child) => parent.appendChild(child));
+const append = curry((parent, child) => parent.appendChild(child));
 
-$.prepend = curry((parent, child) => parent.insertBefore(child, parent.firstChild));
+const prepend = curry((parent, child) => parent.insertBefore(child, parent.firstChild));
 
-$.before = curry((after, before) => after.parentNode.insertBefore(before, after));
+const before = curry((after, before) => after.parentNode.insertBefore(before, after));
 
-$.after = curry((before, after) =>
-  before.nextSibling ? $.before(before.nextSibling, after) : $.append(before.parentNode, after));
+const after = curry((before, after) =>
+  before.nextSibling ? before(before.nextSibling, after) : append(before.parentNode, after));
 
-$.remove = el => el.parentNode.removeChild(el);
+const text = el => el.textContent;
 
-$.text = el => el.textContent;
+const setText = curry((text, el) => (el.textContent = text, el)), set_text = setText;
 
-$.setText = $.set_text = curry((text, el) => (el.textContent = text, el));
+const html = el => el.innerHTML;
 
-$.html = el => el.innerHTML;
+const setHTML = curry((html, el) => (el.innerHTML = html, el)), set_html = setHTML;
 
-$.setHtml = $.set_html = curry((html, el) => (el.innerHTML = html, el));
+const outerHTML = el => el.outerHTML;
 
-$.outerHTML = el => el.outerHTML;
+const setOuterHTML = curry((html, el) => el.outerHTML = html),  set_outer_html = setOuterHTML;
 
-$.setOuterHTML = $.set_outer_html = curry((html, el) => el.outerHTML = html);
+const val = el => el.value;
 
-$.val = el => el.value;
+const setVal = curry((value, el) => (el.value = value, el)), set_val = setVal;
 
-$.setVal = $.set_val = curry((value, el) => (el.value = value, el));
+const attr = curry((k, el) => el.getAttribute(k));
 
-$.attr = curry((k, el) => el.getAttribute(k));
-
-$.setAttr = $.set_attr = curry((kv, el) => (
+const setAttr = curry((kv, el) => (
   isArray(kv) ?
     el.setAttribute(...kv) :
-    each(kv => el.setAttribute(...kv), L.entries(kv)), el));
+    each(kv => el.setAttribute(...kv), L.entries(kv)), el)),
+  set_attr = setAttr;
 
-$.removeAttr = $.remove_attr = curry((k, el) => (el.removeAttribute(k), el));
+const removeAttr = curry((k, el) => (el.removeAttribute(k), el)), remove_attr = removeAttr;
 
-var methodClass = method => curry((class_names, el) => (
+const methodClass = method => curry((class_names, el) => (
   each(cn => el.classList[method](cn), class_names.split(' ')), el
 ));
 
-$.addClass = $.add_class = methodClass('add');
-$.removeClass = $.remove_class = methodClass('remove');
-$.toggleClass = $.toggle_class = methodClass('toggle');
+const addClass = methodClass('add'), add_class = addClass;
+const removeClass = methodClass('remove'), remove_class = removeClass;
+const toggleClass = methodClass('toggle'), toggle_class = toggleClass;
 
 function baseScroll(el, val, prop, method) {
   el = el || window;
@@ -152,15 +152,15 @@ function baseScroll(el, val, prop, method) {
   return el;
 }
 
-$.scrollTop = $.scroll_top = el => baseScroll(el, undefined, "pageYOffset", "scrollTop");
+const scrollTop = el => baseScroll(el, undefined, "pageYOffset", "scrollTop"), scroll_top = scrollTop;
 
-$.scrollLeft = $.scroll_left = el => baseScroll(el, undefined, "pageXOffset", "scrollLeft");
+const scrollLeft = el => baseScroll(el, undefined, "pageXOffset", "scrollLeft"), scroll_left = scrollLeft;
 
-$.setScrollTop = $.set_scroll_top = (val, el) => baseScroll(el, val, "pageYOffset", "scrollTop");
+const setScrollTop = (val, el) => baseScroll(el, val, "pageYOffset", "scrollTop"), set_scroll_top = setScrollTop;
 
-$.setScrollLeft = $.set_scroll_left = (val, el) => baseScroll(el, val, "pageXOffset", "scrollLeft");
+const setScrollLeft = (val, el) => baseScroll(el, val, "pageXOffset", "scrollLeft"), set_scroll_left = setScrollLeft;
 
-$.offset = el => {
+const offset = el => {
   const rect = el.getBoundingClientRect();
   return {
     top: rect.top + window.pageYOffset - docEl.clientTop,
@@ -172,17 +172,17 @@ const baseOnOff = method => (event, sel, f, ...opts) => tap(el =>
   !isString(sel) ?
     el[method](event, sel, ...[f, ...opts]) :
   go(el,
-    $.findAll(sel),
+    findAll(sel),
     each(el => el[method](event, f, ...opts)))
 );
 
-$.on = baseOnOff('addEventListener');
-$.off = baseOnOff('removeEventListener');
+const on = baseOnOff('addEventListener');
+const off = baseOnOff('removeEventListener');
 
-$.delegate = (event, sel, f) => tap(el =>
+const delegate = (event, sel, f) => tap(el =>
   el.addEventListener(event, e => go(
     el,
-    $.findAll(sel),
+    findAll(sel),
     L.filter(el => el.contains(e.target)),
     each(currentTarget => f(defaults({ originalEvent: e, currentTarget, delegateTarget: el }, e)))
   ))
@@ -196,7 +196,7 @@ const mouseEvents = {
   mousemove: me,
 };
 
-$.trigger = function(event, props, el) {
+const trigger = function(event, props, el) {
   if (!el) { el = props; props = {}; }
   if (event == 'submit') return el.submit(), el;
   let e = document.createEvent(mouseEvents[event] || 'Events');
@@ -207,8 +207,15 @@ $.trigger = function(event, props, el) {
   return el;
 };
 
-$.focus = el => el.focus();
-$.blur = el => el.blur();
+const focus = el => el.focus();
+const blur = el => el.blur();
+
+const param = pipe(
+  L.entries,
+  L.reject(([_, a]) => isUndefined(a)),
+  L.map(map(encodeURIComponent)),
+  map(([k, v]) => `${k}=${v}`),
+  strs => strs.join('&').replace(/%20/g, '+'));
 
 const
   resJSON = res => res.ok ? res.json() : Promise.reject(res),
@@ -229,51 +236,50 @@ const
     }, fetchBaseOptF(headers))),
     resJSON));
 
-$.get = curry((url, data, headers) => go(
-  fetch(url + (data === undefined ? '' : '?' + $.param(data)), fetchBaseOptF(headers)),
+
+const request = {};
+
+request.get = curry((url, data, headers) => go(
+  fetch(url + (data === undefined ? '' : '?' + param(data)), fetchBaseOptF(headers)),
   resJSON
-));
+)); 
 
-$.post = fetchWithBody('POST');
-$.put = fetchWithBody('PUT');
-$.delete = fetchWithBody('DELETE');
+request.post = fetchWithBody('POST');
+request.put = fetchWithBody('PUT');
+request.delete = fetchWithBody('DELETE');
 
-$.post_form = curry((url, form_el) => go(
+const ajax = curry((method, ...args) => request[(method || "").toLowerCase()](...args));
+
+const post_form = curry((url, form_el) => go(
   new FormData(form_el),
   form => fetch(url, { method: 'POST', body: form }),
   res => res.ok ? res.json() : Promise.reject(res),
 ));
 
-$.param = pipe(
-  L.entries,
-  L.reject(([_, a]) => isUndefined(a)),
-  L.map(map(encodeURIComponent)),
-  map(([k, v]) => `${k}=${v}`),
-  strs => strs.join('&').replace(/%20/g, '+'));
-
 const dataMap = new WeakMap();
 
-$.setData = $.set_data = curry((data, el) => {
+const setData = curry((data, el) => {
   dataMap.set(el, data);
   return el;
-});
+}),
+  set_data = setData;
 
-$.data = el => {
+const data = el => {
   if (dataMap.has(el)) return dataMap.get(el);
-  $.setData(JSON.parse($.attr('fxd-data', el)), el);
-  $.setAttr(['fxd-data', 'IN_WEAK_MAP'], el);
+  setData(JSON.parse(attr('fxd-data', el)), el);
+  setAttr(['fxd-data', 'IN_WEAK_MAP'], el);
   return dataMap.get(el);
 };
 
 const toCamel = str => str.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
 
-$.css = curry((k, el) =>
-  typeof k == 'string' ?
-    el.style[k] || el.ownerDocument.defaultView.getComputedStyle(el, null)[toCamel(k)] :
-  /* isArray(k) ? */
-    object(L.map(k => [k, $.css(k, el)], k)));
+const css = curry(function _css(k, el) {
+  return typeof k == 'string'
+    ? el.style[k] || el.ownerDocument.defaultView.getComputedStyle(el, null)[toCamel(k)]
+    : object(L.map(k => [k, _css(k, el)], k))
+  });
 
-var numberTypes = {
+const numberTypes = {
   "animationIterationCount": true,
   "columnCount": true,
   "fillOpacity": true,
@@ -293,31 +299,51 @@ const isNumeric = n => !isNaN(parseFloat(n)) && isFinite(n);
 
 const addPx = (k, v) => numberTypes[k] ? v : isNumeric(v) ? v + 'px' : v;
 
-$.setCss = $.set_css = curry((kv, el) => {
+const setCss = curry(function _setCss(kv, el) {
   if (isArray(kv)) {
     const k = toCamel(kv[0]);
     el.style[k] = addPx(k, kv[1]);
   } else {
-    each(kv => $.setCss(kv, el), L.entries(kv));
+    each(kv => _setCss(kv, el), L.entries(kv));
   }
   return el;
-});
+}),
+  set_css = setCss;
 
 const docWidth = (isHeight, b = document.body) =>
   isHeight ?
     Math.max(b.offsetHeight, b.scrollHeight, docEl.offsetHeight, docEl.offsetHeight, docEl.clientHeight) :
     Math.max(b.offsetWidth, b.scrollWidth, docEl.offsetWidth, docEl.offsetWidth, docEl.clientWidth);
 
-const cssF = (k, el) => parseFloat($.css(k, el)) || 0;
+const cssF = (k, el) => parseFloat(css(k, el)) || 0;
+
+const prevDisplays = new WeakMap();
+
+const show = el => {
+  if (el.style.display == 'none') el.style.display = '';
+  if (css('display', el) == 'none') el.style.display = getDefaultDisplays(el);
+  return el;
+};
+
+const hide = el => {
+  const prev_display = css('display', el);
+  if (prev_display != 'none') {
+    prevDisplays.set(el, prev_display);
+    el.style.display = 'none';
+  }
+  return el;
+};
+
+const toggle = el => css('display', el) == 'none' ? show(el) : hide(el);
 
 function elWidth(el, prefix = '', isHeight) {
   if (isHeight) var width = 'height', Left = 'Top', Right = 'Bottom';
   else width = 'width', Left = 'Left', Right = 'Right';
 
-  const hide = $.css('display', el) == 'none' && $.show(el);
+  const hide = css('display', el) == 'none' && show(el);
 
   let res = cssF(width, el);
-  const isBorderBox = $.css('boxSizing', el) == 'border-box';
+  const isBorderBox = css('boxSizing', el) == 'border-box';
   const borderBoxVal = (prefix && !isBorderBox) || (!prefix && isBorderBox) ?
     cssF('border'+Left+'Width', el) +
     cssF('border'+Right+'Width', el) +
@@ -326,18 +352,18 @@ function elWidth(el, prefix = '', isHeight) {
   res += prefix ? borderBoxVal : -borderBoxVal;
   if (prefix == 'outer') res += cssF('margin'+Left, el) + cssF('margin'+Right, el);
 
-  hide && $.hide(el);
+  hide && hide(el);
 
   return res;
 }
 
-$.width = el => el == window ? el.innerWidth : el == document ? docWidth() : elWidth(el);
-$.innerWidth = $.inner_width = el => elWidth(el, 'inner');
-$.outerWidth = $.outer_width = el => elWidth(el, 'outer');
+const width = el => el == window ? el.innerWidth : el == document ? docWidth() : elWidth(el);
+const innerWidth = el => elWidth(el, 'inner'), inner_width = innerWidth;
+const outerWidth = el => elWidth(el, 'outer'), outer_width = outerWidth;
 
-$.height = el => el == window ? el.innerHeight : el == document ? docWidth(true) : elWidth(el, '', true);
-$.innerHeight = $.inner_height = el => elWidth(el, 'inner', true);
-$.outerHeight = $.outer_height = el => elWidth(el, 'outer', true);
+const height = el => el == window ? el.innerHeight : el == document ? docWidth(true) : elWidth(el, '', true);
+const innerHeight = el => elWidth(el, 'inner', true), inner_height = innerHeight;
+const outerHeight = el => elWidth(el, 'outer', true), outer_height = outerHeight;
 
 const defaultDisplays = {};
 function getDefaultDisplays(el) {
@@ -346,28 +372,72 @@ function getDefaultDisplays(el) {
 
   var temp, doc = el.ownerDocument;
   temp = doc.body.appendChild(doc.createElement(nodeName));
-  display = $.css('display', temp);
+  display = css('display', temp);
   temp.parentNode.removeChild(temp);
 
   if (display == 'none') display = 'block';
   return defaultDisplays[nodeName] = display;
 }
 
-const prevDisplays = new WeakMap();
-
-$.show = el => {
-  if (el.style.display == 'none') el.style.display = '';
-  if ($.css('display', el) == 'none') el.style.display = getDefaultDisplays(el);
-  return el;
-};
-
-$.hide = el => {
-  const prev_display = $.css('display', el);
-  if (prev_display != 'none') {
-    prevDisplays.set(el, prev_display);
-    el.style.display = 'none';
-  }
-  return el;
-};
-
-$.toggle = el => $.css('display', el) == 'none' ? $.show(el) : $.hide(el);
+export {
+  qs,
+  qsa,
+  find,
+  findAll,
+  children,
+  closest,
+  is,
+  prevAll,
+  nextAll,
+  prev,
+  next,
+  contains,
+  remove,
+  els,
+  el,
+  append,
+  prepend,
+  before,
+  after,
+  text,
+  setText, set_text,
+  html,
+  setHTML, set_html,
+  outerHTML,
+  setOuterHTML, set_outer_html,
+  val,
+  setVal, set_val,
+  attr,
+  setAttr, set_attr,
+  removeAttr, remove_attr,
+  addClass, add_class,
+  removeClass, remove_class,
+  toggleClass, toggle_class,
+  scrollTop, scroll_top,
+  scrollLeft, scroll_left,
+  setScrollTop, set_scroll_top,
+  setScrollLeft, set_scroll_left,
+  offset,
+  on,
+  off,
+  delegate,
+  trigger,
+  focus,
+  blur,
+  param,
+  ajax,
+  post_form,
+  setData, set_data,
+  data,
+  css,
+  setCss, set_css,
+  width,
+  innerWidth, inner_width,
+  outerWidth, outer_width,
+  height,
+  innerHeight, inner_height,
+  outerHeight, outer_height,
+  show,
+  hide,
+  toggle,
+}

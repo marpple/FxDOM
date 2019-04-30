@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/marpple/FxJS-DOM/issues"
   },
-  "homepage": "https://github.com/marpple/FxJS-DOM#readme"
+  "homepage": "https://github.com/marpple/FxJS-DOM#readme",
+  "dependencies": {
+    "fxjs2": "^0.2.6"
+  }
 }
