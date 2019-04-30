@@ -1,0 +1,27 @@
+{
+  "name": "fxjs-dom",
+  "version": "0.0.13",
+  "description": "HTML DOM Bindings for the [FxJS](https://github.com/marpple/FxJS)",
+  "main": "fxjs-dom.js",
+  "module": "fxjs-dom.js",
+  "sideEffects": false,
+  "scripts": {},
+  "files": [
+    "*.js",
+    "LICENSE",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marpple/FxJS-DOM.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/marpple/FxJS-DOM/issues"
+  },
+  "homepage": "https://github.com/marpple/FxJS-DOM#readme",
+  "dependencies": {
+    "fxjs2": "^0.2.6"
+  }
+}
