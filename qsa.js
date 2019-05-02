@@ -1,0 +1,1 @@
+export default sel => document.querySelectorAll(sel);

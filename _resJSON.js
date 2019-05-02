@@ -1,0 +1,1 @@
+export default res => res.ok ? res.json() : Promise.reject(res);
