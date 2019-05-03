@@ -1,6 +1,6 @@
 {
   "name": "fxjs-dom",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "HTML DOM Bindings for the [FxJS](https://github.com/marpple/FxJS)",
   "main": "index.js",
   "module": "index.js",

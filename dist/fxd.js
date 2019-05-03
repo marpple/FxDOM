@@ -354,280 +354,18 @@ const
 const { isArray } = Array;
 
 /* harmony default export */ var fxjs2_isArray = (isArray);
-// CONCATENATED MODULE: ./node_modules/fxjs2/isIterable.js
-function isIterable(a) {
-  return a != null && !!a[Symbol.iterator];
-}
-// CONCATENATED MODULE: ./node_modules/fxjs2/last.js
-function last(arr) {
-  return arr[arr.length - 1];
-}
-// CONCATENATED MODULE: ./node_modules/fxjs2/Lazy/flatLazy.js
-
-
-
-
-
-function flatLazy(iter, depth = 1) {
-  const iterStack = [toIter(iter)];
-  return {
-    next: function recur() {
-      const iter = last(iterStack);
-      if (!iter) return { done: true };
-      const cur = iter.next();
-      if (cur.done) {
-        iterStack.pop();
-        return recur();
-      } else if (iterStack.length <= depth && isIterable(cur.value) && typeof cur.value != 'string') {
-        iterStack.push(cur.value[Symbol.iterator]());
-        return recur();
-      } else if (cur.value instanceof Promise) {
-        return {
-          value: cur.value.then(value => {
-            if (iterStack.length > depth || !isIterable(value) || typeof value == 'string') return value;
-            const iter = value[Symbol.iterator](), cur = iter.next();
-            return cur.done ? Promise.reject(fxjs2_nop) : (iterStack.push(iter), cur.value);
-          }),
-          done: false
-        };
-      } else {
-        return cur;
-      }
-    },
-    [Symbol.iterator]() { return this; }
-  };
-}
-// CONCATENATED MODULE: ./node_modules/fxjs2/Lazy/deepFlatLazy.js
-
-
-function deepFlatLazy(iter) {
-  return flatLazy(iter, Infinity);
-}
 // CONCATENATED MODULE: ./node_modules/fxjs2/Lazy/entriesLazy.js
 function *entriesLazy(obj) {
   for (const k in obj) yield [k, obj[k]];
 }
-// CONCATENATED MODULE: ./node_modules/fxjs2/safety.js
-
-
-function safety(a) {
-  return a != null && !!a[Symbol.iterator] ? a : empty;
-}
-// CONCATENATED MODULE: ./node_modules/fxjs2/Lazy/mapEntriesLazy.js
-
-
-
-
-/* harmony default export */ var Lazy_mapEntriesLazy = (curry(function *mapEntriesLazy(f, iter) {
-  for (const [k, a] of safety(iter)) yield go1(go1(a, f), b => [k, b]);
-}));
-// CONCATENATED MODULE: ./node_modules/fxjs2/Lazy/filterLazy.js
-
-
-
-
-
-/* harmony default export */ var Lazy_filterLazy = (curry(function *filterLazy(f, iter) {
-  for (const a of safety(iter)) {
-    const b = go1(a, f);
-    if (b instanceof Promise) yield b.then(b => b ? a : Promise.reject(fxjs2_nop));
-    else if (b) yield a;
-  }
-}));
-// CONCATENATED MODULE: ./node_modules/fxjs2/Lazy/mapLazy.js
-
-
-
-
-/* harmony default export */ var Lazy_mapLazy = (curry(function *mapLazy(f, iter) {
-  for (const a of safety(iter)) yield go1(a, f);
-}));
-// CONCATENATED MODULE: ./node_modules/fxjs2/Lazy/flatMapLazy.js
-
-
-
-
-/* harmony default export */ var Lazy_flatMapLazy = (curry(function flatMapLazy(f, iter) {
-  return flatLazy(Lazy_mapLazy(f, iter));
-}));
-// CONCATENATED MODULE: ./node_modules/fxjs2/Lazy/headTailLazy.js
-
-
-
-
-function headTailLazy(iter) {
-  return go1(fxjs2_take(1, iter = toIter(iter)), ([head]) => [head, iter]);
-}
-// CONCATENATED MODULE: ./node_modules/fxjs2/Lazy/indexValuesLazy.js
-
-
-function *indexValuesLazy(iter) {
-  let i = -1;
-  for (const a of safety(iter)) yield [++i, a];
-};
-// CONCATENATED MODULE: ./node_modules/fxjs2/Lazy/keysLazy.js
-function *keysLazy(obj) {
-  for (const k in obj) yield k;
-};
-// CONCATENATED MODULE: ./node_modules/fxjs2/Lazy/rangeLazy.js
-function *rangeLazy(start = 0, stop = start, step = 1) {
-  if (arguments.length == 1) start = 0;
-  while (start < stop) {
-    yield start;
-    start += step;
-  }
-}
-// CONCATENATED MODULE: ./node_modules/fxjs2/not.js
-function not(a) {
-  return !a;
-}
-// CONCATENATED MODULE: ./node_modules/fxjs2/Lazy/rejectLazy.js
-
-
-
-
-
-/* harmony default export */ var Lazy_rejectLazy = (curry(function rejectLazy(f, iter) {
-  return Lazy_filterLazy(a => go1(f(a), not), iter);
-}));
-// CONCATENATED MODULE: ./node_modules/fxjs2/Lazy/reverseLazy.js
-function *reverseLazy(arr) {
-  var l = arr.length;
-  while (l--) yield arr[l];
-}
-// CONCATENATED MODULE: ./node_modules/fxjs2/Lazy/valuesLazy.js
-function *valuesLazy(obj) {
-  for (const k in obj) yield obj[k];
-}
-// CONCATENATED MODULE: ./node_modules/fxjs2/Lazy/takeLazy.js
-
-
-
-/* harmony default export */ var Lazy_takeLazy = (curry(function *takeLazy(l, iter) {
-  if (l < 1) return;
-  for (const a of safety(iter)) {
-    if (a instanceof Promise) yield a.then(a => (--l, a));
-    else yield (--l, a);
-    if (!l) break;
-  }
-}));
-// CONCATENATED MODULE: ./node_modules/fxjs2/Lazy/takeWhileLazy.js
-
-
-
-
-
-/* harmony default export */ var Lazy_takeWhileLazy = (curry(function *takeWhileLazy(f, iter) {
-  let ok = false;
-  for (const a of safety(iter)) {
-    ok = go1(a, f);
-    if (ok instanceof Promise) yield ok.then(_ok => (ok = _ok) ? a : Promise.reject(fxjs2_nop));
-    else if (ok) yield a;
-    if (!ok) break;
-  }
-}));
-// CONCATENATED MODULE: ./node_modules/fxjs2/Lazy/takeUntilLazy.js
-
-
-
-
-/* harmony default export */ var Lazy_takeUntilLazy = (curry(function *takeUntilLazy(f, iter) {
-  let ok = false;
-  for (const a of safety(iter)) {
-    ok = go1(a, f);
-    if (ok instanceof Promise) yield ok.then(_ok => ((ok = _ok), a));
-    else yield a;
-    if (ok) break;
-  }
-}));
-// CONCATENATED MODULE: ./node_modules/fxjs2/delay.js
-
-
-/* harmony default export */ var delay = (curry(function delay(time, a) {
-  return new Promise(resolve => setTimeout(() => resolve(a), time));
-}));
-// CONCATENATED MODULE: ./node_modules/fxjs2/Lazy/intervalLazy.js
-
-
-
-
-function intervalLazy(time) {
-  return Lazy_mapLazy(delay(time), rangeLazy(Infinity));
-}
-// CONCATENATED MODULE: ./node_modules/fxjs2/Lazy/dropLazy.js
-
-
-
-
-/* harmony default export */ var Lazy_dropLazy = (curry(function *dropLazy(l, iter) {
-  if (l < 1) return yield *safety(iter);
-  for (const a of safety(iter)) {
-    if (a instanceof Promise) yield a.then(a => l ? (l--, Promise.reject(fxjs2_nop)) : a);
-    else if (l) { l--; continue; }
-    else yield a;
-  }
-}));
-// CONCATENATED MODULE: ./node_modules/fxjs2/L.js
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-const L = {
-  deepFlat: deepFlatLazy,
-  deep_flat: deepFlatLazy,
-  deepFlatten: deepFlatLazy,
-  deep_flatten: deepFlatLazy,
-  entries: entriesLazy,
-  entriesMap: Lazy_mapEntriesLazy,
-  entries_map: Lazy_mapEntriesLazy,
-  mapEntries: Lazy_mapEntriesLazy,
-  map_entries: Lazy_mapEntriesLazy,
-  filter: Lazy_filterLazy,
-  flat: flatLazy,
-  flatMap: Lazy_flatMapLazy,
-  flat_map: Lazy_flatMapLazy,
-  headTail: headTailLazy,
-  indexValues: indexValuesLazy,
-  index_values: indexValuesLazy,
-  keys: keysLazy,
-  map: Lazy_mapLazy,
-  range: rangeLazy,
-  reject: Lazy_rejectLazy,
-  reverse: reverseLazy,
-  values: valuesLazy,
-  take: Lazy_takeLazy,
-  takeWhile: Lazy_takeWhileLazy,
-  take_while: Lazy_takeWhileLazy,
-  takeUntil: Lazy_takeUntilLazy,
-  take_until: Lazy_takeUntilLazy,
-  interval: intervalLazy,
-  drop: Lazy_dropLazy
-};
-
-
 // CONCATENATED MODULE: ./setAttr.js
+
 
 
 /* harmony default export */ var setAttr = (curry((kv, el) => (
   fxjs2_isArray(kv)
     ? el.setAttribute(...kv)
-    : fxjs2_each(kv => el.setAttribute(...kv), L.entries(kv)), el)));
+    : fxjs2_each(kv => el.setAttribute(...kv), entriesLazy(kv)), el)));
 // CONCATENATED MODULE: ./removeAttr.js
 
 
@@ -726,6 +464,20 @@ function go(..._) {
 
 
 /* harmony default export */ var off = (_baseOnOff('removeEventListener'));
+// CONCATENATED MODULE: ./node_modules/fxjs2/safety.js
+
+
+function safety(a) {
+  return a != null && !!a[Symbol.iterator] ? a : empty;
+}
+// CONCATENATED MODULE: ./node_modules/fxjs2/Lazy/mapLazy.js
+
+
+
+
+/* harmony default export */ var Lazy_mapLazy = (curry(function *mapLazy(f, iter) {
+  for (const a of safety(iter)) yield go1(a, f);
+}));
 // CONCATENATED MODULE: ./node_modules/fxjs2/baseExtend.js
 
 
@@ -757,7 +509,21 @@ function defaults(obj, ...objs) {
 }
 
 /* harmony default export */ var fxjs2_defaults = (defaults);
+// CONCATENATED MODULE: ./node_modules/fxjs2/Lazy/filterLazy.js
+
+
+
+
+
+/* harmony default export */ var Lazy_filterLazy = (curry(function *filterLazy(f, iter) {
+  for (const a of safety(iter)) {
+    const b = go1(a, f);
+    if (b instanceof Promise) yield b.then(b => b ? a : Promise.reject(fxjs2_nop));
+    else if (b) yield a;
+  }
+}));
 // CONCATENATED MODULE: ./delegate.js
+
 
 
 
@@ -765,7 +531,7 @@ function defaults(obj, ...objs) {
   el.addEventListener(event, e => go(
     el,
     findAll(sel),
-    L.filter(el => el.contains(e.target)),
+    Lazy_filterLazy(el => el.contains(e.target)),
     fxjs2_each(currentTarget => f(fxjs2_defaults({ originalEvent: e, currentTarget, delegateTarget: el }, e)))
   ))
 ));
@@ -815,13 +581,30 @@ function takeAll(iter) {
 /* harmony default export */ var fxjs2_map = (curry(function map(f, iter) {
   return takeAll(Lazy_mapLazy(f, iter));
 }));
+// CONCATENATED MODULE: ./node_modules/fxjs2/not.js
+function not(a) {
+  return !a;
+}
+// CONCATENATED MODULE: ./node_modules/fxjs2/Lazy/rejectLazy.js
+
+
+
+
+
+/* harmony default export */ var Lazy_rejectLazy = (curry(function rejectLazy(f, iter) {
+  return Lazy_filterLazy(a => go1(f(a), not), iter);
+}));
 // CONCATENATED MODULE: ./param.js
 
 
+
+
+
+
 /* harmony default export */ var param = (pipe(
-  L.entries,
-  L.reject(([_, a]) => isUndefined(a)),
-  L.map(fxjs2_map(encodeURIComponent)),
+  entriesLazy,
+  Lazy_rejectLazy(([_, a]) => isUndefined(a)),
+  Lazy_mapLazy(fxjs2_map(encodeURIComponent)),
   fxjs2_map(([k, v]) => `${k}=${v}`),
   strs => strs.join('&').replace(/%20/g, '+')));
 // CONCATENATED MODULE: ./_fetchBaseOptF.js
@@ -919,10 +702,11 @@ function object(iter) {
 
 
 
+
 /* harmony default export */ var css_0 = (curry(function _css(k, el) {
   return typeof k == 'string'
     ? el.style[k] || el.ownerDocument.defaultView.getComputedStyle(el, null)[_toCamel(k)]
-    : object(L.map(k => [k, _css(k, el)], k))
+    : object(Lazy_mapLazy(k => [k, _css(k, el)], k))
 }));
 // CONCATENATED MODULE: ./_isNumeric.js
 /* harmony default export */ var _isNumeric = (n => !isNaN(parseFloat(n)) && isFinite(n));
@@ -951,12 +735,13 @@ const numberTypes = {
 
 
 
+
 /* harmony default export */ var setCss = (curry(function _setCss(kv, el) {
   if (fxjs2_isArray(kv)) {
     const k = _toCamel(kv[0]);
     el.style[k] = _addPx(k, kv[1]);
   } else {
-    fxjs2_each(kv => _setCss(kv, el), L.entries(kv));
+    fxjs2_each(kv => _setCss(kv, el), entriesLazy(kv));
   }
   return el;
 }));
@@ -1065,7 +850,7 @@ const prevDisplays = new WeakMap();
 
 /* harmony default export */ var toggle = (el => css_0('display', el) == 'none' ? show(el) : hide_0(el));
 // CONCATENATED MODULE: ./fxjs-dom.js
-// FxJS-DOM 0.0.15
+// FxJS-DOM 0.0.16
 
 
 

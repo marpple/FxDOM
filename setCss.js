@@ -1,4 +1,5 @@
-import { curry, isArray, each, L } from 'fxjs2';
+import { curry, isArray, each } from 'fxjs2';
+import entriesLazy from 'fxjs2/Lazy/entriesLazy.js';
 import toCamel from './_toCamel.js';
 import addPx from './_addPx.js';
 
@@ -7,7 +8,7 @@ export default curry(function _setCss(kv, el) {
     const k = toCamel(kv[0]);
     el.style[k] = addPx(k, kv[1]);
   } else {
-    each(kv => _setCss(kv, el), L.entries(kv));
+    each(kv => _setCss(kv, el), entriesLazy(kv));
   }
   return el;
 });
