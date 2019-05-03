@@ -47,7 +47,7 @@ import param from './param.js';
 import get from './get.js';
 import post from './post.js';
 import put from './put.js';
-import del from './delete.js';
+import del from './del.js';
 import postForm from './postForm.js';
 import setData from './setData.js';
 import data from './data.js';
@@ -63,9 +63,10 @@ import show from './show.js';
 import hide from './hide.js';
 import toggle from './toggle.js';
 
-const $ = qs;
+window.$ = {};
 
-$.all = qsa;
+$.qs = qs;
+$.qsa = qsa;
 $.find = find;
 $.findAll = findAll;
 $.children = children;
@@ -112,7 +113,7 @@ $.param = param;
 $.get = get;
 $.post = post;
 $.put = put;
-$.delete = del;
+$.del = del;
 $.postForm = $.post_form = postForm;
 $.setData = $.set_data = setData;
 $.data = data;
@@ -127,5 +128,3 @@ $.outerHeight = $.outer_height = outerHeight;
 $.show = show;
 $.hide = hide;
 $.toggle = toggle;
-
-export default $;

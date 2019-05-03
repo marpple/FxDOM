@@ -47,7 +47,7 @@ export { default as param } from './param.js';
 export { default as get } from './get.js';
 export { default as post } from './post.js';
 export { default as put } from './put.js';
-export { default as delete } from './delete.js';
+export { default as del } from './del.js';
 export { default as postForm, default as post_form } from './postForm.js';
 export { default as setData, default as set_data } from './setData.js';
 export { default as data } from './data.js';
@@ -62,4 +62,3 @@ export { default as outerHeight, default as outer_height } from './outerHeight.j
 export { default as show } from './show.js';
 export { default as hide } from './hide.js';
 export { default as toggle } from './toggle.js';
-export { default } from './fxjs-dom.js';
