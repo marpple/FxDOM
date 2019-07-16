@@ -1,9 +1,9 @@
 {
-  "name": "fxjs-dom",
+  "name": "fxdom",
   "version": "0.0.14",
   "description": "HTML DOM Bindings for the [FxJS](https://github.com/marpple/FxJS)",
-  "main": "fxjs-dom.js",
-  "module": "fxjs-dom.js",
+  "main": "fxdom.js",
+  "module": "fxdom.js",
   "sideEffects": false,
   "scripts": {},
   "files": [
@@ -13,14 +13,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/marpple/FxJS-DOM.git"
+    "url": "git+https://github.com/marpple/FxDOM.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/marpple/FxJS-DOM/issues"
+    "url": "https://github.com/marpple/FxDOM/issues"
   },
-  "homepage": "https://github.com/marpple/FxJS-DOM#readme",
+  "homepage": "https://github.com/marpple/FxDOM#readme",
   "dependencies": {
     "fxjs2": "^0.2.7"
   }

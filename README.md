@@ -1,4 +1,4 @@
-# FxJS-DOM
+# FxDOM
 
 HTML DOM Bindings for the [FxJS](https://github.com/marpple/FxJS)
 
@@ -503,7 +503,7 @@ $.trigger('click', $('.users .remove'));
  - `el.removeEventListener`와 `$.off`를 사용할 수 없습니다.
  - `mouseleave`, `mouseenter`는 정상 동작하지 않습니다.
 
-[don.js](https://github.com/marpple/don.js)에서는 이벤트 위임 방식에서 위 기능들을 모두 구현하여 제공했지만, 사실상 브라우저의 이벤트에 대한 모든 동작을 라이브러리 위에 다시 구현하는 장황한 코드들이 필요하며, 경험상 그 실용성이 떨어진다고 생각하여 FxJS-DOM은 해당 기능을 구현하지 않는 컨셉으로 가고자 합니다.
+[don.js](https://github.com/marpple/don.js)에서는 이벤트 위임 방식에서 위 기능들을 모두 구현하여 제공했지만, 사실상 브라우저의 이벤트에 대한 모든 동작을 라이브러리 위에 다시 구현하는 장황한 코드들이 필요하며, 경험상 그 실용성이 떨어진다고 생각하여 FxDOM은 해당 기능을 구현하지 않는 컨셉으로 가고자 합니다.
 
 ### $.delegate + & 응용
 

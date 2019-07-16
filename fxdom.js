@@ -1,4 +1,4 @@
-// FxJS-DOM 0.0.14
+// FxDOM 0.0.14
 import {
   isUndefined, isArray, isString,
   head,
