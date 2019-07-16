@@ -6,8 +6,8 @@ module.exports = env => {
     mode: env.NODE_ENV || 'development',
     devtool: 'source-map',
     entry: {
-      "fxd.es5": "./fxjs-dom.js",
-      "fxd.es5.min": "./fxjs-dom.js"
+      "fxd.es5": "./fxdom.js",
+      "fxd.es5.min": "./fxdom.js"
     },
     output: {
       path: path.resolve(__dirname, './dist'),

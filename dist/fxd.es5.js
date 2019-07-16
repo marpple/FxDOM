@@ -6275,9 +6275,9 @@ var prevDisplays = new WeakMap();
 /* harmony default export */ var toggle = (function (el) {
   return css_0('display', el) == 'none' ? show(el) : hide_0(el);
 });
-// CONCATENATED MODULE: ./fxjs-dom.js
+// CONCATENATED MODULE: ./fxdom.js
 
-// FxJS-DOM 0.0.16
+// fxdom 0.0.16
 
 
 

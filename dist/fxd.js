@@ -849,8 +849,8 @@ const prevDisplays = new WeakMap();
 
 
 /* harmony default export */ var toggle = (el => css_0('display', el) == 'none' ? show(el) : hide_0(el));
-// CONCATENATED MODULE: ./fxjs-dom.js
-// FxJS-DOM 0.0.16
+// CONCATENATED MODULE: ./fxdom.js
+// fxdom 0.0.16
 
 
 

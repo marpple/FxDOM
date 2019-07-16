@@ -1,4 +1,4 @@
-// FxJS-DOM 0.0.16
+// fxdom 0.0.16
 import qs from './qs.js';
 import qsa from './qsa.js';
 import find from './find.js';
