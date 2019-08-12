@@ -168,16 +168,28 @@ console.log($.el('<span class="s1">1</span><span class="s2">2</span>'));
 
 ## Manipulation
 
+### $.appendTo
+
+```javascript
+$.appendTo($('.comments'), $.el('<div class="comment">새 댓글</div>'));
+```
+
+### $.prependTo
+
+```javascript
+$.prependTo($('.posts'), $.el('<div class="post">새 글</div>'));
+```
+
 ### $.append
 
 ```javascript
-$.append($('.comments'), $.el('<div class="comment">새 댓글</div>'));
+$.append($.el('<div class="comment">새 댓글</div>'), $('.comments'));
 ```
 
 ### $.prepend
 
 ```javascript
-$.prepend($('.posts'), $.el('<div class="post">새 글</div>'));
+$.prepend($.el('<div class="post">새 글</div>'), $('.posts'));
 ```
 
 ### $.before
