@@ -14,7 +14,7 @@ import contains from './contains.js';
 import remove from './remove.js';
 import els from './els.js';
 import el from './el.js';
-import append from './append.js';
+import appendTo from './appendTo.js';
 import prepend from './prepend.js';
 import before from './before.js';
 import after from './after.js';

@@ -14,7 +14,7 @@ export { default as contains } from './contains.js';
 export { default as remove } from './remove.js';
 export { default as els } from './els.js';
 export { default as el } from './el.js';
-export { default as append } from './append.js';
+export { default as appendTo } from './appendTo.js';
 export { default as prepend } from './prepend.js';
 export { default as before } from './before.js';
 export { default as after } from './after.js';
