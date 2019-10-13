@@ -1,5 +1,5 @@
 import { tap, isString, go, each } from 'fxjs2';
-import findAll from './findAll.js';
+import findAll from '../findAll.js';
 
 export default method =>
   (event, sel, f, ...opts) =>

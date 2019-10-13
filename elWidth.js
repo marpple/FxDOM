@@ -1,5 +1,5 @@
 import css from './css.js';
-import cssF from './_cssF.js';
+import cssF from '.internal/_cssF.js';
 import show from './show.js';
 
 export default function elWidth(el, prefix = '', isHeight) {

@@ -11,6 +11,7 @@
     "build-legacy": "webpack --config legacy.config.js --env.NODE_ENV=production"
   },
   "files": [
+    ".internal",
     "dist",
     "*.js",
     "LICENSE",

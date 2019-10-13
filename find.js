@@ -1,4 +1,4 @@
-import baseFind from './_baseFind.js';
+import baseFind from '.internal/_baseFind.js';
 
 export default baseFind('querySelector');
 

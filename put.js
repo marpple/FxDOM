@@ -1,3 +1,3 @@
-import fetchWithBody from './_fetchWithBody.js';
+import fetchWithBody from '.internal/_fetchWithBody.js';
 
 export default fetchWithBody('PUT');

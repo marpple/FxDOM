@@ -1,5 +1,5 @@
 import isEl from './_isEl.js';
-import is from './is.js';
+import is from '../is.js';
 
 export default k => function f(sel, el) {
   if (arguments.length == 1) {

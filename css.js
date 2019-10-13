@@ -1,6 +1,6 @@
 import { curry, object } from 'fxjs2';
 import mapLazy from 'fxjs2/Lazy/mapLazy.js';
-import toCamel from './_toCamel.js';
+import toCamel from '.internal/_toCamel.js';
 
 export default curry(function _css(k, el) {
   return typeof k == 'string'
