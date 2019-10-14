@@ -1,5 +1,5 @@
 import css from './css.js';
-import getDefaultDisplays from '.internal/_getDefaultDisplays.js';
+import getDefaultDisplays from './.internal/_getDefaultDisplays.js';
 
 export default el => {
   if (el.style.display == 'none') el.style.display = '';

@@ -5,10 +5,12 @@
   "main": "index.js",
   "module": "index.js",
   "sideEffects": false,
+  "type": "module",
   "scripts": {
-    "build": "npm run build-modern && npm run build-legacy",
+    "generate:index": "node --experimental-modules index_generator.js",
     "build-modern": "webpack --config modern.config.js --env.NODE_ENV=production",
-    "build-legacy": "webpack --config legacy.config.js --env.NODE_ENV=production"
+    "build-legacy": "webpack --config legacy.config.js --env.NODE_ENV=production",
+    "build": "npm run generate:index && npm run build-modern && npm run build-legacy"
   },
   "files": [
     ".internal",
