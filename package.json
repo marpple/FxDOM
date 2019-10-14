@@ -29,7 +29,7 @@
   "homepage": "https://github.com/marpple/fxdom#readme",
   "dependencies": {
     "core-js": "^3.0.1",
-    "fxjs2": "^0.2.7",
+    "fxjs2": "^0.14.0",
     "regenerator-runtime": "^0.13.2"
   },
   "devDependencies": {

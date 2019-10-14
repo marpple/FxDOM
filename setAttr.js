@@ -1,7 +1,7 @@
 import { curry, isArray, each } from 'fxjs2';
-import entriesLazy from 'fxjs2/Lazy/entriesLazy.js';
+import entriesL from 'fxjs2/Lazy/entriesL.js';
 
 export default curry((kv, el) => (
   isArray(kv)
     ? el.setAttribute(...kv)
-    : each(kv => el.setAttribute(...kv), entriesLazy(kv)), el));
+    : each(kv => el.setAttribute(...kv), entriesL(kv)), el));
