@@ -1,3 +1,5 @@
+import css from '../css';
+
 const defaultDisplays = {};
 
 export default function getDefaultDisplays(el) {
