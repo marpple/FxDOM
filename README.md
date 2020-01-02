@@ -302,17 +302,6 @@ console.log($.removeClass('hi', $.el('<div class="ye hi">')));
 // HTMLDivElement <div class="ye"></div>
 ```
 
-### $.removeClass
-
-```javascript
-console.log($.removeClass('selected', $.el('<div class="selected"></div>')));
-// HTMLDivElement <div class></div>
-console.log($.removeClass('hi ho', $.el('<div class="hi ho"></div>')));
-// HTMLDivElement <div class></div>
-console.log($.removeClass('hi', $.el('<div class="ye hi">')));
-// HTMLDivElement <div class="ye"></div>
-```
-
 ### $.toggleClass
 
 ```javascript
@@ -321,6 +310,15 @@ console.log($.toggleClass('selected', $.el('<div class="selected"></div>')));
 
 console.log($.toggleClass('selected', $.el('<div></div>')));
 // HTMLDivElement <div class="selected"></div>
+```
+
+### $.hasClass
+```javascript
+console.log($.hasClass('selected', $.el('<div class="selected"></div>')));
+// true
+
+console.log($.hasClass('a', $.el('<div class="b"></div>')));
+// false
 ```
 
 ### $.css

@@ -35,6 +35,7 @@ export { default as $removeAttr } from './removeAttr.js';
 export { default as $addClass } from './addClass.js';
 export { default as $removeClass } from './removeClass.js';
 export { default as $toggleClass } from './toggleClass.js';
+export { default as $hasClass } from './hasClass.js';
 export { default as $scrollTop } from './scrollTop.js';
 export { default as $scrollLeft } from './scrollLeft.js';
 export { default as $setScrollTop } from './setScrollTop.js';
