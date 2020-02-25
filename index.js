@@ -55,6 +55,7 @@ export { default as $del } from './del.js';
 export { default as $postForm } from './postForm.js';
 export { default as $setData } from './setData.js';
 export { default as $data } from './data.js';
+export { default as $dataStr } from './dataStr.js';
 export { default as $css } from './css.js';
 export { default as $setCss } from './setCss.js';
 export { default as $width } from './width.js';

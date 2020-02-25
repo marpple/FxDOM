@@ -548,7 +548,8 @@ $.trigger('click', $('.signup button'));
 ### $.data, $.setData
 
 ```html
-<div class="item" fxd-data='{"id": 1, "active": true}'></div>
+<div class="item" data-fx-json='{"id": 1, "active": true}'></div>
+<div class="item2"></div>
 ```
 
 ```javascript
@@ -562,6 +563,19 @@ console.log(data.active);
 data.active = true;
 console.log($.data($('.item')).active);
 // true
+```
+
+### $.dataStr
+
+```javascript
+
+const data = { id: 1, active: true };
+const item = document.createElement(`<div class="item" data-fx-json="${$.dataStr(data)}">`);
+
+const { id, active } = $.data(item);
+console.log(id, active);
+// 1 true
+
 ```
 
 ## Fetch
