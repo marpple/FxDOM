@@ -128,6 +128,7 @@ __webpack_require__.d(_index_namespaceObject, "removeAttr", function() { return 
 __webpack_require__.d(_index_namespaceObject, "addClass", function() { return addClass; });
 __webpack_require__.d(_index_namespaceObject, "removeClass", function() { return removeClass; });
 __webpack_require__.d(_index_namespaceObject, "toggleClass", function() { return toggleClass; });
+__webpack_require__.d(_index_namespaceObject, "hasClass", function() { return hasClass; });
 __webpack_require__.d(_index_namespaceObject, "scrollTop", function() { return scrollTop; });
 __webpack_require__.d(_index_namespaceObject, "scrollLeft", function() { return scrollLeft; });
 __webpack_require__.d(_index_namespaceObject, "setScrollTop", function() { return setScrollTop; });
@@ -147,7 +148,8 @@ __webpack_require__.d(_index_namespaceObject, "del", function() { return del; })
 __webpack_require__.d(_index_namespaceObject, "postForm", function() { return postForm; });
 __webpack_require__.d(_index_namespaceObject, "setData", function() { return setData; });
 __webpack_require__.d(_index_namespaceObject, "data", function() { return data_0; });
-__webpack_require__.d(_index_namespaceObject, "css", function() { return css_0; });
+__webpack_require__.d(_index_namespaceObject, "dataStr", function() { return dataStr; });
+__webpack_require__.d(_index_namespaceObject, "css", function() { return css; });
 __webpack_require__.d(_index_namespaceObject, "setCss", function() { return setCss; });
 __webpack_require__.d(_index_namespaceObject, "width", function() { return width_0; });
 __webpack_require__.d(_index_namespaceObject, "innerWidth", function() { return innerWidth_0; });
@@ -456,6 +458,11 @@ function* entriesL(obj) {
 
 
 /* harmony default export */ var toggleClass = (_methodClass('toggle'));
+// CONCATENATED MODULE: ./hasClass.js
+
+
+/* harmony default export */ var hasClass = (_methodClass('contains'));
+
 // CONCATENATED MODULE: ./.internal/_baseScroll.js
 function baseScroll(el, val, prop, method) {
   el = el || window;
@@ -691,7 +698,9 @@ const fetchBaseOpt = {
 
   
 // CONCATENATED MODULE: ./.internal/_resJSON.js
-/* harmony default export */ var _resJSON = (res => res.ok ? res.json() : Promise.reject(res));
+
+
+/* harmony default export */ var _resJSON = (res => res.ok ? res.json() : go1(res.json(), v => Promise.reject(v)));
 // CONCATENATED MODULE: ./get.js
 
 
@@ -743,7 +752,46 @@ const fetchBaseOpt = {
   _dataMap.set(el, data);
   return el;
 }));
+// CONCATENATED MODULE: ./node_modules/fxjs2/Strict/curry3.js
+function curry3(f) {
+  return (a, ..._) => _.length > 2
+    ? f(a, ..._)
+    : _.length === 2
+    ? (...__) => f(a, _[0], _[1], ...__)
+    : _.length === 1
+    ? (b, ...__) => __.length
+      ? f(a, _[0], b, ...__)
+      : (...__) => f(a, _[0], b, ...__)
+    : (b, ..._) => _.length > 1
+      ? f(a, b, ..._)
+      : _.length === 1
+      ? (...__) => f(a, b, _[0], ...__)
+      : (c, ..._) => _.length
+        ? f(a, b, c, ..._)
+        : (..._) => f(a, b, c, ..._)
+}
+// CONCATENATED MODULE: ./node_modules/fxjs2/Strict/ifElse.js
+
+
+
+/* harmony default export */ var Strict_ifElse = (curry3(function ifElse(cond, t, f, ...args) {
+  return go1(cond(...args), b => b ? t(...args) : f(...args));
+}));
+// CONCATENATED MODULE: ./.internal/_parseDataStr.js
+/* harmony default export */ var _parseDataStr = (data_str =>
+  JSON.parse(
+    data_str
+      .replace(/\(2\)/g, '"')
+      .replace(/\(1\)/g, "'")
+      .replace(/\(\)/g, "(")
+  ));
+
 // CONCATENATED MODULE: ./data.js
+
+
+
+
+
 
 
 
@@ -751,10 +799,28 @@ const fetchBaseOpt = {
 
 /* harmony default export */ var data_0 = (el => {
   if (_dataMap.has(el)) return _dataMap.get(el);
-  setData(JSON.parse(attr('fxd-data', el)), el);
-  setAttr(['fxd-data', 'IN_WEAK_MAP'], el);
+  go(
+    attr('data-fx-json', el),
+    Strict_ifElse(
+      s => s.slice(0, 9) == '$dataStr_',
+      pipe(s => s.substring(9), _parseDataStr),
+      JSON.parse
+    ),
+    data => setData(data, el),
+    setAttr(['data-fx-json', 'IN_WEAK_MAP'])
+  );
+
   return _dataMap.get(el);
 });
+
+// CONCATENATED MODULE: ./dataStr.js
+/* harmony default export */ var dataStr = (data =>
+  '$dataStr_' + JSON.stringify(data)
+    .replace(/\(/g, "()")
+    .replace(/\(/g, "()")
+    .replace(/'/g, "(1)")
+    .replace(/"/g, "(2)"));
+
 // CONCATENATED MODULE: ./node_modules/fxjs2/Strict/object.js
 
 
@@ -768,7 +834,7 @@ function object(iter) {
 
 
 
-/* harmony default export */ var css_0 = (curry(function _css(k, el) {
+/* harmony default export */ var css = (curry(function _css(k, el) {
   return typeof k == 'string'
     ? el.style[k] || el.ownerDocument.defaultView.getComputedStyle(el, null)[_toCamel(k)]
     : object(Lazy_mapL(k => [k, _css(k, el)], k))
@@ -824,8 +890,10 @@ const _docWidth_docEl = document.documentElement;
 // CONCATENATED MODULE: ./.internal/_cssF.js
 
 
-/* harmony default export */ var _cssF = ((k, el) => parseFloat(css_0(k, el)) || 0);
+/* harmony default export */ var _cssF = ((k, el) => parseFloat(css(k, el)) || 0);
 // CONCATENATED MODULE: ./.internal/_getDefaultDisplays.js
+
+
 const defaultDisplays = {};
 
 function getDefaultDisplays(el) {
@@ -846,7 +914,7 @@ function getDefaultDisplays(el) {
 
 /* harmony default export */ var show = (el => {
   if (el.style.display == 'none') el.style.display = '';
-  if (css_0('display', el) == 'none') el.style.display = getDefaultDisplays(el);
+  if (css('display', el) == 'none') el.style.display = getDefaultDisplays(el);
   return el;
 });
 // CONCATENATED MODULE: ./elWidth.js
@@ -858,10 +926,10 @@ function elWidth_elWidth(el, prefix = '', isHeight) {
   if (isHeight) var width = 'height', Left = 'Top', Right = 'Bottom';
   else width = 'width', Left = 'Left', Right = 'Right';
 
-  const hide = css_0('display', el) == 'none' && show(el);
+  const hide = css('display', el) == 'none' && show(el);
 
   let res = _cssF(width, el);
-  const isBorderBox = css_0('boxSizing', el) == 'border-box';
+  const isBorderBox = css('boxSizing', el) == 'border-box';
   const borderBoxVal = (prefix && !isBorderBox) || (!prefix && isBorderBox) ?
     _cssF('border'+Left+'Width', el) +
     _cssF('border'+Right+'Width', el) +
@@ -901,7 +969,7 @@ function elWidth_elWidth(el, prefix = '', isHeight) {
 const prevDisplays = new WeakMap();
 
 /* harmony default export */ var hide_0 = (el => {
-  const prev_display = css_0('display', el);
+  const prev_display = css('display', el);
   if (prev_display != 'none') {
     prevDisplays.set(el, prev_display);
     el.style.display = 'none';
@@ -913,8 +981,11 @@ const prevDisplays = new WeakMap();
 
 
 
-/* harmony default export */ var toggle = (el => css_0('display', el) == 'none' ? show(el) : hide_0(el));
+/* harmony default export */ var toggle = (el => css('display', el) == 'none' ? show(el) : hide_0(el));
 // CONCATENATED MODULE: ./_index.js
+
+
+
 
 
 
