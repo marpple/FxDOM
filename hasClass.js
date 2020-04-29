@@ -1,3 +1,3 @@
-import methodClass from './.internal/_methodClass.js';
+import { curry } from 'fxjs2';
 
-export default methodClass('contains');
+export default curry((class_name, el) => el.classList.contains(class_name));
