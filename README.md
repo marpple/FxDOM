@@ -218,9 +218,9 @@ console.log($.html($.el('<div><span>hi</span></div>')));
 // "<span>hi</span>"
 ```
 
-### $.setHtml
+### $.setHTML
 ```javascript
-console.log($.setHtml('<span>ho</span>', $.el('<div></div>')));
+console.log($.setHTML('<span>ho</span>', $.el('<div></div>')));
 // HTMLDivElement <div><span>ho</span></div>
 ```
 
