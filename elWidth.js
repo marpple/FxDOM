@@ -1,24 +1,38 @@
 import css from './css.js';
 import cssF from './.internal/_cssF.js';
 import show from './show.js';
+import hide from './hide.js';
+
+const isIE = /trident/i.test(navigator.userAgent);
+
+function getBorderBoxValue(Left, Right, el) {
+  return cssF('border'+Left+'Width', el) +
+    cssF('border'+Right+'Width', el) +
+    cssF('padding'+Left, el) +
+    cssF('padding'+Right, el)
+}
 
 export default function elWidth(el, prefix = '', isHeight) {
   if (isHeight) var width = 'height', Left = 'Top', Right = 'Bottom';
   else width = 'width', Left = 'Left', Right = 'Right';
 
-  const hide = css('display', el) == 'none' && show(el);
-
-  let res = cssF(width, el);
+  const isHidden = css('display', el) == 'none' && show(el);
   const isBorderBox = css('boxSizing', el) == 'border-box';
-  const borderBoxVal = (prefix && !isBorderBox) || (!prefix && isBorderBox) ?
-    cssF('border'+Left+'Width', el) +
-    cssF('border'+Right+'Width', el) +
-    cssF('padding'+Left, el) +
-    cssF('padding'+Right, el) : 0;
-  res += prefix ? borderBoxVal : -borderBoxVal;
-  if (prefix == 'outer') res += cssF('margin'+Left, el) + cssF('margin'+Right, el);
+  const isOnlyWidth = !prefix;
+  const needCalcBorderBoxValue = (isIE && isBorderBox) || (!isOnlyWidth && !isBorderBox) || (isOnlyWidth && isBorderBox);
+  const borderBoxValue = needCalcBorderBoxValue ? getBorderBoxValue(Left, Right, el) : 0;
 
-  hide && hide(el);
+  let value = cssF(width, el);
+  if (isIE && isBorderBox) value += borderBoxValue;
 
-  return res;
+  if (isOnlyWidth) {
+    if (isBorderBox) value -= borderBoxValue;
+  } else {
+    if (!isBorderBox) value += borderBoxValue;
+    if (prefix == 'outer') value += cssF('margin'+Left, el) + cssF('margin'+Right, el);
+  }
+
+  isHidden && hide(el);
+
+  return value;
 }

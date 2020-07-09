@@ -8099,7 +8099,7 @@ __webpack_require__.d(_index_namespaceObject, "height", function() { return heig
 __webpack_require__.d(_index_namespaceObject, "innerHeight", function() { return innerHeight_0; });
 __webpack_require__.d(_index_namespaceObject, "outerHeight", function() { return outerHeight_0; });
 __webpack_require__.d(_index_namespaceObject, "show", function() { return show; });
-__webpack_require__.d(_index_namespaceObject, "hide", function() { return hide_0; });
+__webpack_require__.d(_index_namespaceObject, "hide", function() { return hide; });
 __webpack_require__.d(_index_namespaceObject, "toggle", function() { return toggle; });
 
 // CONCATENATED MODULE: ./qs.js
@@ -8739,7 +8739,9 @@ var es_string_split = __webpack_require__(215);
 /* harmony default export */ var toggleClass = (_methodClass('toggle'));
 // CONCATENATED MODULE: ./hasClass.js
 
-/* harmony default export */ var hasClass = (_methodClass('contains'));
+/* harmony default export */ var hasClass = (curry(function (class_name, el) {
+  return el.classList.contains(class_name);
+}));
 // CONCATENATED MODULE: ./.internal/_baseScroll.js
 function baseScroll(el, val, prop, method) {
   el = el || window;
@@ -9477,7 +9479,7 @@ var numberTypes = {
 var _docWidth_docEl = document.documentElement;
 /* harmony default export */ var _docWidth = (function (isHeight) {
   var b = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : document.body;
-  return isHeight ? Math.max(b.offsetHeight, b.scrollHeight, _docWidth_docEl.offsetHeight, _docWidth_docEl.offsetHeight, _docWidth_docEl.clientHeight) : Math.max(b.offsetWidth, b.scrollWidth, _docWidth_docEl.offsetWidth, _docWidth_docEl.offsetWidth, _docWidth_docEl.clientWidth);
+  return isHeight ? Math.max(b.offsetHeight, b.scrollHeight, b.clientHeight, _docWidth_docEl.offsetHeight, _docWidth_docEl.offsetHeight, _docWidth_docEl.clientHeight) : Math.max(b.offsetWidth, b.scrollWidth, b.clientWidth, _docWidth_docEl.offsetWidth, _docWidth_docEl.offsetWidth, _docWidth_docEl.clientWidth);
 });
 // CONCATENATED MODULE: ./width.js
 
@@ -9512,9 +9514,34 @@ function getDefaultDisplays(el) {
   if (css('display', el) == 'none') el.style.display = getDefaultDisplays(el);
   return el;
 });
+// CONCATENATED MODULE: ./hide.js
+
+
+
+
+
+
+var prevDisplays = new WeakMap();
+/* harmony default export */ var hide = (function (el) {
+  var prev_display = css('display', el);
+
+  if (prev_display != 'none') {
+    prevDisplays.set(el, prev_display);
+    el.style.display = 'none';
+  }
+
+  return el;
+});
 // CONCATENATED MODULE: ./elWidth.js
 
 
+
+
+var isIE = /trident/i.test(navigator.userAgent);
+
+function getBorderBoxValue(Left, Right, el) {
+  return _cssF('border' + Left + 'Width', el) + _cssF('border' + Right + 'Width', el) + _cssF('padding' + Left, el) + _cssF('padding' + Right, el);
+}
 
 function elWidth_elWidth(el) {
   var prefix = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
@@ -9522,14 +9549,23 @@ function elWidth_elWidth(el) {
   if (isHeight) var width = 'height',
       Left = 'Top',
       Right = 'Bottom';else width = 'width', Left = 'Left', Right = 'Right';
-  var hide = css('display', el) == 'none' && show(el);
-  var res = _cssF(width, el);
+  var isHidden = css('display', el) == 'none' && show(el);
   var isBorderBox = css('boxSizing', el) == 'border-box';
-  var borderBoxVal = prefix && !isBorderBox || !prefix && isBorderBox ? _cssF('border' + Left + 'Width', el) + _cssF('border' + Right + 'Width', el) + _cssF('padding' + Left, el) + _cssF('padding' + Right, el) : 0;
-  res += prefix ? borderBoxVal : -borderBoxVal;
-  if (prefix == 'outer') res += _cssF('margin' + Left, el) + _cssF('margin' + Right, el);
-  hide && hide(el);
-  return res;
+  var isOnlyWidth = !prefix;
+  var needCalcBorderBoxValue = isIE && isBorderBox || !isOnlyWidth && !isBorderBox || isOnlyWidth && isBorderBox;
+  var borderBoxValue = needCalcBorderBoxValue ? getBorderBoxValue(Left, Right, el) : 0;
+  var value = _cssF(width, el);
+  if (isIE && isBorderBox) value += borderBoxValue;
+
+  if (isOnlyWidth) {
+    if (isBorderBox) value -= borderBoxValue;
+  } else {
+    if (!isBorderBox) value += borderBoxValue;
+    if (prefix == 'outer') value += _cssF('margin' + Left, el) + _cssF('margin' + Right, el);
+  }
+
+  isHidden && hide(el);
+  return value;
 }
 // CONCATENATED MODULE: ./innerWidth.js
 
@@ -9557,30 +9593,12 @@ function elWidth_elWidth(el) {
 /* harmony default export */ var outerHeight_0 = (function (el) {
   return elWidth_elWidth(el, 'outer', true);
 });
-// CONCATENATED MODULE: ./hide.js
-
-
-
-
-
-
-var prevDisplays = new WeakMap();
-/* harmony default export */ var hide_0 = (function (el) {
-  var prev_display = css('display', el);
-
-  if (prev_display != 'none') {
-    prevDisplays.set(el, prev_display);
-    el.style.display = 'none';
-  }
-
-  return el;
-});
 // CONCATENATED MODULE: ./toggle.js
 
 
 
 /* harmony default export */ var toggle = (function (el) {
-  return css('display', el) == 'none' ? show(el) : hide_0(el);
+  return css('display', el) == 'none' ? show(el) : hide(el);
 });
 // CONCATENATED MODULE: ./_index.js
 
