@@ -100,6 +100,7 @@ __webpack_require__.d(_index_namespaceObject, "findAll", function() { return fin
 __webpack_require__.d(_index_namespaceObject, "children", function() { return children; });
 __webpack_require__.d(_index_namespaceObject, "closest", function() { return closest; });
 __webpack_require__.d(_index_namespaceObject, "is", function() { return is; });
+__webpack_require__.d(_index_namespaceObject, "siblings", function() { return siblings; });
 __webpack_require__.d(_index_namespaceObject, "prevAll", function() { return prevAll; });
 __webpack_require__.d(_index_namespaceObject, "nextAll", function() { return nextAll; });
 __webpack_require__.d(_index_namespaceObject, "prev", function() { return prev; });
@@ -225,14 +226,22 @@ const docEl = document.documentElement;
   while ((cur = cur[k])) if (_isEl(cur) && is(sel, cur)) res[add](cur);
   return res;
 });
-// CONCATENATED MODULE: ./prevAll.js
-
-
-/* harmony default export */ var prevAll = (_nextOrPrevAll('previousSibling', 'unshift'));
 // CONCATENATED MODULE: ./nextAll.js
 
 
 /* harmony default export */ var nextAll = (_nextOrPrevAll('nextSibling', 'push'));
+// CONCATENATED MODULE: ./prevAll.js
+
+
+/* harmony default export */ var prevAll = (_nextOrPrevAll('previousSibling', 'unshift'));
+// CONCATENATED MODULE: ./siblings.js
+
+
+
+function siblings(...args) {
+  return [...prevAll(...args), ...nextAll(...args)];
+};
+
 // CONCATENATED MODULE: ./.internal/_nextOrPrev.js
 
 
@@ -1000,6 +1009,7 @@ function elWidth_elWidth(el, prefix = '', isHeight) {
 
 /* harmony default export */ var toggle = (el => css('display', el) == 'none' ? show(el) : hide(el));
 // CONCATENATED MODULE: ./_index.js
+
 
 
 

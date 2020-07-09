@@ -7,6 +7,7 @@ export { default as $findAll } from './findAll.js';
 export { default as $children } from './children.js';
 export { default as $closest } from './closest.js';
 export { default as $is } from './is.js';
+export { default as $siblings } from './siblings.js';
 export { default as $prevAll } from './prevAll.js';
 export { default as $nextAll } from './nextAll.js';
 export { default as $prev } from './prev.js';
