@@ -135,6 +135,8 @@ __webpack_require__.d(_index_namespaceObject, "scrollLeft", function() { return 
 __webpack_require__.d(_index_namespaceObject, "setScrollTop", function() { return setScrollTop; });
 __webpack_require__.d(_index_namespaceObject, "setScrollLeft", function() { return setScrollLeft; });
 __webpack_require__.d(_index_namespaceObject, "offset", function() { return offset; });
+__webpack_require__.d(_index_namespaceObject, "offsetParent", function() { return offsetParent_offsetParent; });
+__webpack_require__.d(_index_namespaceObject, "position", function() { return position; });
 __webpack_require__.d(_index_namespaceObject, "on", function() { return on; });
 __webpack_require__.d(_index_namespaceObject, "off", function() { return off; });
 __webpack_require__.d(_index_namespaceObject, "delegate", function() { return delegate; });
@@ -536,6 +538,126 @@ function reduce(f, acc, iter) {
     return acc;
   });
 }
+// CONCATENATED MODULE: ./node_modules/fxjs2/Strict/object.js
+
+
+function object(iter) {
+  return reduce((obj, [k, v]) => (obj[k] = v, obj), {}, iter);
+}
+// CONCATENATED MODULE: ./.internal/_toCamel.js
+/* harmony default export */ var _toCamel = (str => str.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase()));
+// CONCATENATED MODULE: ./css.js
+
+
+
+
+/* harmony default export */ var css = (curry(function _css(k, el) {
+  return typeof k == 'string'
+    ? el.style[k] || el.ownerDocument.defaultView.getComputedStyle(el, null)[_toCamel(k)]
+    : object(Lazy_mapL(k => [k, _css(k, el)], k))
+}));
+// CONCATENATED MODULE: ./offsetParent.js
+
+const offsetParent_docEl = document.documentElement;
+
+function offsetParent_offsetParent(el) {
+  let offsetParent = el;
+  while ((offsetParent = offsetParent.offsetParent) && css('position', offsetParent) === 'static') {}
+  return offsetParent || offsetParent_docEl;
+}
+
+// CONCATENATED MODULE: ./position.js
+
+
+
+
+const position_docEl = document.documentElement;
+
+const setPositionTopLeft = (el, { top, left }, { pTop = 0, pLeft = 0 }) => ({
+  top: top - pTop - parseFloat(css('marginTop', el)) + position_docEl.clientTop,
+  left: left - pLeft - parseFloat(css('marginLeft', el)) + position_docEl.clientLeft
+});
+
+/* harmony default export */ var position = (el => {
+  if (css('position', el) === 'fixed')
+    return setPositionTopLeft(el, el.getBoundingClientRect(), {});
+  const { top, left } = offset(el);
+  const offsetParent$ = offsetParent_offsetParent(el);
+  const { clientTop, clientLeft } = offsetParent$;
+  if (offsetParent$.nodeName.toUpperCase() === 'HTML')
+    return setPositionTopLeft(el, { top, left }, { pTop: clientTop, pLeft: clientLeft });
+  const { top: pTop, left: pLeft } = offset(offsetParent$)
+  return setPositionTopLeft(el, { top, left }, { pTop: pTop + clientTop, pLeft: pLeft + clientLeft });
+});
+
+//
+// export default el => go(
+//     extend(...(css('position', el) === 'fixed' ?
+//       [
+//         { pTop: 0, pLeft: 0 }, el.getBoundingClientRect()
+//       ] : [
+//         offset(el),
+//         go(
+//           offsetParent(el),
+//           offsetParent$ => [
+//             offsetParent$.nodeName.toUpperCase() !== 'HTML' ?
+//             offset(offsetParent$) : { top: 0, left: 0 },
+//             offsetParent$
+//           ],
+//           ([{ top, left }, { clientTop, clientLeft }]) => ({
+//             pTop: top + clientTop,
+//             pLeft: left + clientLeft
+//           })
+//         )
+//       ]
+//     )),
+//     ({ top, left, pTop, pLeft }) => ({
+//       top: top - pTop - parseFloat(css('marginTop', el)) + docEl.clientTop,
+//       left: left - pLeft - parseFloat(css('marginLeft', el)) + docEl.clientLeft
+//     })
+//   );
+//
+//
+// export default el => {
+//   const {
+//     offset: { top, left }, pTop = 0, pLeft = 0
+//   } = css('position', el) === 'fixed' ?
+//     {
+//       offset: el.getBoundingClientRect(),
+//     } : go(
+//       offsetParent(el),
+//       offsetParent$ => {
+//         const [{ top = 0, left = 0 }, { clientTop, clientLeft }] = [
+//           offsetParent$.nodeName.toUpperCase() !== 'HTML' ? offset(offsetParent$) : {},
+//           offsetParent$
+//         ];
+//         return {
+//           offset: offset(el), pTop: top + clientTop, pLeft: left + clientLeft
+//         };
+//       }
+//     );
+//   return {
+//     top: top - pTop - parseFloat(css('marginTop', el)) + docEl.clientTop,
+//     left: left - pLeft - parseFloat(css('marginLeft', el)) + docEl.clientLeft
+//   };
+// }
+//
+// export default el => {
+//   const is_fixed = css('position', el) === 'fixed';
+//   const { top, left } = is_fixed ? el.getBoundingClientRect() : offset(el);
+//   const { pTop, pLeft } = is_fixed ? {} : (offsetParent$ => {
+//     const { clientTop: pTop, clientLeft: pLeft } = offsetParent$;
+//     if (offsetParent$.nodeName.toUpperCase() === 'HTML') return { pTop, pLeft };
+//     const { top, left } = offset(offsetParent$)
+//     return { pTop: top + pTop, pLeft: left + pLeft };
+//   })(offsetParent(el));
+//
+//   return {
+//     top: top - pTop - parseFloat(css('marginTop', el)) + docEl.clientTop,
+//     left: left - pLeft - parseFloat(css('marginLeft', el)) + docEl.clientLeft
+//   };
+// }
+
 // CONCATENATED MODULE: ./node_modules/fxjs2/.internal/go1Sync.js
 /* harmony default export */ var go1Sync = ((a, f) => f(a));
 // CONCATENATED MODULE: ./node_modules/fxjs2/Strict/tap.js
@@ -805,7 +927,6 @@ function curry3(f) {
 
 
 
-
 /* harmony default export */ var data_0 = (el => {
   if (_dataMap.has(el)) return _dataMap.get(el);
   go(
@@ -830,24 +951,6 @@ function curry3(f) {
     .replace(/'/g, "(1)")
     .replace(/"/g, "(2)"));
 
-// CONCATENATED MODULE: ./node_modules/fxjs2/Strict/object.js
-
-
-function object(iter) {
-  return reduce((obj, [k, v]) => (obj[k] = v, obj), {}, iter);
-}
-// CONCATENATED MODULE: ./.internal/_toCamel.js
-/* harmony default export */ var _toCamel = (str => str.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase()));
-// CONCATENATED MODULE: ./css.js
-
-
-
-
-/* harmony default export */ var css = (curry(function _css(k, el) {
-  return typeof k == 'string'
-    ? el.style[k] || el.ownerDocument.defaultView.getComputedStyle(el, null)[_toCamel(k)]
-    : object(Lazy_mapL(k => [k, _css(k, el)], k))
-}));
 // CONCATENATED MODULE: ./.internal/_isNumeric.js
 /* harmony default export */ var _isNumeric = (n => !isNaN(parseFloat(n)) && isFinite(n));
 // CONCATENATED MODULE: ./.internal/_addPx.js
@@ -893,10 +996,6 @@ const _docWidth_docEl = document.documentElement;
     ? Math.max(b.offsetHeight, b.scrollHeight, b.clientHeight, _docWidth_docEl.offsetHeight, _docWidth_docEl.offsetHeight, _docWidth_docEl.clientHeight)
     : Math.max(b.offsetWidth, b.scrollWidth, b.clientWidth, _docWidth_docEl.offsetWidth, _docWidth_docEl.offsetWidth, _docWidth_docEl.clientWidth));
 
-// CONCATENATED MODULE: ./width.js
-
-
-/* harmony default export */ var width_0 = (el => el == window ? el.innerWidth : el == document ? _docWidth() : elWidth(el));
 // CONCATENATED MODULE: ./.internal/_cssF.js
 
 
@@ -956,12 +1055,10 @@ function getBorderBoxValue(Left, Right, el) {
     _cssF('padding'+Right, el)
 }
 
-function elWidth_elWidth(el, prefix = '', isHeight) {
-  if (isHeight) var width = 'height', Left = 'Top', Right = 'Bottom';
-  else width = 'width', Left = 'Left', Right = 'Right';
-
-  const isHidden = css('display', el) == 'none' && show(el);
-  const isBorderBox = css('boxSizing', el) == 'border-box';
+function elWidth(el, prefix = '', isHeight) {
+  const [ width, Left, Right ] = isHeight ? ['height', 'Top', 'Bottom'] : ['width', 'Left', 'Right'];
+  const isHidden = css('display', el) === 'none' && show(el);
+  const isBorderBox = css('boxSizing', el) === 'border-box';
   const isOnlyWidth = !prefix;
   const needCalcBorderBoxValue = (isIE && isBorderBox) || (!isOnlyWidth && !isBorderBox) || (isOnlyWidth && isBorderBox);
   const borderBoxValue = needCalcBorderBoxValue ? getBorderBoxValue(Left, Right, el) : 0;
@@ -981,27 +1078,33 @@ function elWidth_elWidth(el, prefix = '', isHeight) {
   return value;
 }
 
+// CONCATENATED MODULE: ./width.js
+
+
+
+/* harmony default export */ var width_0 = (el => el == window ? el.innerWidth : el == document ? _docWidth() : elWidth(el));
+
 // CONCATENATED MODULE: ./innerWidth.js
 
 
-/* harmony default export */ var innerWidth_0 = (el => elWidth_elWidth(el, 'inner'));
+/* harmony default export */ var innerWidth_0 = (el => elWidth(el, 'inner'));
 // CONCATENATED MODULE: ./outerWidth.js
 
 
-/* harmony default export */ var outerWidth_0 = (el => elWidth_elWidth(el, 'outer'));
+/* harmony default export */ var outerWidth_0 = (el => elWidth(el, 'outer'));
 // CONCATENATED MODULE: ./height.js
 
 
 
-/* harmony default export */ var height = (el => el == window ? el.innerHeight : el == document ? _docWidth(true) : elWidth_elWidth(el, '', true));
+/* harmony default export */ var height = (el => el == window ? el.innerHeight : el == document ? _docWidth(true) : elWidth(el, '', true));
 // CONCATENATED MODULE: ./innerHeight.js
 
 
-/* harmony default export */ var innerHeight_0 = (el => elWidth_elWidth(el, 'inner', true));
+/* harmony default export */ var innerHeight_0 = (el => elWidth(el, 'inner', true));
 // CONCATENATED MODULE: ./outerHeight.js
 
 
-/* harmony default export */ var outerHeight_0 = (el => elWidth_elWidth(el, 'outer', true));
+/* harmony default export */ var outerHeight_0 = (el => elWidth(el, 'outer', true));
 // CONCATENATED MODULE: ./toggle.js
 
 
@@ -1009,6 +1112,8 @@ function elWidth_elWidth(el, prefix = '', isHeight) {
 
 /* harmony default export */ var toggle = (el => css('display', el) == 'none' ? show(el) : hide(el));
 // CONCATENATED MODULE: ./_index.js
+
+
 
 
 

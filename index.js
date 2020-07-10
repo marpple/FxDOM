@@ -42,6 +42,8 @@ export { default as $scrollLeft } from './scrollLeft.js';
 export { default as $setScrollTop } from './setScrollTop.js';
 export { default as $setScrollLeft } from './setScrollLeft.js';
 export { default as $offset } from './offset.js';
+export { default as $offsetParent } from './offsetParent.js';
+export { default as $position } from './position.js';
 export { default as $on } from './on.js';
 export { default as $off } from './off.js';
 export { default as $delegate } from './delegate.js';

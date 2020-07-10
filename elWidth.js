@@ -13,11 +13,9 @@ function getBorderBoxValue(Left, Right, el) {
 }
 
 export default function elWidth(el, prefix = '', isHeight) {
-  if (isHeight) var width = 'height', Left = 'Top', Right = 'Bottom';
-  else width = 'width', Left = 'Left', Right = 'Right';
-
-  const isHidden = css('display', el) == 'none' && show(el);
-  const isBorderBox = css('boxSizing', el) == 'border-box';
+  const [ width, Left, Right ] = isHeight ? ['height', 'Top', 'Bottom'] : ['width', 'Left', 'Right'];
+  const isHidden = css('display', el) === 'none' && show(el);
+  const isBorderBox = css('boxSizing', el) === 'border-box';
   const isOnlyWidth = !prefix;
   const needCalcBorderBoxValue = (isIE && isBorderBox) || (!isOnlyWidth && !isBorderBox) || (isOnlyWidth && isBorderBox);
   const borderBoxValue = needCalcBorderBoxValue ? getBorderBoxValue(Left, Right, el) : 0;
