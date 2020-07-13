@@ -114,7 +114,11 @@ __webpack_require__.d(_index_namespaceObject, "prependTo", function() { return p
 __webpack_require__.d(_index_namespaceObject, "append", function() { return append; });
 __webpack_require__.d(_index_namespaceObject, "prepend", function() { return prepend; });
 __webpack_require__.d(_index_namespaceObject, "before", function() { return before; });
+__webpack_require__.d(_index_namespaceObject, "insertBefore", function() { return insertBefore; });
 __webpack_require__.d(_index_namespaceObject, "after", function() { return after; });
+__webpack_require__.d(_index_namespaceObject, "insertAfter", function() { return insertAfter; });
+__webpack_require__.d(_index_namespaceObject, "replaceWith", function() { return replaceWith_0; });
+__webpack_require__.d(_index_namespaceObject, "replaceAll", function() { return replaceAll_0; });
 __webpack_require__.d(_index_namespaceObject, "text", function() { return text_0; });
 __webpack_require__.d(_index_namespaceObject, "setText", function() { return setText; });
 __webpack_require__.d(_index_namespaceObject, "html", function() { return html_0; });
@@ -141,6 +145,7 @@ __webpack_require__.d(_index_namespaceObject, "on", function() { return on; });
 __webpack_require__.d(_index_namespaceObject, "off", function() { return off; });
 __webpack_require__.d(_index_namespaceObject, "delegate", function() { return delegate; });
 __webpack_require__.d(_index_namespaceObject, "trigger", function() { return trigger; });
+__webpack_require__.d(_index_namespaceObject, "ready", function() { return ready_0; });
 __webpack_require__.d(_index_namespaceObject, "focus", function() { return focus_0; });
 __webpack_require__.d(_index_namespaceObject, "blur", function() { return blur_0; });
 __webpack_require__.d(_index_namespaceObject, "param", function() { return param; });
@@ -149,8 +154,11 @@ __webpack_require__.d(_index_namespaceObject, "post", function() { return post; 
 __webpack_require__.d(_index_namespaceObject, "put", function() { return put; });
 __webpack_require__.d(_index_namespaceObject, "del", function() { return del; });
 __webpack_require__.d(_index_namespaceObject, "postForm", function() { return postForm; });
-__webpack_require__.d(_index_namespaceObject, "setData", function() { return setData; });
+__webpack_require__.d(_index_namespaceObject, "prop", function() { return prop; });
+__webpack_require__.d(_index_namespaceObject, "setProp", function() { return setProp; });
+__webpack_require__.d(_index_namespaceObject, "removeProp", function() { return removeProp; });
 __webpack_require__.d(_index_namespaceObject, "data", function() { return data_0; });
+__webpack_require__.d(_index_namespaceObject, "setData", function() { return setData; });
 __webpack_require__.d(_index_namespaceObject, "dataStr", function() { return dataStr; });
 __webpack_require__.d(_index_namespaceObject, "css", function() { return css; });
 __webpack_require__.d(_index_namespaceObject, "setCss", function() { return setCss; });
@@ -269,7 +277,8 @@ function siblings(...args) {
 // CONCATENATED MODULE: ./contains.js
 
 
-/* harmony default export */ var contains = (curry((parent, child) => parent.contains(child)));
+/* harmony default export */ var contains = (curry((child, parent) => parent.contains(child)));
+
 // CONCATENATED MODULE: ./remove.js
 /* harmony default export */ var remove = (el => el.parentNode.removeChild(el));
 // CONCATENATED MODULE: ./node_modules/fxjs2/Strict/go1.js
@@ -397,14 +406,47 @@ function head(iter) {
 // CONCATENATED MODULE: ./before.js
 
 
-/* harmony default export */ var before = (curry((el, newEl) => el.parentNode.insertBefore(newEl, el)));
+/* harmony default export */ var before = (curry((newEl, el) => el.parentNode.insertBefore(newEl, el)));
+
+// CONCATENATED MODULE: ./insertBefore.js
+
+
+
+/* harmony default export */ var insertBefore = (curry((el, newEl) => before(newEl, el)));
+
 // CONCATENATED MODULE: ./after.js
 
 
 
 
-/* harmony default export */ var after = (curry((el, newEl) =>
-  el.nextSibling ? before(el.nextSibling, newEl) : appendTo(el.parentNode, newEl)));
+/* harmony default export */ var after = (curry((newEl, el) =>
+  el.nextSibling ? before(newEl, el.nextSibling) : appendTo(newEl, el.parentNode)));
+
+// CONCATENATED MODULE: ./insertAfter.js
+
+
+
+/* harmony default export */ var insertAfter = (curry((el, newEl) => after(newEl, el)));
+
+// CONCATENATED MODULE: ./replaceWith.js
+
+
+
+
+/* harmony default export */ var replaceWith_0 = (curry(function replaceWith(newEl, el) {
+  before(newEl, el);
+  return remove(el);
+}));
+
+// CONCATENATED MODULE: ./replaceAll.js
+
+
+
+/* harmony default export */ var replaceAll_0 = (curry(function replaceAll(el, newEl) {
+  replaceWith_0(newEl, el)
+  return newEl;
+}));
+
 // CONCATENATED MODULE: ./text.js
 /* harmony default export */ var text_0 = (el => el.textContent);
 // CONCATENATED MODULE: ./setText.js
@@ -495,11 +537,15 @@ function baseScroll(el, val, prop, method) {
 // CONCATENATED MODULE: ./setScrollTop.js
 
 
-/* harmony default export */ var setScrollTop = ((val, el) => baseScroll(el, val, "pageYOffset", "scrollTop"));
+
+/* harmony default export */ var setScrollTop = (curry((val, el) => baseScroll(el, val, "pageYOffset", "scrollTop")));
+
 // CONCATENATED MODULE: ./setScrollLeft.js
 
 
-/* harmony default export */ var setScrollLeft = ((val, el) => baseScroll(el, val, "pageXOffset", "scrollLeft"));
+
+/* harmony default export */ var setScrollLeft = (curry((val, el) => baseScroll(el, val, "pageXOffset", "scrollLeft")));
+
 // CONCATENATED MODULE: ./offset.js
 const offset_docEl = document.documentElement;
 
@@ -581,82 +627,14 @@ const setPositionTopLeft = (el, { top, left }, { pTop = 0, pLeft = 0 }) => ({
 /* harmony default export */ var position = (el => {
   if (css('position', el) === 'fixed')
     return setPositionTopLeft(el, el.getBoundingClientRect(), {});
-  const { top, left } = offset(el);
+  const elOffset = offset(el);
   const offsetParent$ = offsetParent_offsetParent(el);
   const { clientTop, clientLeft } = offsetParent$;
   if (offsetParent$.nodeName.toUpperCase() === 'HTML')
-    return setPositionTopLeft(el, { top, left }, { pTop: clientTop, pLeft: clientLeft });
+    return setPositionTopLeft(el, elOffset, { pTop: clientTop, pLeft: clientLeft });
   const { top: pTop, left: pLeft } = offset(offsetParent$)
-  return setPositionTopLeft(el, { top, left }, { pTop: pTop + clientTop, pLeft: pLeft + clientLeft });
+  return setPositionTopLeft(el, elOffset, { pTop: pTop + clientTop, pLeft: pLeft + clientLeft });
 });
-
-//
-// export default el => go(
-//     extend(...(css('position', el) === 'fixed' ?
-//       [
-//         { pTop: 0, pLeft: 0 }, el.getBoundingClientRect()
-//       ] : [
-//         offset(el),
-//         go(
-//           offsetParent(el),
-//           offsetParent$ => [
-//             offsetParent$.nodeName.toUpperCase() !== 'HTML' ?
-//             offset(offsetParent$) : { top: 0, left: 0 },
-//             offsetParent$
-//           ],
-//           ([{ top, left }, { clientTop, clientLeft }]) => ({
-//             pTop: top + clientTop,
-//             pLeft: left + clientLeft
-//           })
-//         )
-//       ]
-//     )),
-//     ({ top, left, pTop, pLeft }) => ({
-//       top: top - pTop - parseFloat(css('marginTop', el)) + docEl.clientTop,
-//       left: left - pLeft - parseFloat(css('marginLeft', el)) + docEl.clientLeft
-//     })
-//   );
-//
-//
-// export default el => {
-//   const {
-//     offset: { top, left }, pTop = 0, pLeft = 0
-//   } = css('position', el) === 'fixed' ?
-//     {
-//       offset: el.getBoundingClientRect(),
-//     } : go(
-//       offsetParent(el),
-//       offsetParent$ => {
-//         const [{ top = 0, left = 0 }, { clientTop, clientLeft }] = [
-//           offsetParent$.nodeName.toUpperCase() !== 'HTML' ? offset(offsetParent$) : {},
-//           offsetParent$
-//         ];
-//         return {
-//           offset: offset(el), pTop: top + clientTop, pLeft: left + clientLeft
-//         };
-//       }
-//     );
-//   return {
-//     top: top - pTop - parseFloat(css('marginTop', el)) + docEl.clientTop,
-//     left: left - pLeft - parseFloat(css('marginLeft', el)) + docEl.clientLeft
-//   };
-// }
-//
-// export default el => {
-//   const is_fixed = css('position', el) === 'fixed';
-//   const { top, left } = is_fixed ? el.getBoundingClientRect() : offset(el);
-//   const { pTop, pLeft } = is_fixed ? {} : (offsetParent$ => {
-//     const { clientTop: pTop, clientLeft: pLeft } = offsetParent$;
-//     if (offsetParent$.nodeName.toUpperCase() === 'HTML') return { pTop, pLeft };
-//     const { top, left } = offset(offsetParent$)
-//     return { pTop: top + pTop, pLeft: left + pLeft };
-//   })(offsetParent(el));
-//
-//   return {
-//     top: top - pTop - parseFloat(css('marginTop', el)) + docEl.clientTop,
-//     left: left - pLeft - parseFloat(css('marginLeft', el)) + docEl.clientLeft
-//   };
-// }
 
 // CONCATENATED MODULE: ./node_modules/fxjs2/.internal/go1Sync.js
 /* harmony default export */ var go1Sync = ((a, f) => f(a));
@@ -744,14 +722,16 @@ function defaults(obj, ...objs) {
 
 
 
+
 /* harmony default export */ var delegate = ((event, sel, f) => tap(el =>
   el.addEventListener(event, e => go(
     el,
     findAll(sel),
-    Lazy_filterL(el => el.contains(e.target)),
+    Lazy_filterL(contains(e.target)),
     Strict_each(currentTarget => f(defaults({ originalEvent: e, currentTarget, delegateTarget: el }, e)))
   ))
 ));
+
 // CONCATENATED MODULE: ./trigger.js
 const me = 'MouseEvents';
 const mouseEvents = {
@@ -771,6 +751,14 @@ const mouseEvents = {
   el.dispatchEvent(e);
   return el;
 });;
+// CONCATENATED MODULE: ./ready.js
+
+
+
+/* harmony default export */ var ready_0 = (curry(function ready(cb, el) {
+  return on('DOMContentLoaded', cb)(el);
+}));
+
 // CONCATENATED MODULE: ./focus.js
 /* harmony default export */ var focus_0 = (el => el.focus());
 // CONCATENATED MODULE: ./blur.js
@@ -873,16 +861,23 @@ const fetchBaseOpt = {
   form => fetch(url, { method: 'POST', body: form }),
   res => res.ok ? res.json() : Promise.reject(res)
 )));
-// CONCATENATED MODULE: ./.internal/_dataMap.js
-/* harmony default export */ var _dataMap = (new WeakMap());
-// CONCATENATED MODULE: ./setData.js
+// CONCATENATED MODULE: ./prop.js
 
 
-
-/* harmony default export */ var setData = (curry((data, el) => {
-  _dataMap.set(el, data);
-  return el;
+/* harmony default export */ var prop = (curry(function prop(k, el) {
+  return el[k];
 }));
+
+// CONCATENATED MODULE: ./setProp.js
+
+
+/* harmony default export */ var setProp = (curry((kv, el) => Object.assign(el, kv)));
+
+// CONCATENATED MODULE: ./removeProp.js
+
+
+/* harmony default export */ var removeProp = (curry((k, el) => (delete el[k], el)));
+
 // CONCATENATED MODULE: ./node_modules/fxjs2/Strict/curry3.js
 function curry3(f) {
   return (a, ..._) => _.length > 2
@@ -908,6 +903,8 @@ function curry3(f) {
 /* harmony default export */ var Strict_ifElse = (curry3(function ifElse(cond, t, f, ...args) {
   return go1(cond(...args), b => b ? t(...args) : f(...args));
 }));
+// CONCATENATED MODULE: ./.internal/_dataMap.js
+/* harmony default export */ var _dataMap = (new WeakMap());
 // CONCATENATED MODULE: ./.internal/_parseDataStr.js
 /* harmony default export */ var _parseDataStr = (data_str =>
   JSON.parse(
@@ -917,6 +914,14 @@ function curry3(f) {
       .replace(/\(\)/g, "(")
   ));
 
+// CONCATENATED MODULE: ./setData.js
+
+
+
+/* harmony default export */ var setData = (curry((data, el) => {
+  _dataMap.set(el, data);
+  return el;
+}));
 // CONCATENATED MODULE: ./data.js
 
 
@@ -1006,10 +1011,10 @@ const _docWidth_docEl = document.documentElement;
 const defaultDisplays = {};
 
 function getDefaultDisplays(el) {
-  var nodeName = el.nodeName, display = defaultDisplays[nodeName];
+  let nodeName = el.nodeName, display = defaultDisplays[nodeName];
   if (display) return display;
 
-  var temp, doc = el.ownerDocument;
+  let temp, doc = el.ownerDocument;
   temp = doc.body.appendChild(doc.createElement(nodeName));
   display = css('display', temp);
   temp.parentNode.removeChild(temp);
@@ -1018,28 +1023,37 @@ function getDefaultDisplays(el) {
   return defaultDisplays[nodeName] = display;
 }
 
+// CONCATENATED MODULE: ./.internal/_getPrevDisplay.js
+/* harmony default export */ var _getPrevDisplay = (new WeakMap());
+
 // CONCATENATED MODULE: ./show.js
 
 
 
 /* harmony default export */ var show = (el => {
-  if (el.style.display == 'none') el.style.display = '';
-  if (css('display', el) == 'none') el.style.display = getDefaultDisplays(el);
+  let display = '';
+  if (el.style.display == 'none') {
+    display = _getPrevDisplay.get(el) || null;
+    if (!display) el.style.display = '';
+  }
+  if (el.style.display == '' && css('display', el) == 'none')
+    display = getDefaultDisplays(el);
+  el.style.display = display;
   return el;
 });
+
 // CONCATENATED MODULE: ./hide.js
 
 
-const prevDisplays = new WeakMap();
-
 /* harmony default export */ var hide = (el => {
-  const prev_display = css('display', el);
+  const prev_display = el.style.display;
   if (prev_display != 'none') {
-    prevDisplays.set(el, prev_display);
+    _getPrevDisplay.set(el, prev_display);
     el.style.display = 'none';
   }
   return el;
 });
+
 // CONCATENATED MODULE: ./elWidth.js
 
 
@@ -1112,6 +1126,14 @@ function elWidth(el, prefix = '', isHeight) {
 
 /* harmony default export */ var toggle = (el => css('display', el) == 'none' ? show(el) : hide(el));
 // CONCATENATED MODULE: ./_index.js
+
+
+
+
+
+
+
+
 
 
 

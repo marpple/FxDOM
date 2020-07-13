@@ -129,6 +129,7 @@ console.log($.closest('div.container', $('.item4')));
 ### $.nextAll
 ### $.prev
 ### $.next
+### $.siblings
 
 ### $.is
 
@@ -193,7 +194,11 @@ $.prepend($.el('<div class="post">새 글</div>'), $('.posts'));
 ```
 
 ### $.before
+### $.insertBefore
 ### $.after
+### $.insertAfter
+### $.replaceAll
+### $.replaceWith
 
 ### $.remove
 ```javascript
@@ -277,6 +282,9 @@ console.log($.setAttr({ status: '' }, $.el('<div status="hi">')));
 console.log($.removeAttr('status', $.el('<div status="hi">')));
 // HTMLDivElement <div></div>
 ```
+### $.prop
+### $.setProp
+### $.removeProp
 
 ## CSS
 
@@ -343,6 +351,10 @@ console.log(
         $.el('div')))));
 // { top: 70, left: 30 }
 ```
+
+### $.offsetParent
+
+### $.position
 
 ### $.width
 width
@@ -542,6 +554,7 @@ $.trigger('click', $('.signup input'));
 $.trigger('click', $('.signup button'));
 // 감사합니다!
 ```
+### $.ready
 
 ## Data
 

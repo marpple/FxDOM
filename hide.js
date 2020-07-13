@@ -1,11 +1,9 @@
-import css from './css.js';
-
-const prevDisplays = new WeakMap();
+import getPrevDisplay from './.internal/_getPrevDisplay.js';
 
 export default el => {
-  const prev_display = css('display', el);
+  const prev_display = el.style.display;
   if (prev_display != 'none') {
-    prevDisplays.set(el, prev_display);
+    getPrevDisplay.set(el, prev_display);
     el.style.display = 'none';
   }
   return el;

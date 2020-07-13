@@ -1,3 +1,3 @@
 import { curry } from 'fxjs2';
 
-export default curry((parent, child) => parent.contains(child));
+export default curry((child, parent) => parent.contains(child));
