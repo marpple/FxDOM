@@ -8,6 +8,6 @@ export default k => function f(sel, el) {
     sel = '*';
   }
   let cur = el;
-  while ((cur = cur[k]) && (!isEl(cur) || !is(sel, cur))) {}
+  while ((cur = cur[k]) && cur.nodeType !== 9 && (!isEl(cur) || !is(sel, cur))) {}
   return cur;
 };

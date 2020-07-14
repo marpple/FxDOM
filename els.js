@@ -1,5 +1,5 @@
-import { each } from 'fxjs2';
 import remove from './remove.js';
+import $each from './each.js';
 
 const
   fragmentRE = /^\s*<(\w+|!)[^>]*>/,
@@ -17,5 +17,5 @@ export default html => {
   const name = fragmentRE.test(html) && RegExp.$1;
   const container = containers[name] || div;
   container.innerHTML = html;
-  return each(remove, [...container.childNodes]);
+  return $each(remove, container.childNodes);
 };

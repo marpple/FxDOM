@@ -95,19 +95,30 @@ var _index_namespaceObject = {};
 __webpack_require__.r(_index_namespaceObject);
 __webpack_require__.d(_index_namespaceObject, "qs", function() { return qs_0; });
 __webpack_require__.d(_index_namespaceObject, "qsa", function() { return qsa; });
+__webpack_require__.d(_index_namespaceObject, "each", function() { return each_0; });
+__webpack_require__.d(_index_namespaceObject, "map", function() { return map_0; });
+__webpack_require__.d(_index_namespaceObject, "filter", function() { return filter_0; });
+__webpack_require__.d(_index_namespaceObject, "not", function() { return not_0; });
 __webpack_require__.d(_index_namespaceObject, "find", function() { return find; });
 __webpack_require__.d(_index_namespaceObject, "findAll", function() { return findAll; });
 __webpack_require__.d(_index_namespaceObject, "children", function() { return children; });
 __webpack_require__.d(_index_namespaceObject, "closest", function() { return closest; });
 __webpack_require__.d(_index_namespaceObject, "is", function() { return is; });
 __webpack_require__.d(_index_namespaceObject, "siblings", function() { return siblings; });
-__webpack_require__.d(_index_namespaceObject, "prevAll", function() { return prevAll; });
-__webpack_require__.d(_index_namespaceObject, "nextAll", function() { return nextAll; });
+__webpack_require__.d(_index_namespaceObject, "parent", function() { return parent_0; });
+__webpack_require__.d(_index_namespaceObject, "parents", function() { return parents; });
+__webpack_require__.d(_index_namespaceObject, "parentsUntil", function() { return parentsUntil; });
 __webpack_require__.d(_index_namespaceObject, "prev", function() { return prev; });
+__webpack_require__.d(_index_namespaceObject, "prevAll", function() { return prevAll; });
+__webpack_require__.d(_index_namespaceObject, "prevUntil", function() { return prevUntil; });
 __webpack_require__.d(_index_namespaceObject, "next", function() { return next; });
+__webpack_require__.d(_index_namespaceObject, "nextAll", function() { return nextAll; });
+__webpack_require__.d(_index_namespaceObject, "nextUntil", function() { return nextUntil; });
 __webpack_require__.d(_index_namespaceObject, "contains", function() { return contains; });
+__webpack_require__.d(_index_namespaceObject, "contents", function() { return contents; });
 __webpack_require__.d(_index_namespaceObject, "remove", function() { return remove; });
-__webpack_require__.d(_index_namespaceObject, "els", function() { return els; });
+__webpack_require__.d(_index_namespaceObject, "clone", function() { return clone; });
+__webpack_require__.d(_index_namespaceObject, "els", function() { return els_0; });
 __webpack_require__.d(_index_namespaceObject, "el", function() { return el_0; });
 __webpack_require__.d(_index_namespaceObject, "appendTo", function() { return appendTo; });
 __webpack_require__.d(_index_namespaceObject, "prependTo", function() { return prependTo; });
@@ -119,6 +130,10 @@ __webpack_require__.d(_index_namespaceObject, "after", function() { return after
 __webpack_require__.d(_index_namespaceObject, "insertAfter", function() { return insertAfter; });
 __webpack_require__.d(_index_namespaceObject, "replaceWith", function() { return replaceWith_0; });
 __webpack_require__.d(_index_namespaceObject, "replaceAll", function() { return replaceAll_0; });
+__webpack_require__.d(_index_namespaceObject, "unwrap", function() { return unwrap; });
+__webpack_require__.d(_index_namespaceObject, "wrap", function() { return wrap_0; });
+__webpack_require__.d(_index_namespaceObject, "wrapAll", function() { return wrapAll_0; });
+__webpack_require__.d(_index_namespaceObject, "wrapInner", function() { return wrapInner_0; });
 __webpack_require__.d(_index_namespaceObject, "text", function() { return text_0; });
 __webpack_require__.d(_index_namespaceObject, "setText", function() { return setText; });
 __webpack_require__.d(_index_namespaceObject, "html", function() { return html_0; });
@@ -180,107 +195,6 @@ __webpack_require__.d(_index_namespaceObject, "toggle", function() { return togg
 function curry(f) {
   return (a, ..._) => _.length ? f(a, ..._) : (..._) => f(a, ..._);
 }
-// CONCATENATED MODULE: ./.internal/_baseFind.js
-
-
-const idCreator = _ => {
-  let i = 0;
-  return _ => 'fxdom-id-' + i++;
-};
-
-const createId = idCreator();
-
-/* harmony default export */ var _baseFind = (qs => curry((sel, el) => {
-  const id = el.id;
-  el.id = id || createId();
-  const res = el[qs]('#' + el.id + (sel[0] == '&' ? sel.substr(1) : ' ' + sel));
-  if (!id) el.removeAttribute('id');
-  return res;
-}));
-// CONCATENATED MODULE: ./find.js
-
-
-/* harmony default export */ var find = (_baseFind('querySelector'));
-
-
-// CONCATENATED MODULE: ./findAll.js
-
-/* harmony default export */ var findAll = (_baseFind('querySelectorAll'));
-// CONCATENATED MODULE: ./children.js
-/* harmony default export */ var children = (el => el.children);
-// CONCATENATED MODULE: ./closest.js
-
-/* harmony default export */ var closest = (curry((sel, el) => el.closest(sel)));
-// CONCATENATED MODULE: ./.internal/_matches.js
-const docEl = document.documentElement;
-/* harmony default export */ var _matches = (docEl.matches || docEl.webkitMatchesSelector || docEl.mozMatchesSelector || docEl.msMatchesSelector);
-// CONCATENATED MODULE: ./is.js
-
-
-
-/* harmony default export */ var is = (curry((sel, el) => el && _matches.call(el, sel)));
-// CONCATENATED MODULE: ./.internal/_isEl.js
-/* harmony default export */ var _isEl = (node =>
-  node && typeof node == 'object' && (node.nodeType == 1 || node.nodeType == 9));
-// CONCATENATED MODULE: ./.internal/_nextOrPrevAll.js
-
-
-
-/* harmony default export */ var _nextOrPrevAll = ((k, add) => function f(sel, el) {
-  if (arguments.length == 1) {
-    if (typeof sel == 'string') return el => f(sel, el);
-    el = sel;
-    sel = '*';
-  }
-  let res = [], cur = el;
-  while ((cur = cur[k])) if (_isEl(cur) && is(sel, cur)) res[add](cur);
-  return res;
-});
-// CONCATENATED MODULE: ./nextAll.js
-
-
-/* harmony default export */ var nextAll = (_nextOrPrevAll('nextSibling', 'push'));
-// CONCATENATED MODULE: ./prevAll.js
-
-
-/* harmony default export */ var prevAll = (_nextOrPrevAll('previousSibling', 'unshift'));
-// CONCATENATED MODULE: ./siblings.js
-
-
-
-function siblings(...args) {
-  return [...prevAll(...args), ...nextAll(...args)];
-};
-
-// CONCATENATED MODULE: ./.internal/_nextOrPrev.js
-
-
-
-/* harmony default export */ var _nextOrPrev = (k => function f(sel, el) {
-  if (arguments.length == 1) {
-    if (typeof sel == 'string') return el => f(sel, el);
-    el = sel;
-    sel = '*';
-  }
-  let cur = el;
-  while ((cur = cur[k]) && (!_isEl(cur) || !is(sel, cur))) {}
-  return cur;
-});
-// CONCATENATED MODULE: ./prev.js
-
-
-/* harmony default export */ var prev = (_nextOrPrev('previousSibling'));
-// CONCATENATED MODULE: ./next.js
-
-
-/* harmony default export */ var next = (_nextOrPrev('nextSibling'));
-// CONCATENATED MODULE: ./contains.js
-
-
-/* harmony default export */ var contains = (curry((child, parent) => parent.contains(child)));
-
-// CONCATENATED MODULE: ./remove.js
-/* harmony default export */ var remove = (el => el.parentNode.removeChild(el));
 // CONCATENATED MODULE: ./node_modules/fxjs2/Strict/go1.js
 /* harmony default export */ var go1 = ((a, f) => a instanceof Promise ? a.then(f) : f(a));
 // CONCATENATED MODULE: ./node_modules/fxjs2/Lazy/emptyL.js
@@ -350,6 +264,237 @@ function takeAll(iter) {
 /* harmony default export */ var Strict_each = (curry(function each(f, iter) {
   return Strict_map(a => go1(f(a), _ => a), iter);
 }));
+// CONCATENATED MODULE: ./each.js
+
+
+/* harmony default export */ var each_0 = (curry(function _each(func, els) {
+  return Strict_each(func, [...els]);
+}));
+
+// CONCATENATED MODULE: ./map.js
+
+
+/* harmony default export */ var map_0 = (curry(function _map(func, els) {
+  return Strict_map(func, els);
+}));
+
+// CONCATENATED MODULE: ./node_modules/fxjs2/Lazy/filterL.js
+
+
+
+
+
+/* harmony default export */ var Lazy_filterL = (curry(function* filterL(f, iter) {
+  for (const a of toIter(iter)) {
+    const b = go1(a, f);
+    if (b instanceof Promise) yield b.then(b => b ? a : Promise.reject(Strict_nop));
+    else if (b) yield a;
+  }
+}));
+// CONCATENATED MODULE: ./node_modules/fxjs2/Strict/filter.js
+
+
+
+
+/* harmony default export */ var Strict_filter = (curry(function filter(f, iter) {
+  return takeAll(Lazy_filterL(f, iter));
+}));
+// CONCATENATED MODULE: ./.internal/_matches.js
+const docEl = document.documentElement;
+/* harmony default export */ var _matches = (docEl.matches || docEl.webkitMatchesSelector || docEl.mozMatchesSelector || docEl.msMatchesSelector);
+// CONCATENATED MODULE: ./is.js
+
+
+
+/* harmony default export */ var is = (curry((sel, el) => el && _matches.call(el, sel)));
+// CONCATENATED MODULE: ./filter.js
+
+
+
+/* harmony default export */ var filter_0 = (curry(function _filter(funcOrSel, els) {
+  return Strict_filter(typeof funcOrSel == 'string' ? is(funcOrSel) : funcOrSel, els);
+}));
+
+// CONCATENATED MODULE: ./node_modules/fxjs2/Strict/not.js
+function not(a) {
+  return !a;
+}
+// CONCATENATED MODULE: ./node_modules/fxjs2/Strict/reject.js
+
+
+
+
+
+/* harmony default export */ var Strict_reject = (curry(function reject(f, iter) {
+  return Strict_filter(a => go1(f(a), not), iter);
+}));
+// CONCATENATED MODULE: ./not.js
+
+
+
+/* harmony default export */ var not_0 = (curry(function _not(funcOrSel, els) {
+  return Strict_reject(typeof funcOrSel == 'string' ? is(funcOrSel) : funcOrSel, els);
+}));
+
+// CONCATENATED MODULE: ./.internal/_baseFind.js
+
+
+const idCreator = _ => {
+  let i = 0;
+  return _ => 'fxdom-id-' + i++;
+};
+
+const createId = idCreator();
+
+/* harmony default export */ var _baseFind = (qs => curry((sel, el) => {
+  const id = el.id;
+  el.id = id || createId();
+  const res = el[qs]('#' + el.id + (sel[0] == '&' ? sel.substr(1) : ' ' + sel));
+  if (!id) el.removeAttribute('id');
+  return res;
+}));
+// CONCATENATED MODULE: ./find.js
+
+
+/* harmony default export */ var find = (_baseFind('querySelector'));
+
+
+// CONCATENATED MODULE: ./findAll.js
+
+/* harmony default export */ var findAll = (_baseFind('querySelectorAll'));
+// CONCATENATED MODULE: ./children.js
+/* harmony default export */ var children = (el => el.children);
+// CONCATENATED MODULE: ./closest.js
+
+/* harmony default export */ var closest = (curry((sel, el) => el.closest(sel)));
+// CONCATENATED MODULE: ./siblings.js
+
+
+
+function siblings(sel, el) {
+  if (arguments.length == 1) {
+    if (typeof sel == 'string') return el => f(sel, el);
+    el = sel;
+    sel = '*';
+  }
+  return not_0(_el => el === _el, children(el.parentNode))
+};
+
+// CONCATENATED MODULE: ./.internal/_isEl.js
+/* harmony default export */ var _isEl = (node =>
+  node && typeof node == 'object' && (node.nodeType == 1 || node.nodeType == 9));
+// CONCATENATED MODULE: ./.internal/_nextOrPrev.js
+
+
+
+/* harmony default export */ var _nextOrPrev = (k => function f(sel, el) {
+  if (arguments.length == 1) {
+    if (typeof sel == 'string') return el => f(sel, el);
+    el = sel;
+    sel = '*';
+  }
+  let cur = el;
+  while ((cur = cur[k]) && cur.nodeType !== 9 && (!_isEl(cur) || !is(sel, cur))) {}
+  return cur;
+});
+
+// CONCATENATED MODULE: ./parent.js
+
+
+/* harmony default export */ var parent_0 = (_nextOrPrev('parentNode'));
+
+// CONCATENATED MODULE: ./.internal/_nextOrPrevAll.js
+
+
+
+/* harmony default export */ var _nextOrPrevAll = ((k, add) => function f(sel, el) {
+  if (arguments.length == 1) {
+    if (typeof sel == 'string') return el => f(sel, el);
+    el = sel;
+    sel = '*';
+  }
+  let res = [], cur = el;
+  while ((cur = cur[k]) && cur.nodeType !== 9) if (_isEl(cur) && is(sel, cur)) res[add](cur);
+  return res;
+});
+
+// CONCATENATED MODULE: ./parents.js
+
+
+/* harmony default export */ var parents = (_nextOrPrevAll('parentNode', 'push'));
+
+// CONCATENATED MODULE: ./.internal/_nextOrPrevUntil.js
+
+
+
+/* harmony default export */ var _nextOrPrevUntil = ((k, add) => function f(sel, until, el) {
+  if (arguments.length == 1) {
+    if (typeof sel == 'string') return (until, el) => f(sel, until, el);
+    return _nextOrPrevAll(k, add)(sel);
+  } else if (arguments.length == 2) {
+    if (typeof until == 'string') return el => f(sel, until, el);
+    el = until;
+    until = sel;
+    sel = '*';
+  }
+  let res = [], cur = el;
+  while ((cur = cur[k]) && cur.nodeType !== 9) {
+    if (_isEl(cur)) {
+      if (cur === until) break;
+      if (is(sel, cur)) res[add](cur);
+    }
+  }
+  return res;
+});
+
+// CONCATENATED MODULE: ./parentsUntil.js
+
+
+/* harmony default export */ var parentsUntil = (_nextOrPrevUntil('parentNode', 'push'));
+
+// CONCATENATED MODULE: ./prev.js
+
+
+/* harmony default export */ var prev = (_nextOrPrev('previousSibling'));
+// CONCATENATED MODULE: ./prevAll.js
+
+
+/* harmony default export */ var prevAll = (_nextOrPrevAll('previousSibling', 'unshift'));
+// CONCATENATED MODULE: ./prevUntil.js
+
+
+/* harmony default export */ var prevUntil = (_nextOrPrevUntil('previousSibling', 'unshift'));
+
+// CONCATENATED MODULE: ./next.js
+
+
+/* harmony default export */ var next = (_nextOrPrev('nextSibling'));
+// CONCATENATED MODULE: ./nextAll.js
+
+
+/* harmony default export */ var nextAll = (_nextOrPrevAll('nextSibling', 'push'));
+// CONCATENATED MODULE: ./nextUntil.js
+
+
+/* harmony default export */ var nextUntil = (_nextOrPrevUntil('nextSibling', 'push'));
+
+// CONCATENATED MODULE: ./contains.js
+
+
+/* harmony default export */ var contains = (curry((child, parent) => parent.contains(child)));
+
+// CONCATENATED MODULE: ./contents.js
+function contents(el) {
+  return el.contentDocument || (el.content ? el.content.childNodes : el.childNodes);
+}
+
+// CONCATENATED MODULE: ./remove.js
+/* harmony default export */ var remove = (el => el.parentNode.removeChild(el));
+// CONCATENATED MODULE: ./clone.js
+function clone(el) {
+  return el.cloneNode(true);
+}
+
 // CONCATENATED MODULE: ./els.js
 
 
@@ -365,13 +510,14 @@ const
     'td': tableRow, 'th': tableRow
   };
 
-/* harmony default export */ var els = (html => {
+/* harmony default export */ var els_0 = (html => {
   html = html.trim();
   const name = fragmentRE.test(html) && RegExp.$1;
   const container = containers[name] || div;
   container.innerHTML = html;
-  return Strict_each(remove, [...container.childNodes]);
+  return each_0(remove, container.childNodes);
 });
+
 // CONCATENATED MODULE: ./node_modules/fxjs2/Strict/head.js
 
 
@@ -385,12 +531,13 @@ function head(iter) {
 
 /* harmony default export */ var el_0 = (html => {
   html = html.trim();
-  return html[0] == '<' ? head(els(html)) : document.createElement(html);
+  return html[0] == '<' ? head(els_0(html)) : document.createElement(html);
 });
 // CONCATENATED MODULE: ./appendTo.js
 
 
-/* harmony default export */ var appendTo = (curry((parent, child) => parent.appendChild(child)));
+/* harmony default export */ var appendTo = (curry((parent, child) => (parent.appendChild(child), parent)));
+
 // CONCATENATED MODULE: ./prependTo.js
 
 
@@ -445,6 +592,48 @@ function head(iter) {
 /* harmony default export */ var replaceAll_0 = (curry(function replaceAll(el, newEl) {
   replaceWith_0(newEl, el)
   return newEl;
+}));
+
+// CONCATENATED MODULE: ./unwrap.js
+
+
+
+
+function unwrap(el) {
+  const unWrapper = el.parentNode;
+  each_0(insertBefore(unWrapper), unWrapper.childNodes)
+  remove(unWrapper);
+  return el;
+};
+
+// CONCATENATED MODULE: ./wrap.js
+
+
+
+
+/* harmony default export */ var wrap_0 = (curry(function wrap(wrapper, el) {
+  appendTo(before(wrapper, el), el);
+  return wrapper;
+}));
+
+// CONCATENATED MODULE: ./wrapAll.js
+
+
+
+
+
+/* harmony default export */ var wrapAll_0 = (curry(function wrapAll(wrapper, els) {
+  before(wrapper, head(els));
+  each_0(appendTo(wrapper), els);
+  return wrapper;
+}));
+
+// CONCATENATED MODULE: ./wrapInner.js
+
+
+
+/* harmony default export */ var wrapInner_0 = (curry(function wrapInner(wrapper, el) {
+  return wrapAll_0(wrapper, el.childNodes);
 }));
 
 // CONCATENATED MODULE: ./text.js
@@ -704,19 +893,6 @@ const setter = (obj, [k, v]) => {
 function defaults(obj, ...objs) {
   return baseExtend(setter, obj, objs);
 }
-// CONCATENATED MODULE: ./node_modules/fxjs2/Lazy/filterL.js
-
-
-
-
-
-/* harmony default export */ var Lazy_filterL = (curry(function* filterL(f, iter) {
-  for (const a of toIter(iter)) {
-    const b = go1(a, f);
-    if (b instanceof Promise) yield b.then(b => b ? a : Promise.reject(Strict_nop));
-    else if (b) yield a;
-  }
-}));
 // CONCATENATED MODULE: ./delegate.js
 
 
@@ -772,10 +948,6 @@ function pipe(f, ...fs) {
 }
 // CONCATENATED MODULE: ./node_modules/fxjs2/Strict/isUndefined.js
 /* harmony default export */ var isUndefined = (a => a === undefined);
-// CONCATENATED MODULE: ./node_modules/fxjs2/Strict/not.js
-function not(a) {
-  return !a;
-}
 // CONCATENATED MODULE: ./node_modules/fxjs2/Lazy/rejectL.js
 
 
@@ -1126,6 +1298,21 @@ function elWidth(el, prefix = '', isHeight) {
 
 /* harmony default export */ var toggle = (el => css('display', el) == 'none' ? show(el) : hide(el));
 // CONCATENATED MODULE: ./_index.js
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
