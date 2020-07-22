@@ -1,1 +1,1 @@
-export default el => el.children;
+export default (el) => el.children;

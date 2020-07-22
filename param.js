@@ -1,8 +1,4 @@
-import {
-  isUndefined,
-  pipe,
-  map
-} from "fxjs2";
+import { isUndefined, pipe, map } from "fxjs2";
 
 import entriesL from "fxjs2/Lazy/entriesL.js";
 import rejectL from "fxjs2/Lazy/rejectL.js";
@@ -13,4 +9,5 @@ export default pipe(
   rejectL(([_, a]) => isUndefined(a)),
   mapL(map(encodeURIComponent)),
   map(([k, v]) => `${k}=${v}`),
-  strs => strs.join('&').replace(/%20/g, '+'));
+  (strs) => strs.join("&").replace(/%20/g, "+")
+);

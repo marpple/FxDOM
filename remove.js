@@ -1,1 +1,1 @@
-export default el => el.parentNode.removeChild(el);
+export default (el) => el.parentNode.removeChild(el);

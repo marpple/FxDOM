@@ -1,1 +1,1 @@
-export default el => el.outerHTML;
+export default (el) => el.outerHTML;

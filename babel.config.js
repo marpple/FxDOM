@@ -4,13 +4,13 @@ module.exports = function (api) {
     [
       "@babel/env",
       {
-        "targets": {
-          ie: 11
+        targets: {
+          ie: 11,
         },
-        "useBuiltIns": "usage",
-        "corejs": 3
-      }
-    ]
+        useBuiltIns: "usage",
+        corejs: 3,
+      },
+    ],
   ];
   return { presets };
 };

@@ -1,1 +1,1 @@
-export default el => el.value;
+export default (el) => el.value;

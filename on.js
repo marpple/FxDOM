@@ -1,3 +1,3 @@
-import baseOnOff from './.internal/_baseOnOff.js';
+import baseOnOff from "./.internal/_baseOnOff.js";
 
-export default baseOnOff('addEventListener');
+export default baseOnOff("addEventListener");

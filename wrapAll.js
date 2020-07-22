@@ -1,5 +1,5 @@
-import {curry, head} from "fxjs2";
-import $each from './each.js'
+import { curry, head } from "fxjs2";
+import $each from "./each.js";
 import appendTo from "./appendTo.js";
 import before from "./before.js";
 

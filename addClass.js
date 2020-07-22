@@ -1,3 +1,3 @@
-import methodClass from './.internal/_methodClass.js';
+import methodClass from "./.internal/_methodClass.js";
 
-export default methodClass('add');
+export default methodClass("add");

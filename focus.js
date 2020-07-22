@@ -1,1 +1,1 @@
-export default el => el.focus();
+export default (el) => el.focus();

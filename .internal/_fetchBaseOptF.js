@@ -1,17 +1,16 @@
-import { defaults } from 'fxjs2';
+import { defaults } from "fxjs2";
 
 const fetchBaseOpt = {
   headers: { "Content-Type": "application/json" },
-  credentials: 'same-origin'
+  credentials: "same-origin",
 };
 
-export default headers =>
+export default (headers) =>
   headers
     ? defaults(
         {
-          headers: defaults(headers, fetchBaseOpt.headers)
+          headers: defaults(headers, fetchBaseOpt.headers),
         },
-        fetchBaseOpt)
+        fetchBaseOpt
+      )
     : fetchBaseOpt;
-
-  

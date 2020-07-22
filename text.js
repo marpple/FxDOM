@@ -1,1 +1,1 @@
-export default el => el.textContent;
+export default (el) => el.textContent;

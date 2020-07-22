@@ -1,3 +1,3 @@
-import nextOrPrevUntil from './.internal/_nextOrPrevUntil.js';
+import nextOrPrevUntil from "./.internal/_nextOrPrevUntil.js";
 
-export default nextOrPrevUntil('previousSibling', 'unshift');
+export default nextOrPrevUntil("previousSibling", "unshift");

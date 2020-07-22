@@ -3,9 +3,9 @@ import $not from "./not.js";
 
 export default function siblings(sel, el) {
   if (arguments.length == 1) {
-    if (typeof sel == 'string') return el => f(sel, el);
+    if (typeof sel == "string") return (el) => f(sel, el);
     el = sel;
-    sel = '*';
+    sel = "*";
   }
-  return $not(_el => el === _el, children(el.parentNode))
-};
+  return $not((_el) => el === _el, children(el.parentNode));
+}

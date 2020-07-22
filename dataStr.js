@@ -1,5 +1,6 @@
-export default data =>
-  '$dataStr_' + JSON.stringify(data)
+export default (data) =>
+  "$dataStr_" +
+  JSON.stringify(data)
     .replace(/\(/g, "()")
     .replace(/\(/g, "()")
     .replace(/'/g, "(1)")

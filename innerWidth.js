@@ -1,3 +1,3 @@
-import elWidth from './elWidth.js';
+import elWidth from "./elWidth.js";
 
-export default el => elWidth(el, 'inner');
+export default (el) => elWidth(el, "inner");

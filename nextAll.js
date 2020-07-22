@@ -1,3 +1,3 @@
-import nextOrPrevAll from './.internal/_nextOrPrevAll.js';
+import nextOrPrevAll from "./.internal/_nextOrPrevAll.js";
 
-export default nextOrPrevAll('nextSibling', 'push');
+export default nextOrPrevAll("nextSibling", "push");

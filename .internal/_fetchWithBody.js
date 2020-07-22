@@ -1,10 +1,20 @@
-import { curry, go } from 'fxjs2';
-import fetchBaseOptF from './_fetchBaseOptF.js';
-import resJSON from './_resJSON.js';
+import { curry, go } from "fxjs2";
+import fetchBaseOptF from "./_fetchBaseOptF.js";
+import resJSON from "./_resJSON.js";
 
-export default method => curry((url, data, headers) => go(
-    fetch(url, Object.assign({
-      method,
-      body: JSON.stringify(data)
-    }, fetchBaseOptF(headers))),
-    resJSON));
+export default (method) =>
+  curry((url, data, headers) =>
+    go(
+      fetch(
+        url,
+        Object.assign(
+          {
+            method,
+            body: JSON.stringify(data),
+          },
+          fetchBaseOptF(headers)
+        )
+      ),
+      resJSON
+    )
+  );

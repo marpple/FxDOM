@@ -4,7 +4,7 @@ import remove from "./remove.js";
 
 export default function unwrap(el) {
   const unWrapper = el.parentNode;
-  $each(insertBefore(unWrapper), unWrapper.childNodes)
+  $each(insertBefore(unWrapper), unWrapper.childNodes);
   remove(unWrapper);
   return el;
-};
+}

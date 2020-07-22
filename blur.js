@@ -1,1 +1,1 @@
-export default el => el.blur();
+export default (el) => el.blur();
