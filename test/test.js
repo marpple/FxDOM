@@ -1,11 +1,4 @@
-import { expect } from "chai";
+import { each } from "fxjs2";
+import __el_spec__ from "./suits/el.spec.js";
 
-describe(`FxDOM`, function () {
-  it(`1 + 1 = 2`, function () {
-    expect(1 + 1).equal(2);
-  });
-
-  it(`true === false`, function () {
-    expect(true).false;
-  });
-});
+each((spec) => spec({ describe, it }), [__el_spec__]);
