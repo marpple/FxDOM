@@ -90,107 +90,107 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+// ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
+
+// NAMESPACE OBJECT: ./_index.js
 var _index_namespaceObject = {};
 __webpack_require__.r(_index_namespaceObject);
-__webpack_require__.d(_index_namespaceObject, "qs", function() { return qs_0; });
-__webpack_require__.d(_index_namespaceObject, "qsa", function() { return qsa; });
+__webpack_require__.d(_index_namespaceObject, "addClass", function() { return addClass; });
+__webpack_require__.d(_index_namespaceObject, "after", function() { return after; });
+__webpack_require__.d(_index_namespaceObject, "append", function() { return append; });
+__webpack_require__.d(_index_namespaceObject, "appendTo", function() { return appendTo; });
+__webpack_require__.d(_index_namespaceObject, "attr", function() { return attr; });
+__webpack_require__.d(_index_namespaceObject, "before", function() { return before; });
+__webpack_require__.d(_index_namespaceObject, "blur", function() { return blur_0; });
+__webpack_require__.d(_index_namespaceObject, "children", function() { return children; });
+__webpack_require__.d(_index_namespaceObject, "clone", function() { return clone; });
+__webpack_require__.d(_index_namespaceObject, "closest", function() { return closest; });
+__webpack_require__.d(_index_namespaceObject, "contains", function() { return contains; });
+__webpack_require__.d(_index_namespaceObject, "contents", function() { return contents; });
+__webpack_require__.d(_index_namespaceObject, "css", function() { return css; });
+__webpack_require__.d(_index_namespaceObject, "data", function() { return data_0; });
+__webpack_require__.d(_index_namespaceObject, "dataStr", function() { return dataStr; });
+__webpack_require__.d(_index_namespaceObject, "del", function() { return del; });
+__webpack_require__.d(_index_namespaceObject, "delegate", function() { return delegate; });
 __webpack_require__.d(_index_namespaceObject, "each", function() { return each_0; });
-__webpack_require__.d(_index_namespaceObject, "map", function() { return map_0; });
+__webpack_require__.d(_index_namespaceObject, "el", function() { return el_0; });
+__webpack_require__.d(_index_namespaceObject, "els", function() { return els_0; });
+__webpack_require__.d(_index_namespaceObject, "elWidth", function() { return elWidth; });
 __webpack_require__.d(_index_namespaceObject, "filter", function() { return filter_0; });
-__webpack_require__.d(_index_namespaceObject, "not", function() { return not_0; });
 __webpack_require__.d(_index_namespaceObject, "find", function() { return find; });
 __webpack_require__.d(_index_namespaceObject, "findAll", function() { return findAll; });
-__webpack_require__.d(_index_namespaceObject, "children", function() { return children; });
-__webpack_require__.d(_index_namespaceObject, "closest", function() { return closest; });
+__webpack_require__.d(_index_namespaceObject, "focus", function() { return focus_0; });
+__webpack_require__.d(_index_namespaceObject, "get", function() { return get; });
+__webpack_require__.d(_index_namespaceObject, "hasClass", function() { return hasClass; });
+__webpack_require__.d(_index_namespaceObject, "height", function() { return height; });
+__webpack_require__.d(_index_namespaceObject, "hide", function() { return hide; });
+__webpack_require__.d(_index_namespaceObject, "html", function() { return html_0; });
+__webpack_require__.d(_index_namespaceObject, "innerHeight", function() { return innerHeight_0; });
+__webpack_require__.d(_index_namespaceObject, "innerWidth", function() { return innerWidth_0; });
+__webpack_require__.d(_index_namespaceObject, "insertAfter", function() { return insertAfter; });
+__webpack_require__.d(_index_namespaceObject, "insertBefore", function() { return insertBefore; });
 __webpack_require__.d(_index_namespaceObject, "is", function() { return is; });
-__webpack_require__.d(_index_namespaceObject, "siblings", function() { return siblings; });
-__webpack_require__.d(_index_namespaceObject, "parent", function() { return parent_0; });
-__webpack_require__.d(_index_namespaceObject, "parents", function() { return parents; });
-__webpack_require__.d(_index_namespaceObject, "parentsUntil", function() { return parentsUntil; });
-__webpack_require__.d(_index_namespaceObject, "prev", function() { return prev; });
-__webpack_require__.d(_index_namespaceObject, "prevAll", function() { return prevAll; });
-__webpack_require__.d(_index_namespaceObject, "prevUntil", function() { return prevUntil; });
+__webpack_require__.d(_index_namespaceObject, "map", function() { return map_0; });
 __webpack_require__.d(_index_namespaceObject, "next", function() { return next; });
 __webpack_require__.d(_index_namespaceObject, "nextAll", function() { return nextAll; });
 __webpack_require__.d(_index_namespaceObject, "nextUntil", function() { return nextUntil; });
-__webpack_require__.d(_index_namespaceObject, "contains", function() { return contains; });
-__webpack_require__.d(_index_namespaceObject, "contents", function() { return contents; });
-__webpack_require__.d(_index_namespaceObject, "remove", function() { return remove; });
-__webpack_require__.d(_index_namespaceObject, "clone", function() { return clone; });
-__webpack_require__.d(_index_namespaceObject, "els", function() { return els_0; });
-__webpack_require__.d(_index_namespaceObject, "el", function() { return el_0; });
-__webpack_require__.d(_index_namespaceObject, "appendTo", function() { return appendTo; });
-__webpack_require__.d(_index_namespaceObject, "prependTo", function() { return prependTo; });
-__webpack_require__.d(_index_namespaceObject, "append", function() { return append; });
+__webpack_require__.d(_index_namespaceObject, "not", function() { return not_0; });
+__webpack_require__.d(_index_namespaceObject, "off", function() { return off; });
+__webpack_require__.d(_index_namespaceObject, "offset", function() { return offset; });
+__webpack_require__.d(_index_namespaceObject, "offsetParent", function() { return offsetParent_offsetParent; });
+__webpack_require__.d(_index_namespaceObject, "on", function() { return on; });
+__webpack_require__.d(_index_namespaceObject, "outerHeight", function() { return outerHeight_0; });
+__webpack_require__.d(_index_namespaceObject, "outerHTML", function() { return outerHTML; });
+__webpack_require__.d(_index_namespaceObject, "outerWidth", function() { return outerWidth_0; });
+__webpack_require__.d(_index_namespaceObject, "param", function() { return param; });
+__webpack_require__.d(_index_namespaceObject, "parent", function() { return parent_0; });
+__webpack_require__.d(_index_namespaceObject, "parents", function() { return parents; });
+__webpack_require__.d(_index_namespaceObject, "parentsUntil", function() { return parentsUntil; });
+__webpack_require__.d(_index_namespaceObject, "position", function() { return position; });
+__webpack_require__.d(_index_namespaceObject, "post", function() { return post; });
+__webpack_require__.d(_index_namespaceObject, "postForm", function() { return postForm; });
 __webpack_require__.d(_index_namespaceObject, "prepend", function() { return prepend; });
-__webpack_require__.d(_index_namespaceObject, "before", function() { return before; });
-__webpack_require__.d(_index_namespaceObject, "insertBefore", function() { return insertBefore; });
-__webpack_require__.d(_index_namespaceObject, "after", function() { return after; });
-__webpack_require__.d(_index_namespaceObject, "insertAfter", function() { return insertAfter; });
-__webpack_require__.d(_index_namespaceObject, "replaceWith", function() { return replaceWith_0; });
+__webpack_require__.d(_index_namespaceObject, "prependTo", function() { return prependTo; });
+__webpack_require__.d(_index_namespaceObject, "prev", function() { return prev; });
+__webpack_require__.d(_index_namespaceObject, "prevAll", function() { return prevAll; });
+__webpack_require__.d(_index_namespaceObject, "prevUntil", function() { return prevUntil; });
+__webpack_require__.d(_index_namespaceObject, "prop", function() { return prop; });
+__webpack_require__.d(_index_namespaceObject, "put", function() { return put; });
+__webpack_require__.d(_index_namespaceObject, "qs", function() { return qs_0; });
+__webpack_require__.d(_index_namespaceObject, "qsa", function() { return qsa; });
+__webpack_require__.d(_index_namespaceObject, "ready", function() { return ready_0; });
+__webpack_require__.d(_index_namespaceObject, "remove", function() { return remove; });
+__webpack_require__.d(_index_namespaceObject, "removeAttr", function() { return removeAttr; });
+__webpack_require__.d(_index_namespaceObject, "removeClass", function() { return removeClass; });
+__webpack_require__.d(_index_namespaceObject, "removeProp", function() { return removeProp; });
 __webpack_require__.d(_index_namespaceObject, "replaceAll", function() { return replaceAll_0; });
+__webpack_require__.d(_index_namespaceObject, "replaceWith", function() { return replaceWith_0; });
+__webpack_require__.d(_index_namespaceObject, "scrollLeft", function() { return scrollLeft; });
+__webpack_require__.d(_index_namespaceObject, "scrollTop", function() { return scrollTop; });
+__webpack_require__.d(_index_namespaceObject, "setAttr", function() { return setAttr; });
+__webpack_require__.d(_index_namespaceObject, "setCss", function() { return setCss; });
+__webpack_require__.d(_index_namespaceObject, "setData", function() { return setData; });
+__webpack_require__.d(_index_namespaceObject, "setHTML", function() { return setHTML; });
+__webpack_require__.d(_index_namespaceObject, "setOuterHTML", function() { return setOuterHTML; });
+__webpack_require__.d(_index_namespaceObject, "setProp", function() { return setProp; });
+__webpack_require__.d(_index_namespaceObject, "setScrollLeft", function() { return setScrollLeft; });
+__webpack_require__.d(_index_namespaceObject, "setScrollTop", function() { return setScrollTop; });
+__webpack_require__.d(_index_namespaceObject, "setText", function() { return setText; });
+__webpack_require__.d(_index_namespaceObject, "setVal", function() { return setVal; });
+__webpack_require__.d(_index_namespaceObject, "show", function() { return show; });
+__webpack_require__.d(_index_namespaceObject, "siblings", function() { return siblings; });
+__webpack_require__.d(_index_namespaceObject, "text", function() { return text_0; });
+__webpack_require__.d(_index_namespaceObject, "toggle", function() { return toggle; });
+__webpack_require__.d(_index_namespaceObject, "toggleClass", function() { return toggleClass; });
+__webpack_require__.d(_index_namespaceObject, "trigger", function() { return trigger; });
 __webpack_require__.d(_index_namespaceObject, "unwrap", function() { return unwrap; });
+__webpack_require__.d(_index_namespaceObject, "val", function() { return val_0; });
+__webpack_require__.d(_index_namespaceObject, "width", function() { return width_0; });
 __webpack_require__.d(_index_namespaceObject, "wrap", function() { return wrap_0; });
 __webpack_require__.d(_index_namespaceObject, "wrapAll", function() { return wrapAll_0; });
 __webpack_require__.d(_index_namespaceObject, "wrapInner", function() { return wrapInner_0; });
-__webpack_require__.d(_index_namespaceObject, "text", function() { return text_0; });
-__webpack_require__.d(_index_namespaceObject, "setText", function() { return setText; });
-__webpack_require__.d(_index_namespaceObject, "html", function() { return html_0; });
-__webpack_require__.d(_index_namespaceObject, "setHTML", function() { return setHTML; });
-__webpack_require__.d(_index_namespaceObject, "outerHTML", function() { return outerHTML; });
-__webpack_require__.d(_index_namespaceObject, "setOuterHTML", function() { return setOuterHTML; });
-__webpack_require__.d(_index_namespaceObject, "val", function() { return val_0; });
-__webpack_require__.d(_index_namespaceObject, "setVal", function() { return setVal; });
-__webpack_require__.d(_index_namespaceObject, "attr", function() { return attr; });
-__webpack_require__.d(_index_namespaceObject, "setAttr", function() { return setAttr; });
-__webpack_require__.d(_index_namespaceObject, "removeAttr", function() { return removeAttr; });
-__webpack_require__.d(_index_namespaceObject, "addClass", function() { return addClass; });
-__webpack_require__.d(_index_namespaceObject, "removeClass", function() { return removeClass; });
-__webpack_require__.d(_index_namespaceObject, "toggleClass", function() { return toggleClass; });
-__webpack_require__.d(_index_namespaceObject, "hasClass", function() { return hasClass; });
-__webpack_require__.d(_index_namespaceObject, "scrollTop", function() { return scrollTop; });
-__webpack_require__.d(_index_namespaceObject, "scrollLeft", function() { return scrollLeft; });
-__webpack_require__.d(_index_namespaceObject, "setScrollTop", function() { return setScrollTop; });
-__webpack_require__.d(_index_namespaceObject, "setScrollLeft", function() { return setScrollLeft; });
-__webpack_require__.d(_index_namespaceObject, "offset", function() { return offset; });
-__webpack_require__.d(_index_namespaceObject, "offsetParent", function() { return offsetParent_offsetParent; });
-__webpack_require__.d(_index_namespaceObject, "position", function() { return position; });
-__webpack_require__.d(_index_namespaceObject, "on", function() { return on; });
-__webpack_require__.d(_index_namespaceObject, "off", function() { return off; });
-__webpack_require__.d(_index_namespaceObject, "delegate", function() { return delegate; });
-__webpack_require__.d(_index_namespaceObject, "trigger", function() { return trigger; });
-__webpack_require__.d(_index_namespaceObject, "ready", function() { return ready_0; });
-__webpack_require__.d(_index_namespaceObject, "focus", function() { return focus_0; });
-__webpack_require__.d(_index_namespaceObject, "blur", function() { return blur_0; });
-__webpack_require__.d(_index_namespaceObject, "param", function() { return param; });
-__webpack_require__.d(_index_namespaceObject, "get", function() { return get; });
-__webpack_require__.d(_index_namespaceObject, "post", function() { return post; });
-__webpack_require__.d(_index_namespaceObject, "put", function() { return put; });
-__webpack_require__.d(_index_namespaceObject, "del", function() { return del; });
-__webpack_require__.d(_index_namespaceObject, "postForm", function() { return postForm; });
-__webpack_require__.d(_index_namespaceObject, "prop", function() { return prop; });
-__webpack_require__.d(_index_namespaceObject, "setProp", function() { return setProp; });
-__webpack_require__.d(_index_namespaceObject, "removeProp", function() { return removeProp; });
-__webpack_require__.d(_index_namespaceObject, "data", function() { return data_0; });
-__webpack_require__.d(_index_namespaceObject, "setData", function() { return setData; });
-__webpack_require__.d(_index_namespaceObject, "dataStr", function() { return dataStr; });
-__webpack_require__.d(_index_namespaceObject, "css", function() { return css; });
-__webpack_require__.d(_index_namespaceObject, "setCss", function() { return setCss; });
-__webpack_require__.d(_index_namespaceObject, "width", function() { return width_0; });
-__webpack_require__.d(_index_namespaceObject, "innerWidth", function() { return innerWidth_0; });
-__webpack_require__.d(_index_namespaceObject, "outerWidth", function() { return outerWidth_0; });
-__webpack_require__.d(_index_namespaceObject, "height", function() { return height; });
-__webpack_require__.d(_index_namespaceObject, "innerHeight", function() { return innerHeight_0; });
-__webpack_require__.d(_index_namespaceObject, "outerHeight", function() { return outerHeight_0; });
-__webpack_require__.d(_index_namespaceObject, "show", function() { return show; });
-__webpack_require__.d(_index_namespaceObject, "hide", function() { return hide; });
-__webpack_require__.d(_index_namespaceObject, "toggle", function() { return toggle; });
 
-// CONCATENATED MODULE: ./qs.js
-/* harmony default export */ var qs_0 = (sel => document.querySelector(sel));
-// CONCATENATED MODULE: ./qsa.js
-/* harmony default export */ var qsa = (sel => document.querySelectorAll(sel));
 // CONCATENATED MODULE: ./node_modules/fxjs2/Strict/curry.js
 function curry(f) {
   return (a, ..._) => _.length ? f(a, ..._) : (..._) => f(a, ..._);
@@ -264,220 +264,53 @@ function takeAll(iter) {
 /* harmony default export */ var Strict_each = (curry(function each(f, iter) {
   return Strict_map(a => go1(f(a), _ => a), iter);
 }));
-// CONCATENATED MODULE: ./each.js
+// CONCATENATED MODULE: ./.internal/_methodClass.js
 
 
-/* harmony default export */ var each_0 = (curry(function _each(func, els) {
-  return Strict_each(func, [...els]);
-}));
-
-// CONCATENATED MODULE: ./map.js
+/* harmony default export */ var _methodClass = (method => curry((class_names, el) => (
+  Strict_each(cn => el.classList[method](cn), class_names.split(' ')), el)));
+// CONCATENATED MODULE: ./addClass.js
 
 
-/* harmony default export */ var map_0 = (curry(function _map(func, els) {
-  return Strict_map(func, els);
-}));
-
-// CONCATENATED MODULE: ./node_modules/fxjs2/Lazy/filterL.js
+/* harmony default export */ var addClass = (_methodClass('add'));
+// CONCATENATED MODULE: ./appendTo.js
 
 
+/* harmony default export */ var appendTo = (curry((parent, child) => (parent.appendChild(child), parent)));
+
+// CONCATENATED MODULE: ./before.js
 
 
+/* harmony default export */ var before = (curry((newEl, el) => el.parentNode.insertBefore(newEl, el)));
 
-/* harmony default export */ var Lazy_filterL = (curry(function* filterL(f, iter) {
-  for (const a of toIter(iter)) {
-    const b = go1(a, f);
-    if (b instanceof Promise) yield b.then(b => b ? a : Promise.reject(Strict_nop));
-    else if (b) yield a;
-  }
-}));
-// CONCATENATED MODULE: ./node_modules/fxjs2/Strict/filter.js
+// CONCATENATED MODULE: ./after.js
 
 
 
 
-/* harmony default export */ var Strict_filter = (curry(function filter(f, iter) {
-  return takeAll(Lazy_filterL(f, iter));
-}));
-// CONCATENATED MODULE: ./.internal/_matches.js
-const docEl = document.documentElement;
-/* harmony default export */ var _matches = (docEl.matches || docEl.webkitMatchesSelector || docEl.mozMatchesSelector || docEl.msMatchesSelector);
-// CONCATENATED MODULE: ./is.js
+/* harmony default export */ var after = (curry((newEl, el) =>
+  el.nextSibling ? before(newEl, el.nextSibling) : appendTo(newEl, el.parentNode)));
+
+// CONCATENATED MODULE: ./append.js
 
 
-
-/* harmony default export */ var is = (curry((sel, el) => el && _matches.call(el, sel)));
-// CONCATENATED MODULE: ./filter.js
-
+/* harmony default export */ var append = (curry((child, parent) => parent.appendChild(child)));
+// CONCATENATED MODULE: ./attr.js
 
 
-/* harmony default export */ var filter_0 = (curry(function _filter(funcOrSel, els) {
-  return Strict_filter(typeof funcOrSel == 'string' ? is(funcOrSel) : funcOrSel, els);
-}));
-
-// CONCATENATED MODULE: ./node_modules/fxjs2/Strict/not.js
-function not(a) {
-  return !a;
-}
-// CONCATENATED MODULE: ./node_modules/fxjs2/Strict/reject.js
-
-
-
-
-
-/* harmony default export */ var Strict_reject = (curry(function reject(f, iter) {
-  return Strict_filter(a => go1(f(a), not), iter);
-}));
-// CONCATENATED MODULE: ./not.js
-
-
-
-/* harmony default export */ var not_0 = (curry(function _not(funcOrSel, els) {
-  return Strict_reject(typeof funcOrSel == 'string' ? is(funcOrSel) : funcOrSel, els);
-}));
-
-// CONCATENATED MODULE: ./.internal/_baseFind.js
-
-
-const idCreator = _ => {
-  let i = 0;
-  return _ => 'fxdom-id-' + i++;
-};
-
-const createId = idCreator();
-
-/* harmony default export */ var _baseFind = (qs => curry((sel, el) => {
-  const id = el.id;
-  el.id = id || createId();
-  const res = el[qs]('#' + el.id + (sel[0] == '&' ? sel.substr(1) : ' ' + sel));
-  if (!id) el.removeAttribute('id');
-  return res;
-}));
-// CONCATENATED MODULE: ./find.js
-
-
-/* harmony default export */ var find = (_baseFind('querySelector'));
-
-
-// CONCATENATED MODULE: ./findAll.js
-
-/* harmony default export */ var findAll = (_baseFind('querySelectorAll'));
+/* harmony default export */ var attr = (curry((k, el) => el.getAttribute(k)));
+// CONCATENATED MODULE: ./blur.js
+/* harmony default export */ var blur_0 = (el => el.blur());
 // CONCATENATED MODULE: ./children.js
 /* harmony default export */ var children = (el => el.children);
+// CONCATENATED MODULE: ./clone.js
+function clone(el) {
+  return el.cloneNode(true);
+}
+
 // CONCATENATED MODULE: ./closest.js
 
 /* harmony default export */ var closest = (curry((sel, el) => el.closest(sel)));
-// CONCATENATED MODULE: ./siblings.js
-
-
-
-function siblings(sel, el) {
-  if (arguments.length == 1) {
-    if (typeof sel == 'string') return el => f(sel, el);
-    el = sel;
-    sel = '*';
-  }
-  return not_0(_el => el === _el, children(el.parentNode))
-};
-
-// CONCATENATED MODULE: ./.internal/_isEl.js
-/* harmony default export */ var _isEl = (node =>
-  node && typeof node == 'object' && (node.nodeType == 1 || node.nodeType == 9));
-// CONCATENATED MODULE: ./.internal/_nextOrPrev.js
-
-
-
-/* harmony default export */ var _nextOrPrev = (k => function f(sel, el) {
-  if (arguments.length == 1) {
-    if (typeof sel == 'string') return el => f(sel, el);
-    el = sel;
-    sel = '*';
-  }
-  let cur = el;
-  while ((cur = cur[k]) && cur.nodeType !== 9 && (!_isEl(cur) || !is(sel, cur))) {}
-  return cur;
-});
-
-// CONCATENATED MODULE: ./parent.js
-
-
-/* harmony default export */ var parent_0 = (_nextOrPrev('parentNode'));
-
-// CONCATENATED MODULE: ./.internal/_nextOrPrevAll.js
-
-
-
-/* harmony default export */ var _nextOrPrevAll = ((k, add) => function f(sel, el) {
-  if (arguments.length == 1) {
-    if (typeof sel == 'string') return el => f(sel, el);
-    el = sel;
-    sel = '*';
-  }
-  let res = [], cur = el;
-  while ((cur = cur[k]) && cur.nodeType !== 9) if (_isEl(cur) && is(sel, cur)) res[add](cur);
-  return res;
-});
-
-// CONCATENATED MODULE: ./parents.js
-
-
-/* harmony default export */ var parents = (_nextOrPrevAll('parentNode', 'push'));
-
-// CONCATENATED MODULE: ./.internal/_nextOrPrevUntil.js
-
-
-
-/* harmony default export */ var _nextOrPrevUntil = ((k, add) => function f(sel, until, el) {
-  if (arguments.length == 1) {
-    if (typeof sel == 'string') return (until, el) => f(sel, until, el);
-    return _nextOrPrevAll(k, add)(sel);
-  } else if (arguments.length == 2) {
-    if (typeof until == 'string') return el => f(sel, until, el);
-    el = until;
-    until = sel;
-    sel = '*';
-  }
-  let res = [], cur = el;
-  while ((cur = cur[k]) && cur.nodeType !== 9) {
-    if (_isEl(cur)) {
-      if (cur === until) break;
-      if (is(sel, cur)) res[add](cur);
-    }
-  }
-  return res;
-});
-
-// CONCATENATED MODULE: ./parentsUntil.js
-
-
-/* harmony default export */ var parentsUntil = (_nextOrPrevUntil('parentNode', 'push'));
-
-// CONCATENATED MODULE: ./prev.js
-
-
-/* harmony default export */ var prev = (_nextOrPrev('previousSibling'));
-// CONCATENATED MODULE: ./prevAll.js
-
-
-/* harmony default export */ var prevAll = (_nextOrPrevAll('previousSibling', 'unshift'));
-// CONCATENATED MODULE: ./prevUntil.js
-
-
-/* harmony default export */ var prevUntil = (_nextOrPrevUntil('previousSibling', 'unshift'));
-
-// CONCATENATED MODULE: ./next.js
-
-
-/* harmony default export */ var next = (_nextOrPrev('nextSibling'));
-// CONCATENATED MODULE: ./nextAll.js
-
-
-/* harmony default export */ var nextAll = (_nextOrPrevAll('nextSibling', 'push'));
-// CONCATENATED MODULE: ./nextUntil.js
-
-
-/* harmony default export */ var nextUntil = (_nextOrPrevUntil('nextSibling', 'push'));
-
 // CONCATENATED MODULE: ./contains.js
 
 
@@ -488,263 +321,6 @@ function contents(el) {
   return el.contentDocument || (el.content ? el.content.childNodes : el.childNodes);
 }
 
-// CONCATENATED MODULE: ./remove.js
-/* harmony default export */ var remove = (el => el.parentNode.removeChild(el));
-// CONCATENATED MODULE: ./clone.js
-function clone(el) {
-  return el.cloneNode(true);
-}
-
-// CONCATENATED MODULE: ./els.js
-
-
-
-const
-  fragmentRE = /^\s*<(\w+|!)[^>]*>/,
-  table = document.createElement('table'),
-  tableRow = document.createElement('tr'),
-  div = document.createElement('div'),
-  containers = {
-    'tr': document.createElement('tbody'),
-    'tbody': table, 'thead': table, 'tfoot': table,
-    'td': tableRow, 'th': tableRow
-  };
-
-/* harmony default export */ var els_0 = (html => {
-  html = html.trim();
-  const name = fragmentRE.test(html) && RegExp.$1;
-  const container = containers[name] || div;
-  container.innerHTML = html;
-  return each_0(remove, container.childNodes);
-});
-
-// CONCATENATED MODULE: ./node_modules/fxjs2/Strict/head.js
-
-
-
-function head(iter) {
-  return go1(Strict_take(1, iter), ([h]) => h);
-}
-// CONCATENATED MODULE: ./el.js
-
-
-
-/* harmony default export */ var el_0 = (html => {
-  html = html.trim();
-  return html[0] == '<' ? head(els_0(html)) : document.createElement(html);
-});
-// CONCATENATED MODULE: ./appendTo.js
-
-
-/* harmony default export */ var appendTo = (curry((parent, child) => (parent.appendChild(child), parent)));
-
-// CONCATENATED MODULE: ./prependTo.js
-
-
-/* harmony default export */ var prependTo = (curry((parent, child) => parent.insertBefore(child, parent.firstChild)));
-// CONCATENATED MODULE: ./append.js
-
-
-/* harmony default export */ var append = (curry((child, parent) => parent.appendChild(child)));
-// CONCATENATED MODULE: ./prepend.js
-
-
-/* harmony default export */ var prepend = (curry((child, parent) => parent.insertBefore(child, parent.firstChild)));
-// CONCATENATED MODULE: ./before.js
-
-
-/* harmony default export */ var before = (curry((newEl, el) => el.parentNode.insertBefore(newEl, el)));
-
-// CONCATENATED MODULE: ./insertBefore.js
-
-
-
-/* harmony default export */ var insertBefore = (curry((el, newEl) => before(newEl, el)));
-
-// CONCATENATED MODULE: ./after.js
-
-
-
-
-/* harmony default export */ var after = (curry((newEl, el) =>
-  el.nextSibling ? before(newEl, el.nextSibling) : appendTo(newEl, el.parentNode)));
-
-// CONCATENATED MODULE: ./insertAfter.js
-
-
-
-/* harmony default export */ var insertAfter = (curry((el, newEl) => after(newEl, el)));
-
-// CONCATENATED MODULE: ./replaceWith.js
-
-
-
-
-/* harmony default export */ var replaceWith_0 = (curry(function replaceWith(newEl, el) {
-  before(newEl, el);
-  return remove(el);
-}));
-
-// CONCATENATED MODULE: ./replaceAll.js
-
-
-
-/* harmony default export */ var replaceAll_0 = (curry(function replaceAll(el, newEl) {
-  replaceWith_0(newEl, el)
-  return newEl;
-}));
-
-// CONCATENATED MODULE: ./unwrap.js
-
-
-
-
-function unwrap(el) {
-  const unWrapper = el.parentNode;
-  each_0(insertBefore(unWrapper), unWrapper.childNodes)
-  remove(unWrapper);
-  return el;
-};
-
-// CONCATENATED MODULE: ./wrap.js
-
-
-
-
-/* harmony default export */ var wrap_0 = (curry(function wrap(wrapper, el) {
-  appendTo(before(wrapper, el), el);
-  return wrapper;
-}));
-
-// CONCATENATED MODULE: ./wrapAll.js
-
-
-
-
-
-/* harmony default export */ var wrapAll_0 = (curry(function wrapAll(wrapper, els) {
-  before(wrapper, head(els));
-  each_0(appendTo(wrapper), els);
-  return wrapper;
-}));
-
-// CONCATENATED MODULE: ./wrapInner.js
-
-
-
-/* harmony default export */ var wrapInner_0 = (curry(function wrapInner(wrapper, el) {
-  return wrapAll_0(wrapper, el.childNodes);
-}));
-
-// CONCATENATED MODULE: ./text.js
-/* harmony default export */ var text_0 = (el => el.textContent);
-// CONCATENATED MODULE: ./setText.js
-
-
-/* harmony default export */ var setText = (curry((text, el) => (el.textContent = text, el)));
-// CONCATENATED MODULE: ./html.js
-/* harmony default export */ var html_0 = (el => el.innerHTML);
-// CONCATENATED MODULE: ./setHTML.js
-
-
-/* harmony default export */ var setHTML = (curry((html, el) => (el.innerHTML = html, el)));
-// CONCATENATED MODULE: ./outerHTML.js
-/* harmony default export */ var outerHTML = (el => el.outerHTML);
-// CONCATENATED MODULE: ./setOuterHTML.js
-
-
-/* harmony default export */ var setOuterHTML = (curry((html, el) => el.outerHTML = html));
-// CONCATENATED MODULE: ./val.js
-/* harmony default export */ var val_0 = (el => el.value);
-// CONCATENATED MODULE: ./setVal.js
-
-
-/* harmony default export */ var setVal = (curry((value, el) => (el.value = value, el)));
-// CONCATENATED MODULE: ./attr.js
-
-
-/* harmony default export */ var attr = (curry((k, el) => el.getAttribute(k)));
-// CONCATENATED MODULE: ./node_modules/fxjs2/Strict/isArray.js
-const { isArray } = Array;
-/* harmony default export */ var Strict_isArray = (isArray);
-// CONCATENATED MODULE: ./node_modules/fxjs2/Lazy/entriesL.js
-function* entriesL(obj) {
-  for (const k in obj) yield [k, obj[k]];
-}
-// CONCATENATED MODULE: ./setAttr.js
-
-
-
-/* harmony default export */ var setAttr = (curry((kv, el) => (
-  Strict_isArray(kv)
-    ? el.setAttribute(...kv)
-    : Strict_each(kv => el.setAttribute(...kv), entriesL(kv)), el)));
-// CONCATENATED MODULE: ./removeAttr.js
-
-
-/* harmony default export */ var removeAttr = (curry((k, el) => (el.removeAttribute(k), el)));
-// CONCATENATED MODULE: ./.internal/_methodClass.js
-
-
-/* harmony default export */ var _methodClass = (method => curry((class_names, el) => (
-  Strict_each(cn => el.classList[method](cn), class_names.split(' ')), el)));
-// CONCATENATED MODULE: ./addClass.js
-
-
-/* harmony default export */ var addClass = (_methodClass('add'));
-// CONCATENATED MODULE: ./removeClass.js
-
-
-/* harmony default export */ var removeClass = (_methodClass('remove'));
-// CONCATENATED MODULE: ./toggleClass.js
-
-
-/* harmony default export */ var toggleClass = (_methodClass('toggle'));
-// CONCATENATED MODULE: ./hasClass.js
-
-
-/* harmony default export */ var hasClass = (curry((class_name, el) => el.classList.contains(class_name)));
-
-// CONCATENATED MODULE: ./.internal/_baseScroll.js
-function baseScroll(el, val, prop, method) {
-  el = el || window;
-  var top = prop == "pageYOffset";
-  var win = el == window || el == document ? window : null;
-  if (val == undefined) return win ? win[ prop ] : el[ method ];
-  if (win) win.scrollTo(!top ? val : win.pageXOffset, top ? val : win.pageYOffset);
-  else el[method] = val;
-  return el;
-}
-// CONCATENATED MODULE: ./scrollTop.js
-
-
-/* harmony default export */ var scrollTop = (el => baseScroll(el, undefined, "pageYOffset", "scrollTop"));
-// CONCATENATED MODULE: ./scrollLeft.js
-
-
-/* harmony default export */ var scrollLeft = (el => baseScroll(el, undefined, "pageXOffset", "scrollLeft"));
-// CONCATENATED MODULE: ./setScrollTop.js
-
-
-
-/* harmony default export */ var setScrollTop = (curry((val, el) => baseScroll(el, val, "pageYOffset", "scrollTop")));
-
-// CONCATENATED MODULE: ./setScrollLeft.js
-
-
-
-/* harmony default export */ var setScrollLeft = (curry((val, el) => baseScroll(el, val, "pageXOffset", "scrollLeft")));
-
-// CONCATENATED MODULE: ./offset.js
-const offset_docEl = document.documentElement;
-
-/* harmony default export */ var offset = (el => {
-  const rect = el.getBoundingClientRect();
-  return {
-    top: rect.top + window.pageYOffset - offset_docEl.clientTop,
-    left: rect.left + window.pageXOffset - offset_docEl.clientLeft
-  };
-});
 // CONCATENATED MODULE: ./node_modules/fxjs2/.internal/go2.js
 
 
@@ -752,6 +328,13 @@ function go2(acc, a, f){
   return a instanceof Promise ?
     a.then(a => f(acc, a), e => e == Strict_nop ? acc : Promise.reject(e)) :
     f(acc, a);
+}
+// CONCATENATED MODULE: ./node_modules/fxjs2/Strict/head.js
+
+
+
+function head(iter) {
+  return go1(Strict_take(1, iter), ([h]) => h);
 }
 // CONCATENATED MODULE: ./node_modules/fxjs2/Strict/reduce.js
 
@@ -791,54 +374,8 @@ function object(iter) {
     ? el.style[k] || el.ownerDocument.defaultView.getComputedStyle(el, null)[_toCamel(k)]
     : object(Lazy_mapL(k => [k, _css(k, el)], k))
 }));
-// CONCATENATED MODULE: ./offsetParent.js
-
-const offsetParent_docEl = document.documentElement;
-
-function offsetParent_offsetParent(el) {
-  let offsetParent = el;
-  while ((offsetParent = offsetParent.offsetParent) && css('position', offsetParent) === 'static') {}
-  return offsetParent || offsetParent_docEl;
-}
-
-// CONCATENATED MODULE: ./position.js
-
-
-
-
-const position_docEl = document.documentElement;
-
-const setPositionTopLeft = (el, { top, left }, { pTop = 0, pLeft = 0 }) => ({
-  top: top - pTop - parseFloat(css('marginTop', el)) + position_docEl.clientTop,
-  left: left - pLeft - parseFloat(css('marginLeft', el)) + position_docEl.clientLeft
-});
-
-/* harmony default export */ var position = (el => {
-  if (css('position', el) === 'fixed')
-    return setPositionTopLeft(el, el.getBoundingClientRect(), {});
-  const elOffset = offset(el);
-  const offsetParent$ = offsetParent_offsetParent(el);
-  const { clientTop, clientLeft } = offsetParent$;
-  if (offsetParent$.nodeName.toUpperCase() === 'HTML')
-    return setPositionTopLeft(el, elOffset, { pTop: clientTop, pLeft: clientLeft });
-  const { top: pTop, left: pLeft } = offset(offsetParent$)
-  return setPositionTopLeft(el, elOffset, { pTop: pTop + clientTop, pLeft: pLeft + clientLeft });
-});
-
 // CONCATENATED MODULE: ./node_modules/fxjs2/.internal/go1Sync.js
 /* harmony default export */ var go1Sync = ((a, f) => f(a));
-// CONCATENATED MODULE: ./node_modules/fxjs2/Strict/tap.js
-
-
-
-
-function tap(f, ...fs) {
-  return (a, ...as) => go1(reduce(go1Sync, f(a, ...as), fs), _ => a);
-};
-// CONCATENATED MODULE: ./node_modules/fxjs2/Strict/isString.js
-function isString(a) {
-  return typeof a == 'string';
-}
 // CONCATENATED MODULE: ./node_modules/fxjs2/Strict/go.js
 
 
@@ -846,210 +383,6 @@ function isString(a) {
 function go(..._) {
   return reduce(go1Sync, _);
 }
-// CONCATENATED MODULE: ./.internal/_baseOnOff.js
-
-
-
-/* harmony default export */ var _baseOnOff = (method =>
-  (event, sel, f, ...opts) =>
-    tap(el =>
-      isString(sel)
-      ? go(el, findAll(sel), Strict_each(el => el[method](event, f, ...opts)))
-      : el[method](event, sel, ...[f, ...opts])));
-// CONCATENATED MODULE: ./on.js
-
-
-/* harmony default export */ var on = (_baseOnOff('addEventListener'));
-// CONCATENATED MODULE: ./off.js
-
-
-/* harmony default export */ var off = (_baseOnOff('removeEventListener'));
-// CONCATENATED MODULE: ./node_modules/fxjs2/.internal/baseExtend.js
-
-
-
-
-function baseExtend(set, obj, objs) {
-  const type = typeof obj;
-  obj &&
-  (type == 'object' || type == 'function') &&
-  reduce(reduce(set), obj, Lazy_mapL(entriesL, objs));
-  return obj;
-}
-// CONCATENATED MODULE: ./node_modules/fxjs2/Strict/has.js
-
-
-/* harmony default export */ var has = (curry(function has(k, obj) {
-  return !!(obj && obj.hasOwnProperty(k));
-}));
-// CONCATENATED MODULE: ./node_modules/fxjs2/Strict/defaults.js
-
-
-
-const setter = (obj, [k, v]) => {
-  return (has(k, obj) || (obj[k] = v, obj), obj);
-};
-
-function defaults(obj, ...objs) {
-  return baseExtend(setter, obj, objs);
-}
-// CONCATENATED MODULE: ./delegate.js
-
-
-
-
-
-/* harmony default export */ var delegate = ((event, sel, f) => tap(el =>
-  el.addEventListener(event, e => go(
-    el,
-    findAll(sel),
-    Lazy_filterL(contains(e.target)),
-    Strict_each(currentTarget => f(defaults({ originalEvent: e, currentTarget, delegateTarget: el }, e)))
-  ))
-));
-
-// CONCATENATED MODULE: ./trigger.js
-const me = 'MouseEvents';
-const mouseEvents = {
-  click: me,
-  mousedown: me,
-  mouseup: me,
-  mousemove: me,
-};
-
-/* harmony default export */ var trigger = (function(event, props, el) {
-  if (!el) { el = props; props = {}; }
-  if (event == 'submit') return el.submit(), el;
-  let e = document.createEvent(mouseEvents[event] || 'Events');
-  var bubbles = true;
-  for (var name in props) (name == 'bubbles') ? (bubbles = !!props[name]) : (e[name] = props[name]);
-  e.initEvent(event, bubbles, true);
-  el.dispatchEvent(e);
-  return el;
-});;
-// CONCATENATED MODULE: ./ready.js
-
-
-
-/* harmony default export */ var ready_0 = (curry(function ready(cb, el) {
-  return on('DOMContentLoaded', cb)(el);
-}));
-
-// CONCATENATED MODULE: ./focus.js
-/* harmony default export */ var focus_0 = (el => el.focus());
-// CONCATENATED MODULE: ./blur.js
-/* harmony default export */ var blur_0 = (el => el.blur());
-// CONCATENATED MODULE: ./node_modules/fxjs2/Strict/pipe.js
-
-
-
-function pipe(f, ...fs) {
-  return (...as) => reduce(go1Sync, f(...as), fs);
-}
-// CONCATENATED MODULE: ./node_modules/fxjs2/Strict/isUndefined.js
-/* harmony default export */ var isUndefined = (a => a === undefined);
-// CONCATENATED MODULE: ./node_modules/fxjs2/Lazy/rejectL.js
-
-
-
-
-
-/* harmony default export */ var Lazy_rejectL = (curry(function rejectL(f, iter) {
-  return Lazy_filterL(a => go1(f(a), not), iter);
-}));
-// CONCATENATED MODULE: ./param.js
-
-
-
-
-
-
-/* harmony default export */ var param = (pipe(
-  entriesL,
-  Lazy_rejectL(([_, a]) => isUndefined(a)),
-  Lazy_mapL(Strict_map(encodeURIComponent)),
-  Strict_map(([k, v]) => `${k}=${v}`),
-  strs => strs.join('&').replace(/%20/g, '+')));
-// CONCATENATED MODULE: ./.internal/_fetchBaseOptF.js
-
-
-const fetchBaseOpt = {
-  headers: { "Content-Type": "application/json" },
-  credentials: 'same-origin'
-};
-
-/* harmony default export */ var _fetchBaseOptF = (headers =>
-  headers
-    ? defaults(
-        {
-          headers: defaults(headers, fetchBaseOpt.headers)
-        },
-        fetchBaseOpt)
-    : fetchBaseOpt);
-
-  
-// CONCATENATED MODULE: ./.internal/_resJSON.js
-
-
-/* harmony default export */ var _resJSON = (res => res.ok ? res.json() : go1(res.json(), v => Promise.reject(v)));
-// CONCATENATED MODULE: ./get.js
-
-
-
-
-
-/* harmony default export */ var get = (curry((url, data, headers) => go(
-  fetch(url + (data === undefined ? '' : '?' + param(data)), _fetchBaseOptF(headers)),
-  _resJSON
-)));
-// CONCATENATED MODULE: ./.internal/_fetchWithBody.js
-
-
-
-
-/* harmony default export */ var _fetchWithBody = (method => curry((url, data, headers) => go(
-    fetch(url, Object.assign({
-      method,
-      body: JSON.stringify(data)
-    }, _fetchBaseOptF(headers))),
-    _resJSON)));
-// CONCATENATED MODULE: ./post.js
-
-
-/* harmony default export */ var post = (_fetchWithBody('POST'));
-// CONCATENATED MODULE: ./put.js
-
-
-/* harmony default export */ var put = (_fetchWithBody('PUT'));
-// CONCATENATED MODULE: ./del.js
-
-
-/* harmony default export */ var del = (_fetchWithBody('DELETE'));
-// CONCATENATED MODULE: ./postForm.js
-
-
-/* harmony default export */ var postForm = (curry((url, form_el) => go(
-  new FormData(form_el),
-  form => fetch(url, { method: 'POST', body: form }),
-  res => res.ok ? res.json() : Promise.reject(res)
-)));
-// CONCATENATED MODULE: ./prop.js
-
-
-/* harmony default export */ var prop = (curry(function prop(k, el) {
-  return el[k];
-}));
-
-// CONCATENATED MODULE: ./setProp.js
-
-
-/* harmony default export */ var setProp = (curry((kv, el) => Object.assign(el, kv)));
-
-// CONCATENATED MODULE: ./removeProp.js
-
-
-/* harmony default export */ var removeProp = (curry((k, el) => (delete el[k], el)));
-
 // CONCATENATED MODULE: ./node_modules/fxjs2/Strict/curry3.js
 function curry3(f) {
   return (a, ..._) => _.length > 2
@@ -1075,6 +408,13 @@ function curry3(f) {
 /* harmony default export */ var Strict_ifElse = (curry3(function ifElse(cond, t, f, ...args) {
   return go1(cond(...args), b => b ? t(...args) : f(...args));
 }));
+// CONCATENATED MODULE: ./node_modules/fxjs2/Strict/pipe.js
+
+
+
+function pipe(f, ...fs) {
+  return (...as) => reduce(go1Sync, f(...as), fs);
+}
 // CONCATENATED MODULE: ./.internal/_dataMap.js
 /* harmony default export */ var _dataMap = (new WeakMap());
 // CONCATENATED MODULE: ./.internal/_parseDataStr.js
@@ -1086,6 +426,20 @@ function curry3(f) {
       .replace(/\(\)/g, "(")
   ));
 
+// CONCATENATED MODULE: ./node_modules/fxjs2/Strict/isArray.js
+/* harmony default export */ var isArray = (Array.isArray.bind(Array));
+// CONCATENATED MODULE: ./node_modules/fxjs2/Lazy/entriesL.js
+function* entriesL(obj) {
+  for (const k in obj) yield [k, obj[k]];
+}
+// CONCATENATED MODULE: ./setAttr.js
+
+
+
+/* harmony default export */ var setAttr = (curry((kv, el) => (
+  isArray(kv)
+    ? el.setAttribute(...kv)
+    : Strict_each(kv => el.setAttribute(...kv), entriesL(kv)), el)));
 // CONCATENATED MODULE: ./setData.js
 
 
@@ -1128,51 +482,168 @@ function curry3(f) {
     .replace(/'/g, "(1)")
     .replace(/"/g, "(2)"));
 
-// CONCATENATED MODULE: ./.internal/_isNumeric.js
-/* harmony default export */ var _isNumeric = (n => !isNaN(parseFloat(n)) && isFinite(n));
-// CONCATENATED MODULE: ./.internal/_addPx.js
+// CONCATENATED MODULE: ./node_modules/fxjs2/.internal/baseExtend.js
 
 
-const numberTypes = {
-  "animationIterationCount": true,
-  "columnCount": true,
-  "fillOpacity": true,
-  "flexGrow": true,
-  "flexShrink": true,
-  "fontWeight": true,
-  "lineHeight": true,
-  "opacity": true,
-  "order": true,
-  "orphans": true,
-  "widows": true,
-  "zIndex": true,
-  "zoom": true
+
+
+function baseExtend(set, obj, objs) {
+  const type = typeof obj;
+  obj &&
+  (type == 'object' || type == 'function') &&
+  reduce(reduce(set), obj, Lazy_mapL(entriesL, objs));
+  return obj;
+}
+// CONCATENATED MODULE: ./node_modules/fxjs2/Strict/has.js
+
+
+/* harmony default export */ var has = (curry(function has(k, obj) {
+  return !!(obj && obj.hasOwnProperty(k));
+}));
+// CONCATENATED MODULE: ./node_modules/fxjs2/Strict/defaults.js
+
+
+
+const setter = (obj, [k, v]) => {
+  return (has(k, obj) || (obj[k] = v, obj), obj);
 };
 
-/* harmony default export */ var _addPx = ((k, v) => numberTypes[k] ? v : _isNumeric(v) ? v + 'px' : v);
-// CONCATENATED MODULE: ./setCss.js
+function defaults(obj, ...objs) {
+  return baseExtend(setter, obj, objs);
+}
+// CONCATENATED MODULE: ./.internal/_fetchBaseOptF.js
+
+
+const fetchBaseOpt = {
+  headers: { "Content-Type": "application/json" },
+  credentials: 'same-origin'
+};
+
+/* harmony default export */ var _fetchBaseOptF = (headers =>
+  headers
+    ? defaults(
+        {
+          headers: defaults(headers, fetchBaseOpt.headers)
+        },
+        fetchBaseOpt)
+    : fetchBaseOpt);
+
+  
+// CONCATENATED MODULE: ./.internal/_resJSON.js
+
+
+/* harmony default export */ var _resJSON = (res => res.ok ? res.json() : go1(res.json(), v => Promise.reject(v)));
+// CONCATENATED MODULE: ./.internal/_fetchWithBody.js
+
+
+
+
+/* harmony default export */ var _fetchWithBody = (method => curry((url, data, headers) => go(
+    fetch(url, Object.assign({
+      method,
+      body: JSON.stringify(data)
+    }, _fetchBaseOptF(headers))),
+    _resJSON)));
+// CONCATENATED MODULE: ./del.js
+
+
+/* harmony default export */ var del = (_fetchWithBody('DELETE'));
+// CONCATENATED MODULE: ./node_modules/fxjs2/Strict/tap.js
+
+
+
+
+function tap(f, ...fs) {
+  return (a, ...as) => go1(reduce(go1Sync, f(a, ...as), fs), _ => a);
+};
+// CONCATENATED MODULE: ./node_modules/fxjs2/Lazy/filterL.js
 
 
 
 
 
-/* harmony default export */ var setCss = (curry(function _setCss(kv, el) {
-  if (Strict_isArray(kv)) {
-    const k = _toCamel(kv[0]);
-    el.style[k] = _addPx(k, kv[1]);
-  } else {
-    Strict_each(kv => _setCss(kv, el), entriesL(kv));
+/* harmony default export */ var Lazy_filterL = (curry(function* filterL(f, iter) {
+  for (const a of toIter(iter)) {
+    const b = go1(a, f);
+    if (b instanceof Promise) yield b.then(b => b ? a : Promise.reject(Strict_nop));
+    else if (b) yield a;
   }
-  return el;
 }));
-// CONCATENATED MODULE: ./.internal/_docWidth.js
-const _docWidth_docEl = document.documentElement;
+// CONCATENATED MODULE: ./.internal/_baseFind.js
 
-/* harmony default export */ var _docWidth = ((isHeight, b = document.body) =>
-  isHeight
-    ? Math.max(b.offsetHeight, b.scrollHeight, b.clientHeight, _docWidth_docEl.offsetHeight, _docWidth_docEl.offsetHeight, _docWidth_docEl.clientHeight)
-    : Math.max(b.offsetWidth, b.scrollWidth, b.clientWidth, _docWidth_docEl.offsetWidth, _docWidth_docEl.offsetWidth, _docWidth_docEl.clientWidth));
 
+const idCreator = _ => {
+  let i = 0;
+  return _ => 'fxdom-id-' + i++;
+};
+
+const createId = idCreator();
+
+/* harmony default export */ var _baseFind = (qs => curry((sel, el) => {
+  const id = el.id;
+  el.id = id || createId();
+  const res = el[qs]('#' + el.id + (sel[0] == '&' ? sel.substr(1) : ' ' + sel));
+  if (!id) el.removeAttribute('id');
+  return res;
+}));
+// CONCATENATED MODULE: ./findAll.js
+
+/* harmony default export */ var findAll = (_baseFind('querySelectorAll'));
+// CONCATENATED MODULE: ./delegate.js
+
+
+
+
+
+/* harmony default export */ var delegate = ((event, sel, f) => tap(el =>
+  el.addEventListener(event, e => go(
+    el,
+    findAll(sel),
+    Lazy_filterL(contains(e.target)),
+    Strict_each(currentTarget => f(defaults({ originalEvent: e, currentTarget, delegateTarget: el }, e)))
+  ))
+));
+
+// CONCATENATED MODULE: ./each.js
+
+
+/* harmony default export */ var each_0 = (curry(function _each(func, els) {
+  return Strict_each(func, [...els]);
+}));
+
+// CONCATENATED MODULE: ./remove.js
+/* harmony default export */ var remove = (el => el.parentNode.removeChild(el));
+// CONCATENATED MODULE: ./els.js
+
+
+
+const
+  fragmentRE = /^\s*<(\w+|!)[^>]*>/,
+  table = document.createElement('table'),
+  tableRow = document.createElement('tr'),
+  div = document.createElement('div'),
+  containers = {
+    'tr': document.createElement('tbody'),
+    'tbody': table, 'thead': table, 'tfoot': table,
+    'td': tableRow, 'th': tableRow
+  };
+
+/* harmony default export */ var els_0 = (html => {
+  html = html.trim();
+  const name = fragmentRE.test(html) && RegExp.$1;
+  const container = containers[name] || div;
+  container.innerHTML = html;
+  return each_0(remove, container.childNodes);
+});
+
+// CONCATENATED MODULE: ./el.js
+
+
+
+/* harmony default export */ var el_0 = (html => {
+  html = html.trim();
+  return html[0] == '<' ? head(els_0(html)) : document.createElement(html);
+});
 // CONCATENATED MODULE: ./.internal/_cssF.js
 
 
@@ -1264,40 +735,581 @@ function elWidth(el, prefix = '', isHeight) {
   return value;
 }
 
-// CONCATENATED MODULE: ./width.js
+// CONCATENATED MODULE: ./node_modules/fxjs2/Strict/filter.js
 
 
 
-/* harmony default export */ var width_0 = (el => el == window ? el.innerWidth : el == document ? _docWidth() : elWidth(el));
 
-// CONCATENATED MODULE: ./innerWidth.js
+/* harmony default export */ var Strict_filter = (curry(function filter(f, iter) {
+  return takeAll(Lazy_filterL(f, iter));
+}));
+// CONCATENATED MODULE: ./.internal/_matches.js
+const docEl = document.documentElement;
+/* harmony default export */ var _matches = (docEl.matches || docEl.webkitMatchesSelector || docEl.mozMatchesSelector || docEl.msMatchesSelector);
+// CONCATENATED MODULE: ./is.js
 
 
-/* harmony default export */ var innerWidth_0 = (el => elWidth(el, 'inner'));
-// CONCATENATED MODULE: ./outerWidth.js
+
+/* harmony default export */ var is = (curry((sel, el) => el && _matches.call(el, sel)));
+// CONCATENATED MODULE: ./filter.js
 
 
-/* harmony default export */ var outerWidth_0 = (el => elWidth(el, 'outer'));
+
+/* harmony default export */ var filter_0 = (curry(function _filter(funcOrSel, els) {
+  return Strict_filter(typeof funcOrSel == 'string' ? is(funcOrSel) : funcOrSel, els);
+}));
+
+// CONCATENATED MODULE: ./find.js
+
+
+/* harmony default export */ var find = (_baseFind('querySelector'));
+
+
+// CONCATENATED MODULE: ./focus.js
+/* harmony default export */ var focus_0 = (el => el.focus());
+// CONCATENATED MODULE: ./node_modules/fxjs2/Strict/isUndefined.js
+/* harmony default export */ var isUndefined = (a => a === undefined);
+// CONCATENATED MODULE: ./node_modules/fxjs2/Strict/not.js
+function not(a) {
+  return !a;
+}
+// CONCATENATED MODULE: ./node_modules/fxjs2/Lazy/rejectL.js
+
+
+
+
+
+/* harmony default export */ var Lazy_rejectL = (curry(function rejectL(f, iter) {
+  return Lazy_filterL(a => go1(f(a), not), iter);
+}));
+// CONCATENATED MODULE: ./param.js
+
+
+
+
+
+
+/* harmony default export */ var param = (pipe(
+  entriesL,
+  Lazy_rejectL(([_, a]) => isUndefined(a)),
+  Lazy_mapL(Strict_map(encodeURIComponent)),
+  Strict_map(([k, v]) => `${k}=${v}`),
+  strs => strs.join('&').replace(/%20/g, '+')));
+// CONCATENATED MODULE: ./get.js
+
+
+
+
+
+/* harmony default export */ var get = (curry((url, data, headers) => go(
+  fetch(url + (data === undefined ? '' : '?' + param(data)), _fetchBaseOptF(headers)),
+  _resJSON
+)));
+// CONCATENATED MODULE: ./hasClass.js
+
+
+/* harmony default export */ var hasClass = (curry((class_name, el) => el.classList.contains(class_name)));
+
+// CONCATENATED MODULE: ./.internal/_docWidth.js
+const _docWidth_docEl = document.documentElement;
+
+/* harmony default export */ var _docWidth = ((isHeight, b = document.body) =>
+  isHeight
+    ? Math.max(b.offsetHeight, b.scrollHeight, b.clientHeight, _docWidth_docEl.offsetHeight, _docWidth_docEl.offsetHeight, _docWidth_docEl.clientHeight)
+    : Math.max(b.offsetWidth, b.scrollWidth, b.clientWidth, _docWidth_docEl.offsetWidth, _docWidth_docEl.offsetWidth, _docWidth_docEl.clientWidth));
+
 // CONCATENATED MODULE: ./height.js
 
 
 
 /* harmony default export */ var height = (el => el == window ? el.innerHeight : el == document ? _docWidth(true) : elWidth(el, '', true));
+// CONCATENATED MODULE: ./html.js
+/* harmony default export */ var html_0 = (el => el.innerHTML);
 // CONCATENATED MODULE: ./innerHeight.js
 
 
 /* harmony default export */ var innerHeight_0 = (el => elWidth(el, 'inner', true));
+// CONCATENATED MODULE: ./innerWidth.js
+
+
+/* harmony default export */ var innerWidth_0 = (el => elWidth(el, 'inner'));
+// CONCATENATED MODULE: ./insertAfter.js
+
+
+
+/* harmony default export */ var insertAfter = (curry((el, newEl) => after(newEl, el)));
+
+// CONCATENATED MODULE: ./insertBefore.js
+
+
+
+/* harmony default export */ var insertBefore = (curry((el, newEl) => before(newEl, el)));
+
+// CONCATENATED MODULE: ./map.js
+
+
+/* harmony default export */ var map_0 = (Strict_map);
+
+// CONCATENATED MODULE: ./.internal/_isEl.js
+/* harmony default export */ var _isEl = (node =>
+  node && typeof node == 'object' && (node.nodeType == 1 || node.nodeType == 9));
+// CONCATENATED MODULE: ./.internal/_nextOrPrev.js
+
+
+
+/* harmony default export */ var _nextOrPrev = (k => function f(sel, el) {
+  if (arguments.length == 1) {
+    if (typeof sel == 'string') return el => f(sel, el);
+    el = sel;
+    sel = '*';
+  }
+  let cur = el;
+  while ((cur = cur[k]) && cur.nodeType !== 9 && (!_isEl(cur) || !is(sel, cur))) {}
+  return cur;
+});
+
+// CONCATENATED MODULE: ./next.js
+
+
+/* harmony default export */ var next = (_nextOrPrev('nextSibling'));
+// CONCATENATED MODULE: ./.internal/_nextOrPrevAll.js
+
+
+
+/* harmony default export */ var _nextOrPrevAll = ((k, add) => function f(sel, el) {
+  if (arguments.length == 1) {
+    if (typeof sel == 'string') return el => f(sel, el);
+    el = sel;
+    sel = '*';
+  }
+  let res = [], cur = el;
+  while ((cur = cur[k]) && cur.nodeType !== 9) if (_isEl(cur) && is(sel, cur)) res[add](cur);
+  return res;
+});
+
+// CONCATENATED MODULE: ./nextAll.js
+
+
+/* harmony default export */ var nextAll = (_nextOrPrevAll('nextSibling', 'push'));
+// CONCATENATED MODULE: ./.internal/_nextOrPrevUntil.js
+
+
+
+/* harmony default export */ var _nextOrPrevUntil = ((k, add) => function f(sel, until, el) {
+  if (arguments.length == 1) {
+    if (typeof sel == 'string') return (until, el) => f(sel, until, el);
+    return _nextOrPrevAll(k, add)(sel);
+  } else if (arguments.length == 2) {
+    if (typeof until == 'string') return el => f(sel, until, el);
+    el = until;
+    until = sel;
+    sel = '*';
+  }
+  let res = [], cur = el;
+  while ((cur = cur[k]) && cur.nodeType !== 9) {
+    if (_isEl(cur)) {
+      if (cur === until) break;
+      if (is(sel, cur)) res[add](cur);
+    }
+  }
+  return res;
+});
+
+// CONCATENATED MODULE: ./nextUntil.js
+
+
+/* harmony default export */ var nextUntil = (_nextOrPrevUntil('nextSibling', 'push'));
+
+// CONCATENATED MODULE: ./node_modules/fxjs2/Strict/reject.js
+
+
+
+
+
+/* harmony default export */ var Strict_reject = (curry(function reject(f, iter) {
+  return Strict_filter(a => go1(f(a), not), iter);
+}));
+// CONCATENATED MODULE: ./not.js
+
+
+
+/* harmony default export */ var not_0 = (curry(function _not(funcOrSel, els) {
+  return Strict_reject(typeof funcOrSel == 'string' ? is(funcOrSel) : funcOrSel, els);
+}));
+
+// CONCATENATED MODULE: ./node_modules/fxjs2/Strict/isString.js
+function isString(a) {
+  return typeof a == 'string';
+}
+// CONCATENATED MODULE: ./.internal/_baseOnOff.js
+
+
+
+/* harmony default export */ var _baseOnOff = (method =>
+  (event, sel, f, ...opts) =>
+    tap(el =>
+      isString(sel)
+      ? go(el, findAll(sel), Strict_each(el => el[method](event, f, ...opts)))
+      : el[method](event, sel, ...[f, ...opts])));
+// CONCATENATED MODULE: ./off.js
+
+
+/* harmony default export */ var off = (_baseOnOff('removeEventListener'));
+// CONCATENATED MODULE: ./offset.js
+const offset_docEl = document.documentElement;
+
+/* harmony default export */ var offset = (el => {
+  const rect = el.getBoundingClientRect();
+  return {
+    top: rect.top + window.pageYOffset - offset_docEl.clientTop,
+    left: rect.left + window.pageXOffset - offset_docEl.clientLeft
+  };
+});
+// CONCATENATED MODULE: ./offsetParent.js
+
+const offsetParent_docEl = document.documentElement;
+
+function offsetParent_offsetParent(el) {
+  let offsetParent = el;
+  while ((offsetParent = offsetParent.offsetParent) && css('position', offsetParent) === 'static') {}
+  return offsetParent || offsetParent_docEl;
+}
+
+// CONCATENATED MODULE: ./on.js
+
+
+/* harmony default export */ var on = (_baseOnOff('addEventListener'));
 // CONCATENATED MODULE: ./outerHeight.js
 
 
 /* harmony default export */ var outerHeight_0 = (el => elWidth(el, 'outer', true));
+// CONCATENATED MODULE: ./outerHTML.js
+/* harmony default export */ var outerHTML = (el => el.outerHTML);
+// CONCATENATED MODULE: ./outerWidth.js
+
+
+/* harmony default export */ var outerWidth_0 = (el => elWidth(el, 'outer'));
+// CONCATENATED MODULE: ./parent.js
+
+
+/* harmony default export */ var parent_0 = (_nextOrPrev('parentNode'));
+
+// CONCATENATED MODULE: ./parents.js
+
+
+/* harmony default export */ var parents = (_nextOrPrevAll('parentNode', 'push'));
+
+// CONCATENATED MODULE: ./parentsUntil.js
+
+
+/* harmony default export */ var parentsUntil = (_nextOrPrevUntil('parentNode', 'push'));
+
+// CONCATENATED MODULE: ./position.js
+
+
+
+
+const position_docEl = document.documentElement;
+
+const setPositionTopLeft = (el, { top, left }, { pTop = 0, pLeft = 0 }) => ({
+  top: top - pTop - parseFloat(css('marginTop', el)) + position_docEl.clientTop,
+  left: left - pLeft - parseFloat(css('marginLeft', el)) + position_docEl.clientLeft
+});
+
+/* harmony default export */ var position = (el => {
+  if (css('position', el) === 'fixed')
+    return setPositionTopLeft(el, el.getBoundingClientRect(), {});
+  const elOffset = offset(el);
+  const offsetParent$ = offsetParent_offsetParent(el);
+  const { clientTop, clientLeft } = offsetParent$;
+  if (offsetParent$.nodeName.toUpperCase() === 'HTML')
+    return setPositionTopLeft(el, elOffset, { pTop: clientTop, pLeft: clientLeft });
+  const { top: pTop, left: pLeft } = offset(offsetParent$)
+  return setPositionTopLeft(el, elOffset, { pTop: pTop + clientTop, pLeft: pLeft + clientLeft });
+});
+
+// CONCATENATED MODULE: ./post.js
+
+
+/* harmony default export */ var post = (_fetchWithBody('POST'));
+// CONCATENATED MODULE: ./postForm.js
+
+
+/* harmony default export */ var postForm = (curry((url, form_el) => go(
+  new FormData(form_el),
+  form => fetch(url, { method: 'POST', body: form }),
+  res => res.ok ? res.json() : Promise.reject(res)
+)));
+// CONCATENATED MODULE: ./prepend.js
+
+
+/* harmony default export */ var prepend = (curry((child, parent) => parent.insertBefore(child, parent.firstChild)));
+// CONCATENATED MODULE: ./prependTo.js
+
+
+/* harmony default export */ var prependTo = (curry((parent, child) => parent.insertBefore(child, parent.firstChild)));
+// CONCATENATED MODULE: ./prev.js
+
+
+/* harmony default export */ var prev = (_nextOrPrev('previousSibling'));
+// CONCATENATED MODULE: ./prevAll.js
+
+
+/* harmony default export */ var prevAll = (_nextOrPrevAll('previousSibling', 'unshift'));
+// CONCATENATED MODULE: ./prevUntil.js
+
+
+/* harmony default export */ var prevUntil = (_nextOrPrevUntil('previousSibling', 'unshift'));
+
+// CONCATENATED MODULE: ./prop.js
+
+
+/* harmony default export */ var prop = (curry(function prop(k, el) {
+  return el[k];
+}));
+
+// CONCATENATED MODULE: ./put.js
+
+
+/* harmony default export */ var put = (_fetchWithBody('PUT'));
+// CONCATENATED MODULE: ./qs.js
+/* harmony default export */ var qs_0 = ((sel, base = document) => base.querySelector(sel));
+// CONCATENATED MODULE: ./qsa.js
+/* harmony default export */ var qsa = ((sel, base = document) => base.querySelectorAll(sel));
+// CONCATENATED MODULE: ./ready.js
+
+
+
+/* harmony default export */ var ready_0 = (curry(function ready(cb, el) {
+  return on('DOMContentLoaded', cb)(el);
+}));
+
+// CONCATENATED MODULE: ./removeAttr.js
+
+
+/* harmony default export */ var removeAttr = (curry((k, el) => (el.removeAttribute(k), el)));
+// CONCATENATED MODULE: ./removeClass.js
+
+
+/* harmony default export */ var removeClass = (_methodClass('remove'));
+// CONCATENATED MODULE: ./removeProp.js
+
+
+/* harmony default export */ var removeProp = (curry((k, el) => (delete el[k], el)));
+
+// CONCATENATED MODULE: ./replaceWith.js
+
+
+
+
+/* harmony default export */ var replaceWith_0 = (curry(function replaceWith(newEl, el) {
+  before(newEl, el);
+  return remove(el);
+}));
+
+// CONCATENATED MODULE: ./replaceAll.js
+
+
+
+/* harmony default export */ var replaceAll_0 = (curry(function replaceAll(el, newEl) {
+  replaceWith_0(newEl, el)
+  return newEl;
+}));
+
+// CONCATENATED MODULE: ./.internal/_baseScroll.js
+function baseScroll(el, val, prop, method) {
+  el = el || window;
+  var top = prop == "pageYOffset";
+  var win = el == window || el == document ? window : null;
+  if (val == undefined) return win ? win[ prop ] : el[ method ];
+  if (win) win.scrollTo(!top ? val : win.pageXOffset, top ? val : win.pageYOffset);
+  else el[method] = val;
+  return el;
+}
+// CONCATENATED MODULE: ./scrollLeft.js
+
+
+/* harmony default export */ var scrollLeft = (el => baseScroll(el, undefined, "pageXOffset", "scrollLeft"));
+// CONCATENATED MODULE: ./scrollTop.js
+
+
+/* harmony default export */ var scrollTop = (el => baseScroll(el, undefined, "pageYOffset", "scrollTop"));
+// CONCATENATED MODULE: ./.internal/_isNumeric.js
+/* harmony default export */ var _isNumeric = (n => !isNaN(parseFloat(n)) && isFinite(n));
+// CONCATENATED MODULE: ./.internal/_addPx.js
+
+
+const numberTypes = {
+  "animationIterationCount": true,
+  "columnCount": true,
+  "fillOpacity": true,
+  "flexGrow": true,
+  "flexShrink": true,
+  "fontWeight": true,
+  "lineHeight": true,
+  "opacity": true,
+  "order": true,
+  "orphans": true,
+  "widows": true,
+  "zIndex": true,
+  "zoom": true
+};
+
+/* harmony default export */ var _addPx = ((k, v) => numberTypes[k] ? v : _isNumeric(v) ? v + 'px' : v);
+// CONCATENATED MODULE: ./setCss.js
+
+
+
+
+
+/* harmony default export */ var setCss = (curry(function _setCss(kv, el) {
+  if (isArray(kv)) {
+    const k = _toCamel(kv[0]);
+    el.style[k] = _addPx(k, kv[1]);
+  } else {
+    Strict_each(kv => _setCss(kv, el), entriesL(kv));
+  }
+  return el;
+}));
+// CONCATENATED MODULE: ./setHTML.js
+
+
+/* harmony default export */ var setHTML = (curry((html, el) => (el.innerHTML = html, el)));
+// CONCATENATED MODULE: ./setOuterHTML.js
+
+
+/* harmony default export */ var setOuterHTML = (curry((html, el) => el.outerHTML = html));
+// CONCATENATED MODULE: ./setProp.js
+
+
+/* harmony default export */ var setProp = (curry((kv, el) => Object.assign(el, kv)));
+
+// CONCATENATED MODULE: ./setScrollLeft.js
+
+
+
+/* harmony default export */ var setScrollLeft = (curry((val, el) => baseScroll(el, val, "pageXOffset", "scrollLeft")));
+
+// CONCATENATED MODULE: ./setScrollTop.js
+
+
+
+/* harmony default export */ var setScrollTop = (curry((val, el) => baseScroll(el, val, "pageYOffset", "scrollTop")));
+
+// CONCATENATED MODULE: ./setText.js
+
+
+/* harmony default export */ var setText = (curry((text, el) => (el.textContent = text, el)));
+// CONCATENATED MODULE: ./setVal.js
+
+
+/* harmony default export */ var setVal = (curry((value, el) => (el.value = value, el)));
+// CONCATENATED MODULE: ./siblings.js
+
+
+
+function siblings(sel, el) {
+  if (arguments.length == 1) {
+    if (typeof sel == 'string') return el => f(sel, el);
+    el = sel;
+    sel = '*';
+  }
+  return not_0(_el => el === _el, children(el.parentNode))
+};
+
+// CONCATENATED MODULE: ./text.js
+/* harmony default export */ var text_0 = (el => el.textContent);
 // CONCATENATED MODULE: ./toggle.js
 
 
 
 
 /* harmony default export */ var toggle = (el => css('display', el) == 'none' ? show(el) : hide(el));
+// CONCATENATED MODULE: ./toggleClass.js
+
+
+/* harmony default export */ var toggleClass = (_methodClass('toggle'));
+// CONCATENATED MODULE: ./trigger.js
+const me = 'MouseEvents';
+const mouseEvents = {
+  click: me,
+  mousedown: me,
+  mouseup: me,
+  mousemove: me,
+};
+
+/* harmony default export */ var trigger = (function(event, props, el) {
+  if (!el) { el = props; props = {}; }
+  if (event == 'submit') return el.submit(), el;
+  let e = document.createEvent(mouseEvents[event] || 'Events');
+  var bubbles = true;
+  for (var name in props) (name == 'bubbles') ? (bubbles = !!props[name]) : (e[name] = props[name]);
+  e.initEvent(event, bubbles, true);
+  el.dispatchEvent(e);
+  return el;
+});;
+// CONCATENATED MODULE: ./unwrap.js
+
+
+
+
+function unwrap(el) {
+  const unWrapper = el.parentNode;
+  each_0(insertBefore(unWrapper), unWrapper.childNodes)
+  remove(unWrapper);
+  return el;
+};
+
+// CONCATENATED MODULE: ./val.js
+/* harmony default export */ var val_0 = (el => el.value);
+// CONCATENATED MODULE: ./width.js
+
+
+
+/* harmony default export */ var width_0 = (el => el == window ? el.innerWidth : el == document ? _docWidth() : elWidth(el));
+
+// CONCATENATED MODULE: ./wrap.js
+
+
+
+
+/* harmony default export */ var wrap_0 = (curry(function wrap(wrapper, el) {
+  appendTo(before(wrapper, el), el);
+  return wrapper;
+}));
+
+// CONCATENATED MODULE: ./wrapAll.js
+
+
+
+
+
+/* harmony default export */ var wrapAll_0 = (curry(function wrapAll(wrapper, els) {
+  before(wrapper, head(els));
+  each_0(appendTo(wrapper), els);
+  return wrapper;
+}));
+
+// CONCATENATED MODULE: ./wrapInner.js
+
+
+
+/* harmony default export */ var wrapInner_0 = (curry(function wrapInner(wrapper, el) {
+  return wrapAll_0(wrapper, el.childNodes);
+}));
+
 // CONCATENATED MODULE: ./_index.js
+
+
+
+
+
+
+
+
+
+
+
 
 
 
