@@ -1,1 +1,1 @@
-export default sel => document.querySelector(sel);
+export default (sel, base= document) => base.querySelector(sel);
