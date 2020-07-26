@@ -8,15 +8,15 @@
   "type": "module",
   "scripts": {
     "generate:index": "node --experimental-modules index_generator.js",
-    "build-modern": "webpack --config modern.config.js --env.NODE_ENV=production",
-    "build-legacy": "webpack --config legacy.config.js --env.NODE_ENV=production",
+    "build-modern": "NODE_ENV=production legacy=false webpack",
+    "build-legacy": "NODE_ENV=production legacy=true webpack",
     "build": "npm run generate:index && npm run build-modern && npm run build-legacy",
     "test:server": "node ./test/server.cjs"
   },
   "files": [
-    ".internal",
     "dist",
-    "*.js",
+    "src",
+    "index.js",
     "LICENSE",
     "README.md"
   ],
@@ -24,7 +24,9 @@
     "type": "git",
     "url": "git+https://github.com/marpple/fxdom.git"
   },
-  "author": "",
+  "unpkg": "dist/",
+  "jsdelivr": "dist/",
+  "author": "Marpple",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/marpple/fxdom/issues"

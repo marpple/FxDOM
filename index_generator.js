@@ -1,15 +1,15 @@
 import fs from "fs";
+import { go, insert, last, pipe, split, join, hi } from "fxjs2";
 import readline from "readline";
-import { go, pipe, split, last } from "fxjs2";
 
 const outputStream = fs.createWriteStream("./index.js");
 
 const readAndWrite = (
   outputStream,
-  { source_dir = "./", prefix = "", postfix = "" }
+  { source_dir = "./src", prefix = "", postfix = "" }
 ) =>
   new Promise((res, rej) => {
-    const inputStream = fs.createReadStream(`${source_dir}/_index.js`);
+    const inputStream = fs.createReadStream(`${source_dir}/index.js`);
     const rl = readline.createInterface({
       input: inputStream,
     });
@@ -17,16 +17,21 @@ const readAndWrite = (
     rl.on("line", (line) =>
       outputStream.write(
         line
-          .replace(
-            /default as \w+/g,
+          .replace(/default as \w+/g,
             pipe(
               split(" "),
               last,
               (func_name) => `default as ${prefix}${func_name}${postfix}`
             )
           )
+          .replace(/"\.\/\w+\.js"/g,
+            pipe(
+              split("/"),
+              insert(1, "src"),
+              join("/")
+            )
+          )
           .concat("\n")
-          .replace(/\.\//, `${source_dir}`)
       )
     )
       .on("close", (_) => {
@@ -42,7 +47,7 @@ const writeALine = (stream, text) =>
   });
 
 go(
-  writeALine(outputStream, 'import * as $ from "./_index.js";\n'),
+  writeALine(outputStream, 'import * as $ from "./src/index.js";\n'),
   (_) => writeALine(outputStream, "export default $;\n"),
   (_) => readAndWrite(outputStream, { prefix: "$" }),
   (_) => outputStream.end()

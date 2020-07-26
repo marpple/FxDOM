@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import el from "../../el.js";
+import el from "../../src/el.js";
 
 export default ({ describe, it }) => [
   describe(`el`, function () {
