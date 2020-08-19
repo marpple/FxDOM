@@ -11,6 +11,12 @@ export default function (event, props, el) {
     el = props;
     props = {};
   }
+
+  if (event instanceof Event) {
+    el.dispatchEvent(event);
+    return el;
+  }
+
   if (event == "submit") return el.submit(), el;
   let e = document.createEvent(mouseEvents[event] || "Events");
   var bubbles = true;
