@@ -1,4 +1,4 @@
-export default (data) =>
+export const $dataStr = (data) =>
   "$dataStr_" +
   JSON.stringify(data)
     .replace(/\(/g, "()")
