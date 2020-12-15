@@ -15,10 +15,7 @@
   },
   "files": [
     "dist",
-    "src",
-    "index.js",
-    "LICENSE",
-    "README.md"
+    "*.js"
   ],
   "repository": {
     "type": "git",
