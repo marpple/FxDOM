@@ -1,5 +1,5 @@
-import { curry, object } from "fxjs2";
-import mapL from "fxjs2/Lazy/mapL.js";
+import { curry, object } from "fxjs/esm";
+import mapL from "fxjs/esm/Lazy/mapL.js";
 import toCamel from "./.internal/_toCamel.js";
 
 export default curry(function _css(k, el) {

@@ -1,4 +1,4 @@
-import { curry } from "fxjs2";
+import { curry } from "fxjs/esm";
 import on from "./on.js";
 
 export default curry(function ready(cb, el) {

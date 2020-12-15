@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { html } from "fxjs2";
+import { html } from "fxjs/esm";
 import attr from "../../src/attr.js";
 import el from "../../src/el.js";
 

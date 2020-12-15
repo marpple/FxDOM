@@ -1,8 +1,8 @@
-import { isUndefined, pipe, map } from "fxjs2";
+import { isUndefined, pipe, map } from "fxjs/esm";
 
-import entriesL from "fxjs2/Lazy/entriesL.js";
-import rejectL from "fxjs2/Lazy/rejectL.js";
-import mapL from "fxjs2/Lazy/mapL.js";
+import entriesL from "fxjs/esm/Lazy/entriesL.js";
+import rejectL from "fxjs/esm/Lazy/rejectL.js";
+import mapL from "fxjs/esm/Lazy/mapL.js";
 
 export default pipe(
   entriesL,

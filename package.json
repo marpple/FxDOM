@@ -7,10 +7,10 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "generate:index": "node --experimental-modules index_generator.js",
-    "build-modern": "NODE_ENV=production legacy=false webpack",
-    "build-legacy": "NODE_ENV=production legacy=true webpack",
-    "build": "npm run generate:index && npm run build-modern && npm run build-legacy",
+    "generate:index": "node index_generator.js",
+    "build:modern": "NODE_ENV=production BABEL_ENV=modern webpack",
+    "build:legacy": "NODE_ENV=production BABEL_ENV=legacy webpack",
+    "build": "npm run generate:index && npm run build:modern && npm run build:legacy",
     "test:server": "node ./test/server.cjs"
   },
   "files": [
@@ -34,12 +34,13 @@
   "homepage": "https://github.com/marpple/fxdom#readme",
   "dependencies": {
     "core-js": "^3.8.1",
-    "fxjs2": "^0.16.3",
+    "fxjs": "^0.20.2",
     "regenerator-runtime": "^0.13.7"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.10",
     "@babel/core": "^7.12.10",
+    "@babel/plugin-transform-runtime": "^7.12.10",
     "@babel/preset-env": "^7.12.10",
     "babel-loader": "^8.2.2",
     "chai": "^4.2.0",
@@ -47,8 +48,6 @@
     "mocha": "^8.2.1",
     "prettier": "2.2.1",
     "terser-webpack-plugin": "^5.0.3",
-    "uglify-es": "^3.3.9",
-    "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^5.10.2",
     "webpack-cli": "^4.2.0",
     "webpack-dev-middleware": "^4.0.2",

@@ -1,3 +1,3 @@
-import { curry } from "fxjs2";
+import { curry } from "fxjs/esm";
 
 export default curry((k, el) => el.getAttribute(k));

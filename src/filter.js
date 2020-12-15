@@ -1,4 +1,4 @@
-import { curry, filter } from "fxjs2";
+import { curry, filter } from "fxjs/esm";
 import is from "./is.js";
 
 export default curry(function _filter(funcOrSel, els) {

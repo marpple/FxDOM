@@ -1,4 +1,4 @@
-import { curry, go } from "fxjs2";
+import { curry, go } from "fxjs/esm";
 
 export default curry((url, form_el) =>
   go(

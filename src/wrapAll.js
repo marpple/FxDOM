@@ -1,4 +1,4 @@
-import { curry, head } from "fxjs2";
+import { curry, head } from "fxjs/esm";
 import $each from "./each.js";
 import appendTo from "./appendTo.js";
 import before from "./before.js";

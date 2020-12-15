@@ -1,4 +1,4 @@
-import {curry, go, go1, map, takeWhile, sel, sum, takeUntil} from "fxjs2";
+import {curry, go, go1, map, takeWhile, sel, sum, takeUntil} from "fxjs/esm";
 import attr from "./attr.js";
 import closest from "./closest.js";
 import data from "./data.js";

@@ -1,4 +1,4 @@
-import { curry, reject } from "fxjs2";
+import { curry, reject } from "fxjs/esm";
 import is from "./is.js";
 
 export default curry(function _not(funcOrSel, els) {

@@ -1,4 +1,4 @@
-import { curry } from "fxjs2";
+import { curry } from "fxjs/esm";
 
 const idCreator = (_) => {
   let i = 0;

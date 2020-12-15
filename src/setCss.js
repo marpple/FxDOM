@@ -1,5 +1,5 @@
-import { curry, isArray, each } from "fxjs2";
-import entriesL from "fxjs2/Lazy/entriesL.js";
+import { curry, isArray, each } from "fxjs/esm";
+import entriesL from "fxjs/esm/Lazy/entriesL.js";
 import toCamel from "./.internal/_toCamel.js";
 import addPx from "./.internal/_addPx.js";
 
