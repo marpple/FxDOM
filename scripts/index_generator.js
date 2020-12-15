@@ -1,5 +1,5 @@
 import fs from "fs";
-import { go, insert, last, pipe, split, join, hi } from "fxjs/esm";
+import { go, last, pipe, split } from "fxjs/esm";
 import readline from "readline";
 
 const outputStream = fs.createWriteStream("./index.js");
@@ -24,13 +24,6 @@ const readAndWrite = (
               (func_name) => `default as ${prefix}${func_name}${postfix}`
             )
           )
-          .replace(/"\.\/\w+\.js"/g,
-            pipe(
-              split("/"),
-              insert(1, "src"),
-              join("/")
-            )
-          )
           .concat("\n")
       )
     )
@@ -47,8 +40,7 @@ const writeALine = (stream, text) =>
   });
 
 go(
-  writeALine(outputStream, 'import * as $ from "./src/index.js";\n'),
-  (_) => writeALine(outputStream, "export default $;\n"),
-  (_) => readAndWrite(outputStream, { prefix: "$" }),
-  (_) => outputStream.end()
+  null,
+  () => readAndWrite(outputStream, { prefix: "$" }),
+  () => outputStream.end()
 );
