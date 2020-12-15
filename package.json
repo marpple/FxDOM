@@ -7,7 +7,7 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "generate:index": "node index_generator.js",
+    "generate:index": "node scripts/index_generator.js",
     "build:modern": "NODE_ENV=production BABEL_ENV=modern webpack",
     "build:legacy": "NODE_ENV=production BABEL_ENV=legacy webpack",
     "build": "npm run generate:index && npm run build:modern && npm run build:legacy",
