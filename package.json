@@ -12,7 +12,7 @@
     "build:modern": "NODE_ENV=production BABEL_ENV=modern webpack",
     "build:legacy": "NODE_ENV=production BABEL_ENV=legacy webpack",
     "build": "npm run generate:index && npm run build:modern && npm run build:legacy && npm run copy-files",
-    "deploy": "npm run build && np --no-tests",
+    "deploy": "np --no-publish --no-tests && npm run build && npm publish",
     "test:server": "node ./test/server.cjs"
   },
   "files": [
