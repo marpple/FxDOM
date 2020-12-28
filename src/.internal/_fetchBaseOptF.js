@@ -1,4 +1,4 @@
-import { defaults } from "fxjs/esm";
+import { defaults } from "fxjs/es";
 
 const fetchBaseOpt = {
   headers: { "Content-Type": "application/json" },

@@ -1,5 +1,5 @@
-import { tap, go, each, defaults } from "fxjs/esm";
-import filterL from "fxjs/esm/Lazy/filterL.js";
+import { tap, go, each, defaults } from "fxjs/es";
+import filterL from "fxjs/es/Lazy/filterL.js";
 import contains from "./contains.js";
 import findAll from "./findAll.js";
 

@@ -1,4 +1,4 @@
-import { curry, go } from "fxjs/esm";
+import { curry, go } from "fxjs/es";
 import fetchBaseOptF from "./_fetchBaseOptF.js";
 import resJSON from "./_resJSON.js";
 

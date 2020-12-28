@@ -1,3 +1,3 @@
-import { map } from "fxjs/esm";
+import { map } from "fxjs/es";
 
 export default map;

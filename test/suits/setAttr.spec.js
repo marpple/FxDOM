@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { go } from "fxjs/esm";
+import { go } from "fxjs/es";
 import el from "../../src/el.js";
 import setAttr from "../../src/setAttr.js";
 

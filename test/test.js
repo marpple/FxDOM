@@ -1,4 +1,4 @@
-import { each } from "fxjs/esm";
+import { each } from "fxjs/es";
 import __addClass__ from "./suits/addClass.spec.js";
 import __attr__ from "./suits/attr.spec.js";
 import __el__ from "./suits/el.spec.js";

@@ -1,5 +1,5 @@
-import { curry, isArray, each } from "fxjs/esm";
-import entriesL from "fxjs/esm/Lazy/entriesL.js";
+import { curry, isArray, each } from "fxjs/es";
+import entriesL from "fxjs/es/Lazy/entriesL.js";
 
 export default curry(
   (kv, el) => (

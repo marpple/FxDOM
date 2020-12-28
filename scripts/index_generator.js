@@ -1,5 +1,5 @@
 import fs from "fs";
-import { go, last, pipe, split } from "fxjs/esm";
+import { go, last, pipe, split } from "fxjs/es";
 import readline from "readline";
 
 const outputStream = fs.createWriteStream("./index.js");

@@ -1,4 +1,4 @@
-import { curry, each } from "fxjs/esm";
+import { curry, each } from "fxjs/es";
 
 export default (method) =>
   curry(

@@ -1,4 +1,4 @@
-import { isString, each } from "fxjs/esm";
+import { isString, each } from "fxjs/es";
 import findAll from "../findAll.js";
 
 export default (method) => (event, f, ...opts) => (el) => (

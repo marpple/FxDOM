@@ -1,4 +1,4 @@
-import { head } from "fxjs/esm";
+import { head } from "fxjs/es";
 import els from "./els.js";
 
 export default (html) => {

@@ -1,4 +1,4 @@
-import { curry } from "fxjs/esm";
+import { curry } from "fxjs/es";
 import append from "./append.js";
 import before from "./before.js";
 
