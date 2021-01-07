@@ -14,12 +14,17 @@ module.exports = (api) => {
     ],
   ];
 
+  if (BABEL_ENV === "mjs") {
+    plugins.push("./scripts/transform_import_fxjs.cjs");
+  }
+
   return {
     presets: [
       [
         "@babel/preset-env",
         {
           targets,
+          modules: BABEL_ENV === "mjs" ? false : "auto",
         },
       ],
     ],

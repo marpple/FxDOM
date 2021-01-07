@@ -8,16 +8,18 @@
   "type": "module",
   "scripts": {
     "generate:index": "node scripts/index_generator.js",
-    "copy-files": "rm src/index.js && mv src/_internal ./ && mv src/*.js ./ && rm -rf src",
+    "copy-es-files": "mkdir es && cp -r ./src/* ./es",
     "build:modern": "NODE_ENV=production BABEL_ENV=modern webpack",
     "build:legacy": "NODE_ENV=production BABEL_ENV=legacy webpack",
-    "build": "npm run generate:index && npm run build:modern && npm run build:legacy && npm run copy-files",
+    "transpile": "BABEL_ENV=mjs babel src/ --out-dir ./",
+    "build": "npm run build:modern && npm run build:legacy && npm run generate:index && mv -f ./index.js src/ && npm run copy-es-files && npm run transpile && rm -rf src/",
     "deploy": "np --no-publish --no-tests && npm run build && npm publish",
     "test:server": "node ./test/server.cjs"
   },
   "files": [
-    "dist",
-    "_internal",
+    "dist/",
+    "_internal/",
+    "es/",
     "*.js"
   ],
   "repository": {
