@@ -1,6 +1,6 @@
 import { curry, go } from "fxjs/es";
-import fetchBaseOptF from "./.internal/_fetchBaseOptF.js";
-import resJSON from "./.internal/_resJSON.js";
+import fetchBaseOptF from "./_internal/_fetchBaseOptF.js";
+import resJSON from "./_internal/_resJSON.js";
 import param from "./param.js";
 
 export default curry((url, data, headers) =>

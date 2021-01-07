@@ -1,6 +1,6 @@
 import css from "./css.js";
-import getDefaultDisplays from "./.internal/_getDefaultDisplays.js";
-import getPrevDisplay from "./.internal/_getPrevDisplay.js";
+import getDefaultDisplays from "./_internal/_getDefaultDisplays.js";
+import getPrevDisplay from "./_internal/_getPrevDisplay.js";
 export default (el) => {
   let display = "";
   if (el.style.display == "none") {

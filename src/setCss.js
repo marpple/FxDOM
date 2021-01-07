@@ -1,7 +1,7 @@
 import { curry, isArray, each } from "fxjs/es";
 import entriesL from "fxjs/es/Lazy/entriesL.js";
-import toCamel from "./.internal/_toCamel.js";
-import addPx from "./.internal/_addPx.js";
+import toCamel from "./_internal/_toCamel.js";
+import addPx from "./_internal/_addPx.js";
 
 export default curry(function _setCss(kv, el) {
   if (isArray(kv)) {

@@ -1,2 +1,2 @@
-import baseFind from "./.internal/_baseFind.js";
+import baseFind from "./_internal/_baseFind.js";
 export default baseFind("querySelectorAll");

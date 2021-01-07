@@ -1,4 +1,4 @@
-import docWidth from "./.internal/_docWidth.js";
+import docWidth from "./_internal/_docWidth.js";
 import elWidth from "./elWidth.js";
 
 export default (el) =>

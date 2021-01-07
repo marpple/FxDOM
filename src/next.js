@@ -1,3 +1,3 @@
-import nextOrPrev from "./.internal/_nextOrPrev.js";
+import nextOrPrev from "./_internal/_nextOrPrev.js";
 
 export default nextOrPrev("nextSibling");

@@ -1,5 +1,5 @@
 import css from "./css.js";
-import cssF from "./.internal/_cssF.js";
+import cssF from "./_internal/_cssF.js";
 import show from "./show.js";
 import hide from "./hide.js";
 

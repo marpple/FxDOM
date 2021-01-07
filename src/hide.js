@@ -1,4 +1,4 @@
-import getPrevDisplay from "./.internal/_getPrevDisplay.js";
+import getPrevDisplay from "./_internal/_getPrevDisplay.js";
 
 export default (el) => {
   const prev_display = el.style.display;
