@@ -13,7 +13,7 @@
     "build:legacy": "NODE_ENV=production BABEL_ENV=legacy webpack",
     "transpile": "BABEL_ENV=mjs babel src/ --out-dir ./",
     "build": "npm run build:modern && npm run build:legacy && npm run generate:index && mv -f ./index.js src/ && npm run copy-es-files && npm run transpile && rm -rf src/",
-    "deploy": "np --no-publish --no-tests && npm run build && npm publish",
+    "deploy": "np --no-publish --no-tests",
     "test:server": "node ./test/server.cjs"
   },
   "files": [
