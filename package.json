@@ -7,13 +7,15 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "generate:index": "node scripts/index_generator.js",
-    "copy-es-files": "mkdir es && cp -r ./src/* ./es",
     "build:modern": "NODE_ENV=production BABEL_ENV=modern webpack",
     "build:legacy": "NODE_ENV=production BABEL_ENV=legacy webpack",
-    "transpile": "BABEL_ENV=mjs babel src/ --out-dir ./",
-    "build": "npm run build:modern && npm run build:legacy && npm run generate:index && mv -f ./index.js src/ && npm run copy-es-files && npm run transpile && rm -rf src/",
+    "build": "npm run build:modern && npm run build:legacy && npm run generate && mv -f ./index.js src/ && npm run copy-es-files && npm run transpile && rm -rf src/",
+    "copy-es-files": "mkdir es && cp -r ./src/* ./es",
     "deploy": "np --no-publish --no-tests",
+    "generate:index": "node scripts/index_generator.js",
+    "generate:exports": "node scripts/exports_generator.js",
+    "generate": "npm run generate:index && npm run generate:exports",
+    "transpile": "BABEL_ENV=mjs babel src/ --out-dir ./",
     "test:server": "node ./test/server.cjs"
   },
   "files": [
