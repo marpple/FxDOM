@@ -48,6 +48,7 @@
     "babel-loader": "^8.2.2",
     "chai": "^4.3.0",
     "express": "^4.17.1",
+    "glob": "^7.1.6",
     "mocha": "^8.3.0",
     "prettier": "2.2.1",
     "terser-webpack-plugin": "^5.1.1",
