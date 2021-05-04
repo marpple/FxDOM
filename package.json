@@ -11,7 +11,7 @@
     "build:legacy": "NODE_ENV=production BABEL_ENV=legacy webpack",
     "build": "npm run build:modern && npm run build:legacy && npm run generate && mv -f ./index.js src/ && npm run copy-es-files && npm run transpile && rm -rf src/",
     "copy-es-files": "mkdir es && cp -r ./src/* ./es",
-    "deploy": "np --no-publish --no-tests",
+    "deploy": "npx np --no-publish --no-tests",
     "generate:index": "node scripts/index_generator.js",
     "generate:exports": "node scripts/exports_generator.js",
     "generate": "npm run generate:index && npm run generate:exports",
