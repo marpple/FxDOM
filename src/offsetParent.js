@@ -1,5 +1,6 @@
 import css from "./css.js";
-const docEl = document.documentElement;
+import { document_wrapper } from "./_internal/_browser.js";
+const docEl = document_wrapper.documentElement;
 
 export default function offsetParent(el) {
   let offsetParent = el;

@@ -1,4 +1,6 @@
-const docEl = document.documentElement;
+import { document_wrapper } from "./_browser.js";
+
+const docEl = document_wrapper.documentElement;
 
 export default (isHeight, b = document.body) =>
   isHeight

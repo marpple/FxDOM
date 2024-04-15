@@ -2,8 +2,9 @@ import css from "./css.js";
 import cssF from "./_internal/_cssF.js";
 import show from "./show.js";
 import hide from "./hide.js";
+import { navigator_wrapper } from "./_internal/_browser.js";
 
-const isIE = /trident/i.test(navigator.userAgent);
+const isIE = /trident/i.test(navigator_wrapper.userAgent || '');
 
 function getBorderBoxValue(Left, Right, el) {
   return (

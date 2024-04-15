@@ -1,10 +1,16 @@
 import remove from "./remove.js";
 import $each from "./each.js";
 
-const fragmentRE = /^\s*<(\w+|!)[^>]*>/,
-  table = document.createElement("table"),
-  tableRow = document.createElement("tr"),
-  div = document.createElement("div"),
+const fragmentRE = /^\s*<(\w+|!)[^>]*>/;
+let table;
+let tableRow;
+let div;
+let containers;
+
+if (typeof document !== "undefined") {
+  table = document.createElement("table");
+  tableRow = document.createElement("tr");
+  div = document.createElement("div");
   containers = {
     tr: document.createElement("tbody"),
     tbody: table,
@@ -13,6 +19,7 @@ const fragmentRE = /^\s*<(\w+|!)[^>]*>/,
     td: tableRow,
     th: tableRow,
   };
+}
 
 export default (html) => {
   html = html.trim();

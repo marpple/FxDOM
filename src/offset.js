@@ -1,4 +1,6 @@
-const docEl = document.documentElement;
+import { document_wrapper } from "./_internal/_browser.js";
+
+const docEl = document_wrapper.documentElement;
 
 export default (el) => {
   const rect = el.getBoundingClientRect();

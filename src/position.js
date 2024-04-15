@@ -1,8 +1,9 @@
 import css from "./css.js";
 import offset from "./offset.js";
 import offsetParent from "./offsetParent.js";
+import { document_wrapper } from "./_internal/_browser.js";
 
-const docEl = document.documentElement;
+const docEl = document_wrapper.documentElement;
 
 const setPositionTopLeft = (el, { top, left }, { pTop = 0, pLeft = 0 }) => ({
   top: top - pTop - parseFloat(css("marginTop", el)) + docEl.clientTop,
